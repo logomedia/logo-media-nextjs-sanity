@@ -22,6 +22,48 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'email',
+      description: 'Website Email Address',
+      title: 'Email',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'phone',
+      description: 'Website Phone Number',
+      title: 'Phone',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'url',
+      description: 'This website url, used to create canonical url.',
+      title: 'URL',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      title: 'Brand logo',
+      description:
+        'Best choice is to use an SVG where the color are set with currentColor',
+      name: 'logo',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+        },
+      ],
+    }),
+    defineField({
+      name: 'frontpage',
+      type: 'reference',
+      description: 'Choose page to be the frontpage',
+      to: { type: 'page' },
+    }),
+    defineField({
       name: 'description',
       description:
         'Used both for the <meta> description tag for SEO, and the blog subheader.',
@@ -60,16 +102,12 @@ export default defineType({
       title: 'Open Graph Image',
       description:
         'Used for social media previews when linking to the index page.',
-      type: 'object',
-      components: {
-        input: OpenGraphInput as any,
-      },
+      type: 'image',
       fields: [
         defineField({
           name: 'title',
           title: 'Title',
           type: 'string',
-          initialValue: demo.ogImageTitle,
         }),
       ],
     }),

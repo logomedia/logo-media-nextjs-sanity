@@ -9,11 +9,11 @@ export interface IndexPageHeadProps {
 
 export default function IndexPageHead({ settings }: IndexPageHeadProps) {
   const {
-    title = demo.title,
-    description = demo.description,
-    ogImage = {},
+    title,
+    description,
+    ogImage,
   } = settings
-  const ogImageTitle = ogImage?.title || demo.ogImageTitle
+  const ogImageTitle = ogImage.title 
 
   return (
     <>
