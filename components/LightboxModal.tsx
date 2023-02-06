@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Lightbox, { ILightBoxProps } from 'react-image-lightbox';
+import Lightbox, { ILightBoxProps } from 'react-18-image-lightbox';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Typography, GlobalStyles } from '@mui/material';
