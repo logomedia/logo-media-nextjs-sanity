@@ -1,8 +1,6 @@
 import { BookIcon } from '@sanity/icons'
-import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
-import authorType from './author'
 
 /**
  * This file is the schema definition for a post.
@@ -21,6 +19,12 @@ export default defineType({
   title: 'Page',
   icon: BookIcon,
   type: 'document',
+  fieldsets: [
+    {
+      title: 'SEO & metadata',
+      name: 'metadata',
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -41,47 +45,34 @@ export default defineType({
     }),
     defineField({
       name: 'content',
-      title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],
+      title: 'Page sections',
+      of: [
+        { type: 'hero' }       
+      ],
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
+      name: 'description',
+      title: 'Page Meta Description',
       type: 'text',
+      fieldset: 'metadata',
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
+      name: 'ogImage',
+      title: 'OG Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-    }),
-    defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: [{ type: authorType.name }],
+      fieldset: 'metadata',
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
-      date: 'date',
-      media: 'coverImage',
+      description: 'description',
+      media: 'ogImage',
     },
-    prepare({ title, media, author, date }) {
+    prepare({ title, description, media }) {
       const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
+        description && `${description}`
       ].filter(Boolean)
 
       return { title, media, subtitle: subtitles.join(' ') }
