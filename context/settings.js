@@ -7,7 +7,7 @@ const SiteSettingsContext = createContext();
 export function SiteSettingsProvider({ children }) {
     const [settings, setSettings] = useState({});
     useEffect(() => {
-        getSettings().then((settings) => {
+        getSettings(settingsQuery).then((settings) => {
             setSettings(settings)
         })
     }, [])
