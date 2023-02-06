@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import styles from './cta.module.css'
+import styles from './Cta.module.css'
 import Calendly from './Calendly'
-import {Button} from '@mui/material';
 
 function cta(props) {
   const { title, route, link, cta_types, calendy } = props
