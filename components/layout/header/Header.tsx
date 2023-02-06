@@ -82,7 +82,7 @@ export default function Header({ transparent }: Props) {
           let menus = []
           for (let i = 0; i < grandkids.length; i++){
             let grandKidLinks = grandkids[i].link.links
-            console.log(grandkids)
+    
 
             let array =[]
 
