@@ -23,7 +23,6 @@ import ProgressBar from '../components/ProgressBar';
 import ThemeColorPresets from '../components/ThemeColorPresets';
 import MotionLazyContainer from '../components/animate/MotionLazyContainer';
 import Layout from "components/layout/Layout";
-import { Header } from "components/layout/header";
 
 export default function Page(props) {
   const { content } = props
@@ -41,8 +40,9 @@ export default function Page(props) {
               <RtlLayout>
                 <Settings />
                   <ProgressBar />
-                  <Header/>
+                  <Layout>
                     {content && <RenderSections sections={content}  />}
+                  </Layout>
               </RtlLayout>
             </MotionLazyContainer>
           </ThemeColorPresets>
