@@ -1,0 +1,49 @@
+.button {
+  background: var(--purple);
+  border: none;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.rem;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: 2px;
+  box-shadow: var(--orange) 0 2px 7px;
+  transition: all ease 0.4s;
+  cursor: pointer;
+  text-shadow: 2px 2px 4px var(--black);
+  font-family: var(--BodyFonts);
+  
+}
+.secondaryButton {
+  background: var(--orange);
+  text-shadow: 2px 2px 4px var(--black);
+  border: none;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: 2px;
+  box-shadow: var(--purple) 0 2px 7px;
+  transition: all ease 0.4s;
+  cursor: pointer;
+  font-family: var(--BodyFonts);
+ 
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+.secondaryButton:hover {
+  transform: scale(1.05);
+}
+
+.secondaryButton:active {
+  transform: scale(0.95);
+}

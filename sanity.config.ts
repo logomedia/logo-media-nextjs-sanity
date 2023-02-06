@@ -8,12 +8,23 @@ import { previewDocumentNode } from 'plugins/previewPane'
 import { productionUrl } from 'plugins/productionUrl'
 import { settingsPlugin, settingsStructure } from 'plugins/settings'
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { component, deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import authorType from 'schemas/author'
 import postType from 'schemas/post'
 import pageType from 'schemas/page'
 import settingsType from 'schemas/settings'
+import menus from 'schemas/menus'
+
+//import section components
+
+import hero from 'schemas/sections/hero'
+
+
+//import block components
+import cta from 'schemas/blocks/cta'
+import icon from 'schemas/blocks/icon'
+import navItem from 'schemas/blocks/navItem'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -25,7 +36,7 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, pageType, postType, settingsType],
+    types: [authorType, menus, pageType, postType, settingsType, hero, cta, icon, navItem],
   },
   plugins: [
     deskTool({
