@@ -6,7 +6,7 @@ import { createClient } from 'next-sanity'
 
 export const config: PageConfig = { runtime: 'edge' }
 
-import { height, OpenGraphImage, width } from 'components/OpenGraphImage'
+import { height, OpenGraphImage, width } from '../../components/blog-components/OpenGraphImage'
 import * as demo from 'lib/demo.data'
 import { Settings, settingsQuery } from 'lib/sanity.queries'
 

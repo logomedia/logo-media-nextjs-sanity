@@ -1,4 +1,4 @@
-import IndexPage from 'components/IndexPage'
+import IndexPage from './IndexPage'
 import { usePreview } from 'lib/sanity.preview'
 import {
   indexQuery,

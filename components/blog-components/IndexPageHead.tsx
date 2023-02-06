@@ -1,5 +1,5 @@
-import BlogMeta from 'components/BlogMeta'
-import MetaDescription from 'components/MetaDescription'
+import BlogMeta from './BlogMeta'
+import MetaDescription from '.BlogHeader/MetaDescription'
 import * as demo from 'lib/demo.data'
 import { Settings } from 'lib/sanity.queries'
 
