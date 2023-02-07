@@ -1,4 +1,4 @@
-import { getPageBySlug } from "lib/sanity.client"
+import { getAllPageSlugs, getPageBySlug } from "lib/sanity.client"
 import { slugParamToPath } from "utils/urls"
 import RenderSections from "components/layout/RenderSections"
 
@@ -57,12 +57,20 @@ export const getServerSideProps = async ({ params }) => {
   const slug = slugParamToPath(params?.slug)
 
   let data;
+  let data2;
 
   data = await getPageBySlug(slug)
+  data2 = await getAllPageSlugs()
 
-  console.log(data)
+  console.log(data.slug)
+  console.log(data2)
 
-
+  let page = data2.find(slug => slug.slug == data.slug)
+  if (!page) {
+    return {
+      notFound:true
+    }
+  }
   
 
   return {

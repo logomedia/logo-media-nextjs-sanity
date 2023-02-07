@@ -1,7 +1,6 @@
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   indexQuery,
-  menuQuery,
   pageQuery,
   type Post,
   type Page,
@@ -28,12 +27,7 @@ export async function getSettings(): Promise<Settings> {
   }
   return {}
 }
-export async function getMenu(): Promise<Menu> {
-  if (client) {
-    return (await client.fetch(menuQuery)) || {}
-  }
-  return {}
-}
+
 
 export async function getAllPosts(): Promise<Post[]> {
   if (client) {
