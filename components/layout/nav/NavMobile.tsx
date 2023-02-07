@@ -91,7 +91,7 @@ export default function NavMobile({ navConfig, sx }: NavProps) {
           <Box sx={{ px: 2.5, py: 3, lineHeight: 0 }}>
             <Logo />
           </Box>
-
+          
           <List sx={{ px: 0 }}>
             {navConfig.map((link) => (
               <NavItemMobile key={link.title} item={link} />

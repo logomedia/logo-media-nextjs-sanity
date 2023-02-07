@@ -17,17 +17,7 @@ function Logo() {
   const { logo } = useSettingsState().settings
 
 
-  const renderLogo = (logo) => {
-    if (!logo || !logo.asset) {
-      return null
-    }
-
-    if (logo.asset.extension === 'svg') {
-      return <SVG src={logo.asset.url}  />
-    }
-
-    return <Image src={logo.asset.url}   />
-  }
+  
 
   return (
     <NextLink href="/" passHref>
@@ -40,7 +30,7 @@ function Logo() {
 
         }}
       >
-       {renderLogo(logo)}
+       <SVG src={logo.asset.url}/>
       </Box>
     </NextLink>
   );

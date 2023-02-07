@@ -1,22 +1,21 @@
 // next
-import NextLink from 'next/link';
+import { AppBar, Box, Button, Container, Divider, Stack } from '@mui/material';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Stack, Button, AppBar, Divider, Container, Link } from '@mui/material';
-// hooks
-import { useOffSetTop, useResponsive } from '../../../hooks';
+import { useSettingsState } from 'context/settings';
+import NextLink from 'next/link';
+
+// components
+import { Logo } from '../../../components';
 // routes
-import Routes from 'routes';
 // config
 import { HEADER_DESKTOP_HEIGHT } from '../../../config';
-// components
-import { Logo, Label } from '../../../components';
+// hooks
+import { useOffSetTop, useResponsive } from '../../../hooks';
+import { NavDesktop,NavMobile,   } from '../nav';
 //
 import Searchbar from '../Searchbar';
-
-import { NavMobile, NavDesktop,  } from '../nav';
-import { ToolbarStyle, ToolbarShadowStyle } from './HeaderToolbarStyle';
-import { useSettingsState } from 'context/settings';
+import { ToolbarShadowStyle,ToolbarStyle } from './HeaderToolbarStyle';
 
 // ----------------------------------------------------------------------
 
@@ -128,7 +127,7 @@ export default function Header({ transparent }: Props) {
       navConfig.push(obj1)
   
   }
-//console.log(mainMenu)
+
 }
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
@@ -141,25 +140,7 @@ export default function Header({ transparent }: Props) {
           }}
         >
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
-            <Logo onDark={transparent && !isScrolling} />
-
-            <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
-              <Label
-                color="info"
-                sx={{
-                  ml: 0.5,
-                  px: 0.5,
-                  top: -14,
-                  left: 64,
-                  height: 20,
-                  fontSize: 11,
-                  cursor: 'pointer',
-                  position: 'absolute',
-                }}
-              >
-                v1.4
-              </Label>
-            </Link>
+            <Logo />            
           </Box>
 
           {isDesktop && (
@@ -185,7 +166,7 @@ export default function Header({ transparent }: Props) {
 
             {isDesktop && (
               <Stack direction="row" spacing={1}>
-                <NextLink href={Routes.registerIllustration} prefetch={false} passHref>
+                <NextLink href='/' prefetch={false} passHref>
                   <Button
                     color="inherit"
                     variant="outlined"
@@ -200,7 +181,7 @@ export default function Header({ transparent }: Props) {
                   </Button>
                 </NextLink>
 
-                <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
+                <Button variant="contained" href='/' target="_blank" rel="noopener">
                   Buy Now
                 </Button>
               </Stack>
