@@ -53,7 +53,7 @@ export default function Page(props) {
   )
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const slug = slugParamToPath(params?.slug)
 
   let data;
@@ -61,10 +61,7 @@ export const getServerSideProps = async ({ params }) => {
 
   data = await getPageBySlug(slug)
   data2 = await getAllPageSlugs()
-
-  console.log(data.slug)
-  console.log(data2)
-
+console.log(data)
   let page = data2.find(slug => slug.slug == data.slug)
   if (!page) {
     return {
@@ -75,5 +72,13 @@ export const getServerSideProps = async ({ params }) => {
 
   return {
     props: data || {},
+  }
+}
+export const getStaticPaths = async () => {
+  const slugs = await getAllPageSlugs()
+
+  return {
+    paths: slugs?.map(({ slug }) => `/${slug}`) || [],
+    fallback: false,
   }
 }
