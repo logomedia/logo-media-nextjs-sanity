@@ -20,7 +20,7 @@ function Logo() {
   
 
   return (
-    <NextLink href="/" passHref style={{display:'block', minHeight:'100%'}}>
+    <NextLink href="/" style={{display:'block', minHeight:'100%'}}>
       <Box
         sx={{
           width: 75,
