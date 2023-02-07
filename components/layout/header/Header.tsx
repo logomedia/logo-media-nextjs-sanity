@@ -139,9 +139,9 @@ export default function Header({ transparent }: Props) {
             justifyContent: 'flex-start',
           }}
         >
-          <Box sx={{ lineHeight: 0, position: 'relative' }}>
+          
             <Logo />            
-          </Box>
+         
 
           {isDesktop && (
             <NavDesktop

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 // next
-import NextLink from 'next/link';
+import Link from 'next/link';
 // @mui
 import { Box, BoxProps } from '@mui/material';
 import SVG from 'react-inlinesvg'
@@ -20,20 +20,10 @@ function Logo() {
   
 
   return (
-    <NextLink href="/" style={{display:'block', minHeight:'100%'}}>
-      <Box
-        sx={{
-          width: 75,
-          lineHeight: 0,
-          cursor: 'pointer',
-          display: 'inline-flex',
-
-        }}
-      >
-       <SVG src={logo.asset.url}/>
-      </Box>
-    </NextLink>
+    <Link href="/" >
+      <SVG style={{ height: '40px' }} src={logo.asset.url}/>
+    </Link>
   );
 }
 
-export default memo(Logo);
+export default Logo;
