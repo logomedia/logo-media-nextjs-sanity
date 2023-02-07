@@ -60,12 +60,10 @@ export const getServerSideProps = async ({ params }) => {
 
   data = await getPageBySlug(slug)
 
+  console.log(data)
 
-  if (JSON.stringify(data) === '{}') {
-    return {
-      notFound: true,
-    }
-  }
+
+  
 
   return {
     props: data || {},
