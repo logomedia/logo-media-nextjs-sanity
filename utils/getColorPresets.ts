@@ -28,7 +28,7 @@ export const colorPresets = [
     primary: {
       lighter: '#FEE7E4',
       light: '#FBAEB5',
-      main: '#F2779A',
+      main: '#540e6f',
       dark: '#AE3B72',
       darker: '#741655',
       contrastText: contrastText.white,
@@ -36,7 +36,7 @@ export const colorPresets = [
     secondary: {
       lighter: '#CAFDEB',
       light: '#61F4D9',
-      main: '#00DCDA',
+      main: '#f88d1b',
       dark: '#00849E',
       darker: '#004569',
       contrastText: contrastText.white,

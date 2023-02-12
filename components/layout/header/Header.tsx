@@ -154,11 +154,7 @@ export default function Header({ transparent }: Props) {
           <Box sx={{ flexGrow: 1 }} />
 
           <Stack spacing={2} direction="row" alignItems="center">
-            <Searchbar
-              sx={{
-                ...(isScrolling && { color: 'text.primary' }),
-              }}
-            />
+            
 
           
 

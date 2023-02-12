@@ -8,13 +8,24 @@
  *
  */
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image';
 
 import styles from './PostBody.module.css'
 
 export default function PostBody({ content }) {
+
+  const myPortableTextComponents = {
+    types: {
+      image: ({ value }) => {
+        return (
+          <Image key={value.key} alt={value.alt} src={value.asset.url} width={value.asset.metadata.dimensions.width} height={value.asset.metadata.dimensions.height} />
+        );
+      },
+    },
+  };
   return (
     <div className={`mx-auto max-w-2xl ${styles.portableText}`}>
-      <PortableText value={content} />
+      <PortableText value={content} components={myPortableTextComponents} />
     </div>
   )
 }

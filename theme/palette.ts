@@ -59,7 +59,7 @@ export const contrastText = {
 const PRIMARY = {
   lighter: '#FEE9D1',
   light: '#FDAB76',
-  main: '#FA541C',
+  main: '#f88d1b',
   dark: '#B3200E',
   darker: '#770508',
   contrastText: contrastText.white,
@@ -67,7 +67,7 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: '#D2FCF4',
   light: '#77F0ED',
-  main: '#22B8CF',
+  main: '#540e6f',
   dark: '#116E95',
   darker: '#063963',
   contrastText: contrastText.white,

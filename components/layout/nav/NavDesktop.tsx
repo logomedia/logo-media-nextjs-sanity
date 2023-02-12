@@ -155,19 +155,7 @@ function NavItemDesktop({ item, isScrolling, isTransparent }: NavItemDesktopProp
     );
   }
 
-  if (title === 'Documentation') {
-    return (
-      <RootLinkStyle
-        href={path}
-        target="_blank"
-        rel="noopener"
-        scrolling={isScrolling}
-        transparent={isTransparent}
-      >
-        {title}
-      </RootLinkStyle>
-    );
-  }
+  
 
   return (
     <NextLink key={title} href={path} passHref>

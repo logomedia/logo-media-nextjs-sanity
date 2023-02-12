@@ -61,7 +61,6 @@ export const getStaticProps = async ({ params }) => {
 
   data = await getPageBySlug(slug)
   data2 = await getAllPageSlugs()
-console.log(data)
   let page = data2.find(slug => slug.slug == data.slug)
   if (!page) {
     return {

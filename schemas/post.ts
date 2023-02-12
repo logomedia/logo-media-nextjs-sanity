@@ -23,6 +23,12 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'length',
+      title: 'Length to read in minuts',
+      type: 'number',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -43,7 +49,22 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        { type: 'block' },
+        {
+          type: 'image',
+          fields: [
+            {
+              type: 'string',
+              name: 'alt',
+              title: 'Alternative text',
+              options: {
+                isHighlighted: true
+              }
+            }
+          ]
+        }
+      ],
     }),
     defineField({
       name: 'excerpt',

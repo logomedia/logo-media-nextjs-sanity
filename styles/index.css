@@ -17,3 +17,6 @@
     --black: #000;
     --white: #fff;
 }
+a{
+    all: unset;
+}
