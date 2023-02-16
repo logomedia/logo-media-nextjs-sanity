@@ -3,9 +3,10 @@ import { groq } from 'next-sanity'
 const postFields = groq`
   _id,
   title,
+  length,
   date,
   excerpt,
-  coverImage,
+  coverImage{..., asset->},
   "slug": slug.current,
   "author": author->{name, picture},
 `
