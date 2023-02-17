@@ -21,13 +21,10 @@ export default function BlogSidebarAuthor({ author }: Props) {
         mb: { md: 5 },
       }}
     >
-      <Avatar src={picture} sx={{ width: 64, height: 64 }} />
+      <Avatar src={picture.asset.url} sx={{ width: 64, height: 64 }} />
       <Stack>
-        <Typography variant="h5">{name}</Typography>
-        <Typography variant="body3" sx={{ mt: 0.5, mb: 2, color: 'text.secondary' }}>
-          {role}
-        </Typography>
-        <SocialsButton initialColor links={socialLinks} />
+        <Typography variant="h5"> {name}</Typography>
+       
       </Stack>
     </Stack>
   );
