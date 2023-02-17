@@ -2,6 +2,7 @@ import { BookIcon } from '@sanity/icons'
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
+
 import authorType from './author'
 
 /**
@@ -58,9 +59,7 @@ export default defineType({
               type: 'string',
               name: 'alt',
               title: 'Alternative text',
-              options: {
-                isHighlighted: true
-              }
+              
             }
           ]
         }
@@ -91,6 +90,15 @@ export default defineType({
       type: 'reference',
       to: [{ type: authorType.name }],
     }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      }
+    })
   ],
   preview: {
     select: {

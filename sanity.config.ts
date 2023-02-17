@@ -15,6 +15,7 @@ import postType from 'schemas/post'
 import pageType from 'schemas/page'
 import settingsType from 'schemas/settings'
 import menus from 'schemas/menus'
+import {media} from 'sanity-plugin-media'
 
 //import section components
 
@@ -57,5 +58,6 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    media(),
   ],
 })
