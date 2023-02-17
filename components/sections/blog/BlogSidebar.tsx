@@ -26,11 +26,30 @@ interface Props extends StackProps {
   advertisement: AdvertisementProps;
 }
 
-export default function BlogSidebar() {
-
+export default function BlogSidebar(props) {
+const {author, posts, sx} = props
   return (
     <>
-    
+     <>
+      {author  && <BlogSidebarAuthor author={author} />}
+
+     
+
+      <Stack
+        spacing={5}
+        sx={{
+          pt: { md: 5 },
+          pb: { xs: 8, md: 0 },
+          ...sx,
+        }}
+       
+      >
+        <BlogSidebarCategories />
+        
+        <BlogSidebarPopularTags />
+        
+      </Stack>
+    </>
     </>
   );
 }

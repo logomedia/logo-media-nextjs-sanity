@@ -8,7 +8,8 @@ const postFields = groq`
   excerpt,
   coverImage{..., asset->},
   "slug": slug.current,
-  "author": author->{name, picture},
+  "author": author->{name, picture{...,asset->}},
+  tags,
 `
 const pageFields = groq`
   _id,
