@@ -1,27 +1,22 @@
 
+import { Avatar, Chip, Container, Divider, Grid, Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { PortableText } from '@portabletext/react';
 import type { Post, Settings } from 'lib/sanity.queries'
 import Head from 'next/head'
 import { notFound } from 'next/navigation'
-import { styled } from '@mui/material/styles';
-import { Grid, Chip, Stack, Divider, Container, Typography } from '@mui/material';
-// layouts
-import Layout from '../../../src/layouts';
+
 // components
-import { Breadcrumbs, SocialsButton,  Page,  } from '../../components';
+import { Breadcrumbs, Markdown, Page,SocialsButton,    } from '../../components';
 // sections
 import {
-  BlogSidebar,
-  BlogAuthorInfo,
-  BlogPostHero,
-  BlogLatestPosts,
-  BlogFeaturedPosts,
-  BlogTrendingTopics,
-  BlogPostList
-
-} from '../../components/sections/blog';
-import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT } from '../../config';
+  BlogSidebar
+ } from '../../components/sections/blog';
+import { HEADER_DESKTOP_HEIGHT,HEADER_MOBILE_HEIGHT } from '../../config';
+import { fDate } from '../../utils/formatTime';
+import Image from '../Image'
+import ShareButton from '../ShareButton'
 import PostBody from './PostBody';
-import { PortableText } from '@portabletext/react';
 
 // ----------------------------------------------------------------------
 
@@ -42,11 +37,11 @@ export interface PostPageProps {
 
 const NO_POSTS: Post[] = []
 
-export default function PostPage(props: PostPageProps) {
-  const { preview, loading, morePosts = NO_POSTS, post, settings } = props
+export default function PostPage(props) {
+  const { preview, loading, morePosts, post, settings } = props
 
   const slug = post?.slug
-  const posts = []
+  const posts = morePosts
 
   if (!slug && !preview) {
     notFound()
@@ -54,9 +49,11 @@ export default function PostPage(props: PostPageProps) {
 
   return (
    
+    <>
       <RootStyle>
-      <BlogPostHero post={post} /> 
-      <Container>
+    
+        <Container>
+          <Image alt="hero" src={post.coverImage.asset.url}   sx={{borderRadius: 2}} />
           <Breadcrumbs
             sx={{ my: 3 }}
             links={[
@@ -68,38 +65,69 @@ export default function PostPage(props: PostPageProps) {
         </Container>
         <Divider
           sx={{
-            mb: { xs: 6, md: 10 },
+            mb: { xs: 6, md: 1 },
           }}
         />
         <Container>
-          <Grid container spacing={{ md: 8 }}>
-            <Grid item xs={12} md={8}>
-              
-                <PostBody content={post.content}/>
-                <Stack direction="row" alignItems="center" flexWrap="wrap" sx={{ my: 6 }}>
+          <Grid container spacing={{ md: 8 }} justifyContent={{ md: 'center' }}>
+          <Grid item xs={12} md={8}>
+            <Stack
+                  spacing={3}
+                  sx={{
+                    pb: 6,
+                    textAlign: 'left',
+                    pt: { xs: 6, md: 10 },
+                  }}
+                >
+                  <Typography variant="body2" sx={{ color: 'text.disabled' }}>
+                    {post.length + ' minutes read'}
+                  </Typography>
+                  <Typography variant="h2" component="h1">
+                    {post.title}
+              </Typography>
+              <Typography variant="h5">{post.excerpt}</Typography>
+            </Stack>
+            <Divider />
+              <Stack direction="row" justifyContent="space-between" spacing={1.5} sx={{ py: 3 }}>
+                <Avatar src={post.author.picture.asset.url} sx={{ width: 48, height: 48 }} />
+                <Stack spacing={0.5} flexGrow={1}>
+                  <Typography variant="subtitle2">{post.author.name}</Typography>
+                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                    {fDate(post.date, 'MM/dd/yyyy p')}
+                  </Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center">
+                  <ShareButton />
+                </Stack>
+            </Stack>
+            <Divider sx={{ mb: 6 }} />
+            <PostBody content={post.content}/>
+            <Stack direction="row" alignItems="center" flexWrap="wrap" sx={{ my: 6 }}>
                 <Typography variant="subtitle2" sx={{ mr: 1 }}>
                   Tags:
                 </Typography>
                 {post.tags.map((tag) => (
-                  <Chip key={tag} size="small" label={tag} sx={{ m: 0.5 }} onClick={() => {}} />
+                  <Chip key={tag} size="small" label={tag} sx={{ m: 0.5 }}  />
                 ))}
               </Stack>
+
               <Stack direction="row" alignItems="center" flexWrap="wrap">
                 <Typography variant="subtitle2" sx={{ mr: 1 }}>
                   Share:
                 </Typography>
                 <SocialsButton initialColor  simple={false} />
               </Stack>
-              
+
+              <Divider sx={{ mt: 8 }} />
             </Grid>
             <Grid item xs={12} md={4}>
               <BlogSidebar
-                author={post.author}
+                
                 recentPosts={{
                   list: posts.slice(-4),
-                  path: '/travel/blog',
+                  path: '/news-and-trends',
                 }}
-               
+                
               />
             </Grid>
           </Grid>
@@ -111,6 +139,7 @@ export default function PostPage(props: PostPageProps) {
         
         
       </RootStyle>
+    </>
     
   );
 }

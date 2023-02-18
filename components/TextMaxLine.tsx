@@ -1,11 +1,12 @@
+// @mui
+import { Link,LinkProps, Typography, TypographyProps } from '@mui/material';
 import { forwardRef } from 'react';
 import { ReactNode } from 'react';
-// @mui
-import { Typography, TypographyProps, LinkProps, Link } from '@mui/material';
-// utils
-import GetFontValue from '../utils/getFontValue';
+
 // theme
 import { TypographyVariant } from '../theme/typography';
+// utils
+import GetFontValue from '../utils/getFontValue';
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +25,7 @@ const TextMaxLine = forwardRef<HTMLAnchorElement, Props>(
     const { lineHeight } = GetFontValue(variant);
 
     const style = {
+      cursor:'pointer',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       display: '-webkit-box',

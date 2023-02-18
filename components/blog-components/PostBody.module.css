@@ -1,6 +1,14 @@
 .portableText {
   @apply text-lg leading-relaxed;
+  display: flex;
+  flex-direction: column;
   
+}
+.portableText img{
+  margin: auto;
+  border-radius: 10px;
+  width:100%;
+  height:100%;
 }
 
 .portableText p,

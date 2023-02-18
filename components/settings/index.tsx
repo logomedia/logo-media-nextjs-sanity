@@ -1,21 +1,22 @@
-import { m, useCycle, MotionProps, AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
+import { Backdrop, Box, BoxProps,Divider, Typography } from '@mui/material';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Backdrop, Divider, Typography, BoxProps } from '@mui/material';
-// hooks
-import { useSettings } from '../../hooks';
+import { AnimatePresence,m, MotionProps, useCycle } from 'framer-motion';
+import { useEffect } from 'react';
+
 // config
 import { defaultSettings, DRAWER_WIDTH } from '../../config';
-//
-import Scrollbar from '../Scrollbar';
+// hooks
+import { useSettings } from '../../hooks';
 import { varFade } from '../animate';
 //
+import Scrollbar from '../Scrollbar';
+//
 import HeaderSetting from './HeaderSetting';
-import ToggleButtonSetting from './ToggleButtonSetting';
-import SettingMode from './SettingMode';
-import SettingDirection from './SettingDirection';
 import SettingColorPresets from './SettingColorPresets';
+import SettingDirection from './SettingDirection';
+import SettingMode from './SettingMode';
+import ToggleButtonSetting from './ToggleButtonSetting';
 
 // ----------------------------------------------------------------------
 
@@ -106,12 +107,7 @@ export default function Settings() {
                     <SettingDirection />
                   </m.div>
 
-                  <m.div {...varFade().inUp}>
-                    <Typography variant="subtitle2" sx={{ p: 3 }}>
-                      Presets
-                    </Typography>
-                    <SettingColorPresets />
-                  </m.div>
+                 
                 </Box>
               </Scrollbar>
             </SidebarStyle>

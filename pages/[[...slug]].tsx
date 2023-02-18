@@ -1,28 +1,9 @@
-import { getAllPageSlugs, getPageBySlug } from "lib/sanity.client"
-import { slugParamToPath } from "utils/urls"
+import Layout from "components/layout/Layout";
 import RenderSections from "components/layout/RenderSections"
-
-import { ReactElement, ReactNode } from 'react';
+import { getAllPageSlugs, getPageBySlug } from "lib/sanity.client"
 // next
 import Head from 'next/head';
-import { NextPage } from 'next';
-import { AppProps } from 'next/app';
-// @mui
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-// contexts
-import { SettingsProvider } from '../contexts/SettingsContext';
-// theme
-import ThemeProvider from '../theme';
-// utils
-import axios from '../utils/axios';
-// components
-import Settings from '../components/settings';
-import RtlLayout from '../components/RtlLayout';
-import ProgressBar from '../components/ProgressBar';
-import ThemeColorPresets from '../components/ThemeColorPresets';
-import MotionLazyContainer from '../components/animate/MotionLazyContainer';
-import Layout from "components/layout/Layout";
+import { slugParamToPath } from "utils/urls"
 
 export default function Page(props) {
   const { content } = props
@@ -32,23 +13,11 @@ export default function Page(props) {
       <meta name="viewport" content="initial-scale=1, width=device-width" />
     </Head>
 
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <SettingsProvider>
-        <ThemeProvider>
-          <ThemeColorPresets>
-            <MotionLazyContainer>
-              <RtlLayout>
-                <Settings />
-                  <ProgressBar />
+  
                   <Layout>
                     {content && <RenderSections sections={content}  />}
                   </Layout>
-              </RtlLayout>
-            </MotionLazyContainer>
-          </ThemeColorPresets>
-        </ThemeProvider>
-      </SettingsProvider>
-    </LocalizationProvider>
+  
   </>
   )
 }

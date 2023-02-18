@@ -1,11 +1,11 @@
-import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
+import { Box, BoxProps, SxProps } from '@mui/material';
 // @mui
 import { Theme } from '@mui/material/styles';
-import { Box, BoxProps, SxProps } from '@mui/material';
+import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 
 // ----------------------------------------------------------------------
 
-export type ImageRato = '4/3' | '3/4' | '6/4' | '4/6' | '16/9' | '9/16' | '21/9' | '9/21' | '1/1';
+export type ImageRato = '4/3' | '3/4' | '6/4' | '4/6' | '16/9' | '9/16' | '21/9' | '9/21' | '1/1' | '30/5';
 
 type IProps = BoxProps & LazyLoadImageProps;
 

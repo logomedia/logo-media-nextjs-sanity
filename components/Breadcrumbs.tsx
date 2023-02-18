@@ -1,16 +1,18 @@
-import { ReactElement } from 'react';
 // icons
 import chevronRight from '@iconify/icons-carbon/chevron-right';
-// next
-import NextLink from 'next/link';
 // @mui
 import {
   Box,
-  Link,
-  Typography,
   Breadcrumbs as MUIBreadcrumbs,
   BreadcrumbsProps,
+  Link,
+  Typography,
 } from '@mui/material';
+// next
+import NextLink from 'next/link';
+import { ReactElement } from 'react';
+import { forwardRef } from 'react';
+
 //
 import Iconify from './Iconify';
 
@@ -27,6 +29,9 @@ interface Props extends BreadcrumbsProps {
   activeLast?: boolean;
   onDark?: boolean;
 }
+const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
+  return <NextLink ref={ref} {...props} />;
+});
 
 export default function Breadcrumbs({
   links,
@@ -92,8 +97,8 @@ type LinkItemProps = {
 function LinkItem({ link, onDark }: LinkItemProps) {
   const { href = '', name, icon } = link;
   return (
-    <NextLink key={name} href={href} passHref>
-      <Link
+    
+      <Link component={LinkBehaviour} key={name} href={href}
         variant="body3"
         sx={{
           display: 'flex',
@@ -117,6 +122,6 @@ function LinkItem({ link, onDark }: LinkItemProps) {
         )}
         {name}
       </Link>
-    </NextLink>
+
   );
 }

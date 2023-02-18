@@ -1,14 +1,15 @@
 // next
-import NextLink from 'next/link';
+import { Stack } from '@mui/material';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Stack } from '@mui/material';
+import NextLink from 'next/link';
+
+// components
+import { Image, TextMaxLine } from '../../../components';
 // utils
 import { fDate } from '../../../utils/formatTime';
 // @types
 import { BlogPostProps } from '../../@types/blog';
-// components
-import { Image, TextMaxLine } from '../../../components';
 
 // ----------------------------------------------------------------------
 
@@ -29,11 +30,11 @@ type BlogPostItemMobileProps = {
 };
 
 export default function BlogPostItemMobile({ post, path, onSiderbar }: BlogPostItemMobileProps) {
-  const { slug, frontmatter } = post;
-  const { title, duration, coverImg, createdAt } = frontmatter;
+  
+  const { title, slug, length, coverImage, date } = post;
 
-  const as = `${path}/${slug}`;
-  const href = `${path}/[slug]`;
+
+  const href = `${path}/${slug}`;
 
   return (
     <Stack
@@ -44,7 +45,7 @@ export default function BlogPostItemMobile({ post, path, onSiderbar }: BlogPostI
     >
       <Image
         alt={title}
-        src={coverImg}
+        src={coverImage.asset.url}
         sx={{
           width: 80,
           height: 80,
@@ -54,8 +55,8 @@ export default function BlogPostItemMobile({ post, path, onSiderbar }: BlogPostI
       />
 
       <Stack spacing={onSiderbar ? 0.5 : 1}>
-        <NextLink passHref as={as} href={href}>
-          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'} asLink>
+        <NextLink  href={href}>
+          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}  >
             {title}
           </TextMaxLine>
         </NextLink>
@@ -66,9 +67,9 @@ export default function BlogPostItemMobile({ post, path, onSiderbar }: BlogPostI
           alignItems="center"
           sx={{ typography: 'caption', color: 'text.disabled' }}
         >
-          {fDate(createdAt)}
+          {fDate(date)}
           <DotStyle />
-          {duration}
+          {length + ' minutes read'}
         </Stack>
       </Stack>
     </Stack>

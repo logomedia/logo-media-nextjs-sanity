@@ -1,5 +1,6 @@
 // @mui
 import { Stack, Typography } from '@mui/material';
+
 // @types
 import { BlogPostProps } from '../../@types/blog';
 //
