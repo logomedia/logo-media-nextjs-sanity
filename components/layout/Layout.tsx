@@ -7,7 +7,6 @@ import Header from '../../components/layout/header/Header'
 import ProgressBar from '../../components/ProgressBar';
 import RtlLayout from '../../components/RtlLayout';
 import Settings from '../../components/settings';
-import ThemeColorPresets from '../../components/ThemeColorPresets';
 // contexts
 import { SettingsProvider } from '../../contexts/SettingsContext';
 // theme
@@ -21,7 +20,6 @@ export default function Layout({ children }) {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
       <SettingsProvider>
         <ThemeProvider>
-          
             <MotionLazyContainer>
               <RtlLayout>
                 <Settings />
@@ -32,7 +30,6 @@ export default function Layout({ children }) {
                     </div>
               </RtlLayout>
             </MotionLazyContainer>
-          
         </ThemeProvider>
       </SettingsProvider>
     </LocalizationProvider>

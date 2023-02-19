@@ -1,4 +1,4 @@
-import { DocumentIcon } from '@sanity/icons'
+import { CodeIcon } from '@sanity/icons'
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
@@ -17,21 +17,32 @@ import authorType from './author'
  */
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
-  icon: DocumentIcon,
+  name: 'project',
+  title: 'Projects',
+  icon: CodeIcon,
   type: 'document',
   fields: [
     defineField({
-      name: 'length',
-      title: 'Length to read in minuts',
-      type: 'number',
+      name: 'name',
+      title: 'Client Name',
+      type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
+      name: 'logo',
+      title: 'Client Logo',
+      type: 'image',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Client Description',
+      type: 'text',
+    }),
+    defineField({
+      name: 'website',
+      title: 'Website',
+      type: 'url',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -39,15 +50,20 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
+      name: 'brief',
+      title: 'Project Brief',
+      type: 'text',
+    }),
+    defineField({
+      name: 'scope',
+      title: 'Project Scope',
       type: 'array',
       of: [
         { type: 'block' },
@@ -65,9 +81,23 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
+      name: 'results',
+      title: 'Project Results',
+      type: 'array',
+      of: [
+        { type: 'block' },
+        {
+          type: 'image',
+          fields: [
+            {
+              type: 'string',
+              name: 'alt',
+              title: 'Alternative text',
+              
+            }
+          ]
+        }
+      ],
     }),
     defineField({
       name: 'coverImage',
@@ -84,10 +114,10 @@ export default defineType({
       initialValue: () => new Date().toISOString(),
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: [{ type: authorType.name }],
+      name: 'images',
+      title: 'Project Images',
+      type: 'array',
+      of: [{type: 'image'}],
     }),
     defineField({
       name: 'tags',
@@ -101,18 +131,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
+      title: 'name',
       date: 'date',
       media: 'coverImage',
     },
-    prepare({ title, media, author, date }) {
-      const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
-      ].filter(Boolean)
+    prepare({ title, media, date }) {
+      
 
-      return { title, media, subtitle: subtitles.join(' ') }
+      return { title, media, }
     },
   },
 })

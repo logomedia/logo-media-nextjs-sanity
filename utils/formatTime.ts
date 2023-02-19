@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
-import getTime from 'date-fns/getTime';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import getTime from 'date-fns/getTime';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 type IDate = Date | string | number;
 
 export function fDate(date: IDate, option?: string) {
-  return date ? format(new Date(date), option || 'dd MMM yyyy') : null;
+  return date ? format(new Date(date), option || 'MMM dd yyyy') : null;
 }
 
 export function fTimestamp(date: IDate) {

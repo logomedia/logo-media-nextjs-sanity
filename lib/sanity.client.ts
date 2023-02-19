@@ -1,14 +1,19 @@
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   indexQuery,
-  pageQuery,
-  type Post,
   type Page,
+  pageBySlugQuery,
+  pageQuery,
+  pageSlugsQuery,
+  type Post,
   postAndMoreStoriesQuery,
   postBySlugQuery,
   postSlugsQuery,
-  pageBySlugQuery,
-  pageSlugsQuery,
+  type Project,
+  projectAndMoreProjectsQuery,
+  projectBySlugQuery,
+  projectQuery,
+  projectSlugsQuery,
   type Settings,
   settingsQuery,
 } from 'lib/sanity.queries'
@@ -41,6 +46,12 @@ export async function getAllPages(): Promise<Page[]> {
   }
   return []
 }
+export async function getAllProjects(): Promise<Project[]> {
+  if (client) {
+    return (await client.fetch(projectQuery)) || []
+  }
+  return []
+}
 
 export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
   if (client) {
@@ -56,6 +67,13 @@ export async function getAllPageSlugs(): Promise<Pick<Page, 'slug'>[]> {
   }
   return []
 }
+export async function getAllProjectSlugs(): Promise<Pick<Project, 'slug'>[]> {
+  if (client) {
+    const slugs = (await client.fetch<string[]>(projectSlugsQuery)) || []
+    return slugs.map((slug) => ({ slug }))
+  }
+  return []
+}
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   if (client) {
@@ -66,6 +84,12 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 export async function getPageBySlug(slug: string): Promise<Page> {
   if (client) {
     return (await client.fetch(pageBySlugQuery, { slug })) || ({} as any)
+  }
+  return {} as any
+}
+export async function getProjectBySlug(slug: string): Promise<Project> {
+  if (client) {
+    return (await client.fetch(projectBySlugQuery, { slug })) || ({} as any)
   }
   return {} as any
 }
@@ -85,4 +109,21 @@ export async function getPostAndMoreStories(
     return await client.fetch(postAndMoreStoriesQuery, { slug })
   }
   return { post: null, morePosts: [] }
+}
+
+export async function getProjectAndMoreProjects(
+  slug: string,
+  token?: string | null
+): Promise<{ project: Project; moreProjects: Project[] }> {
+  if (projectId) {
+    const client = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn,
+      token: token || undefined,
+    })
+    return await client.fetch(projectAndMoreProjectsQuery, { slug })
+  }
+  return { project: null, moreProjects: [] }
 }

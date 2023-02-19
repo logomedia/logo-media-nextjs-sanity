@@ -76,7 +76,7 @@ export default function PostPage(props) {
                   sx={{
                     pb: 6,
                     textAlign: 'left',
-                    pt: { xs: 6, md: 10 },
+                    pt: { xs: 6, md: 5 },
                   }}
                 >
                   <Typography variant="body2" sx={{ color: 'text.disabled' }}>

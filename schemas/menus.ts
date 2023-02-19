@@ -1,10 +1,10 @@
-import { UserIcon } from '@sanity/icons'
+import { MenuIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'menus',
   title: 'Menus',
-  icon: UserIcon,
+  icon: MenuIcon,
   type: 'document',
   fields: [
     defineField({

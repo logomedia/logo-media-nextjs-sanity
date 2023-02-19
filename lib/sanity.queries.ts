@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity'
+import { string } from 'yup'
 
 const postFields = groq`
   _id,
@@ -9,6 +10,21 @@ const postFields = groq`
   coverImage{..., asset->},
   "slug": slug.current,
   "author": author->{name, picture{...,asset->}},
+  tags,
+`
+const projectFields = groq`
+  _id,
+  name,
+  logo{...,asset->},
+  description,
+  website,
+  brief,
+  scope[]{...,asset->},
+  results,
+  coverImage{..., asset->},
+  date,
+  images[]{...,asset->},
+  "slug": slug.current,
   tags,
 `
 const pageFields = groq`
@@ -44,6 +60,9 @@ export const indexQuery = groq`
 export const pageQuery = groq`
 *[type == "page"] {${pageFields}}`
 
+export const projectQuery = groq`
+*[type == "project"] {${projectFields}}`
+
 export const postAndMoreStoriesQuery = groq`
 {
   "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) [0] {
@@ -55,15 +74,33 @@ export const postAndMoreStoriesQuery = groq`
     ${postFields}
   }
 }`
+export const projectAndMoreProjectsQuery = groq`
+{
+  "project": *[_type == "project" && slug.current == $slug] | order(_updatedAt desc) [0] {
+    content[]{..., asset->},
+    ${projectFields}
+  },
+  "moreProjects": *[_type == "project" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
+    ${projectFields}
+  }
+}`
 
 export const postSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
+`
+export const projectSlugsQuery = groq`
+*[_type == "project" && defined(slug.current)][].slug.current
 `
 export const pageSlugsQuery = groq`
 *[_type == "page" && defined(slug.current)][].slug.current
 `
 
 export const postBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0] {
+  ${postFields}
+}
+`
+export const projectBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
   ${postFields}
 }
@@ -96,6 +133,21 @@ export interface Page {
   description?: string
   slug?: string
   content?: any
+}
+export interface Project {
+  _id:string
+  name?: string
+  logo?:any
+  description?:string
+  website?:string
+  brief?:string
+  scope?: string
+  results?: string
+  coverImage?:any
+  date?: sting
+  images?:any
+  slug?:any
+  tags?: any
 }
 
 export interface Settings {

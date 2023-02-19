@@ -15,7 +15,7 @@
 .portableText ul,
 .portableText ol,
 .portableText blockquote {
-  @apply my-6;
+  @apply my-2;
   font-family: Poppins;
 }
 
