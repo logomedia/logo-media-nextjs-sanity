@@ -73,7 +73,7 @@ function ProjectItem({ project }) {
       <Stack
         spacing={1}
         sx={{
-          p: 3,
+          p: 1,
           bottom: 0,
           zIndex: 9,
           position: 'absolute',
