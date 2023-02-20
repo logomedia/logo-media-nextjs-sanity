@@ -2,6 +2,7 @@
 import { AppBar, Box, Button, Container, Divider, Stack } from '@mui/material';
 // @mui
 import { useTheme } from '@mui/material/styles';
+import SettingMode from 'components/settings/SettingMode';
 import { useSettingsState } from 'context/settings';
 import NextLink from 'next/link';
 
@@ -137,6 +138,8 @@ export default function Header({ transparent }: Props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-start',
+            pl: '10px',
+            pr:'10px'
           }}
         >
           
@@ -152,16 +155,24 @@ export default function Header({ transparent }: Props) {
           )}
 
           <Box sx={{ flexGrow: 1 }} />
-
+          
           <Stack spacing={2} direction="row" alignItems="center">
-            
+            {isDesktop && (
+              <Box sx={{display: 'flex', alignItems:'center'}}>
+              <SettingMode />
+              <Divider orientation="vertical" sx={{ height: 24 }} />
+              </Box>
+              
+            )}
+         
 
           
+            
+            
 
-            <Divider orientation="vertical" sx={{ height: 24 }} />
-
-            {isDesktop && (
+           
               <Stack direction="row" spacing={1}>
+                
                 <NextLink href='/' prefetch={false} passHref>
                   <Button
                     color="inherit"
@@ -181,7 +192,15 @@ export default function Header({ transparent }: Props) {
                   Buy Now
                 </Button>
               </Stack>
+            {!isDesktop && (
+              
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Divider orientation="vertical" sx={{ height: 24 }} />
+              <SettingMode />
+              <Divider orientation="vertical" sx={{ height: 24 }} />
+              </Box>
             )}
+              
           </Stack>
 
           {!isDesktop && (

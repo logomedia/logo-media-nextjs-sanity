@@ -21,14 +21,11 @@ export default function Layout({ children }) {
       <SettingsProvider>
         <ThemeProvider>
             <MotionLazyContainer>
-              <RtlLayout>
-                <Settings />
                   <ProgressBar />
                    <div className="App">
                     <Header/>
                       <main>{children}</main>
                     </div>
-              </RtlLayout>
             </MotionLazyContainer>
         </ThemeProvider>
       </SettingsProvider>

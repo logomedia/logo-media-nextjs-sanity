@@ -61,7 +61,9 @@ export const pageQuery = groq`
 *[type == "page"] {${pageFields}}`
 
 export const projectQuery = groq`
-*[type == "project"] {${projectFields}}`
+*[_type == "project"] | order( _updatedAt desc) {
+  ${projectFields}
+}`
 
 export const postAndMoreStoriesQuery = groq`
 {
@@ -77,7 +79,6 @@ export const postAndMoreStoriesQuery = groq`
 export const projectAndMoreProjectsQuery = groq`
 {
   "project": *[_type == "project" && slug.current == $slug] | order(_updatedAt desc) [0] {
-    content[]{..., asset->},
     ${projectFields}
   },
   "moreProjects": *[_type == "project" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {

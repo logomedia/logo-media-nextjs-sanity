@@ -1,4 +1,4 @@
-import { Theme, alpha } from '@mui/material/styles';
+import { alpha,Theme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ export default function cssStyles(theme?: Theme) {
     bgGradient: (props?: BackgroundGradientProps) => {
       const direction = getDirection(props?.direction);
       const startColor = props?.startColor || `${alpha('#000000', 0)} 0%`;
-      const endColor = props?.endColor || '#000000 75%';
+      const endColor = props?.endColor || '#000000 100%';
 
       return {
         background: `linear-gradient(${direction}, ${startColor}, ${endColor});`,

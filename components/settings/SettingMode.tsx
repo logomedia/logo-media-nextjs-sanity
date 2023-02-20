@@ -1,9 +1,10 @@
 // icons
 import asleepIcon from '@iconify/icons-carbon/asleep';
 import asleepFilled from '@iconify/icons-carbon/asleep-filled';
+import { ToggleButton, Typography } from '@mui/material';
 // @mui
 import { styled } from '@mui/material/styles';
-import { ToggleButton, Typography } from '@mui/material';
+
 // hooks
 import { useSettings } from '../../hooks';
 //
@@ -13,10 +14,7 @@ import Iconify from '../Iconify';
 
 const RootStyle = styled(ToggleButton)(({ theme }) => ({
   border: 0,
-  width: '100%',
-  borderRadius: 0,
-  padding: theme.spacing(3),
-  justifyContent: 'space-between',
+  padding:'5px',
   '& svg': {
     width: 28,
     height: 28,
@@ -36,7 +34,6 @@ export default function SettingMode() {
 
   return (
     <RootStyle value="check" selected={!isLight} onChange={onToggleMode}>
-      <Typography variant="subtitle2">Mode</Typography>
       <Iconify icon={isLight ? asleepIcon : asleepFilled} />
     </RootStyle>
   );
