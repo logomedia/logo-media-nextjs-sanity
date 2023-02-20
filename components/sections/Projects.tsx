@@ -1,9 +1,11 @@
-import { Box, Chip, Container, Link, Stack, Typography } from '@mui/material'
+import { Box, Chip, Container, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { BgOverlay, Image, TextMaxLine } from 'components'
+import { BgOverlay, Image } from 'components'
+import { getAllProjects } from 'lib/sanity.client'
 // next
 import NextLink from 'next/link'
 import { forwardRef } from 'react'
+import { useEffect, useState } from 'react'
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -14,29 +16,36 @@ const RootStyle = styled('div')(({ theme }) => ({
 const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
   return <NextLink ref={ref} {...props} />
 })
-export default function FeaturedProject({ projects }) {
-  return (
-    <RootStyle>
-      <Container>
-        <ProjectItemLarge project={projects[0]} />
-        <Box
-          sx={{
-            display: 'grid',
-            gap: 3,
-            mt: 3,
-            gridTemplateColumns: {
-              xs: 'repeat(2, 1fr)',
-              md: 'repeat(3, 1fr)',
-            },
-          }}
-        >
-          {projects.slice(1).map((project) => (
-            <ProjectItem key={project.slug} project={project} />
-          ))}
-        </Box>
-      </Container>
-    </RootStyle>
-  )
+export default function FeaturedProject(props) {
+  const { projects } = props
+
+  if (projects) {
+    console.log(projects)
+    return (
+      <RootStyle>
+        <Container>
+          <ProjectItemLarge project={projects[0]} />
+          <Box
+            sx={{
+              display: 'grid',
+              gap: 3,
+              mt: 3,
+              gridTemplateColumns: {
+                xs: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+              },
+            }}
+          >
+            {projects.slice(1).map((project) => (
+              <ProjectItem key={project.slug} project={project} />
+            ))}
+          </Box>
+        </Container>
+      </RootStyle>
+    )
+  } else {
+    return <></>
+  }
 }
 
 function ProjectItem({ project }) {

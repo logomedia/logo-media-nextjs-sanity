@@ -10,7 +10,7 @@ import { settingsPlugin, settingsStructure } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { component, deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import {media} from 'sanity-plugin-media'
+import { media } from 'sanity-plugin-media'
 import authorType from 'schemas/author'
 //import block components
 import cta from 'schemas/blocks/cta'
@@ -24,12 +24,12 @@ import postType from 'schemas/post'
 import projectType from 'schemas/project'
 //import section components
 import hero from 'schemas/sections/hero'
+import posts from 'schemas/sections/posts'
+import projects from 'schemas/sections/projects'
 import settingsType from 'schemas/settings'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
-
-  
 
 export default defineConfig({
   basePath: '/admin',
@@ -38,7 +38,22 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, menus, clientType, pageType, partnerType, postType, projectType, settingsType, hero, cta, icon, navItem],
+    types: [
+      authorType,
+      menus,
+      clientType,
+      pageType,
+      partnerType,
+      postType,
+      projectType,
+      settingsType,
+      hero,
+      posts,
+      projects,
+      cta,
+      icon,
+      navItem,
+    ],
   },
   plugins: [
     deskTool({
@@ -52,10 +67,10 @@ export default defineConfig({
                 S.list()
                   .title('Settings')
                   .items([
-                      S.documentListItem().id('settings').schemaType('settings'),
-                      S.documentTypeListItem('menus'),
-                ])
-            ),
+                    S.documentListItem().id('settings').schemaType('settings'),
+                    S.documentTypeListItem('menus'),
+                  ])
+              ),
             S.divider(),
             S.documentTypeListItem('page'),
             S.listItem()
@@ -65,9 +80,9 @@ export default defineConfig({
                   .title('Blogs')
                   .items([
                     S.documentTypeListItem('author'),
-                      S.documentTypeListItem('post'),
-                ])
-            ),
+                    S.documentTypeListItem('post'),
+                  ])
+              ),
             S.listItem()
               .title('Projects & Clients')
               .child(
@@ -76,10 +91,9 @@ export default defineConfig({
                   .items([
                     S.documentTypeListItem('project'),
                     S.documentTypeListItem('client'),
-                ])
-            ),
+                  ])
+              ),
             S.documentTypeListItem('partner'),
-              
           ]),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton

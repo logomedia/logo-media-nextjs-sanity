@@ -1,7 +1,6 @@
 import { DocumentsIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
-
 /**
  * This file is the schema definition for a post.
  *
@@ -47,9 +46,7 @@ export default defineType({
       name: 'content',
       type: 'array',
       title: 'Page sections',
-      of: [
-        { type: 'hero' }       
-      ],
+      of: [{ type: 'hero' }, { type: 'projects' }, { type: 'posts' }],
     }),
     defineField({
       name: 'description',
@@ -71,9 +68,7 @@ export default defineType({
       media: 'ogImage',
     },
     prepare({ title, description, media }) {
-      const subtitles = [
-        description && `${description}`
-      ].filter(Boolean)
+      const subtitles = [description && `${description}`].filter(Boolean)
 
       return { title, media, subtitle: subtitles.join(' ') }
     },
