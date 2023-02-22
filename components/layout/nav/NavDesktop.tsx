@@ -173,9 +173,7 @@ function NavItemDesktop({
   return (
     <RootLinkStyle
       key={title}
-      href={{
-        pathname: path,
-      }}
+      href={`/${path}`}
       component={LinkBehaviour}
       active={isActiveRoot}
       scrolling={isScrolling}

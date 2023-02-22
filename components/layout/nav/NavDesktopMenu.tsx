@@ -276,7 +276,7 @@ function LinkItem({ title, href, active }: LinkItemProps) {
   return (
     <Link
       key={title}
-      href={href}
+      href={`/${href}`}
       color="inherit"
       underline="hover"
       component={LinkBehaviour}
