@@ -60,6 +60,7 @@ export default defineType({
       name: 'brief',
       title: 'Project Brief',
       type: 'text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'scope',
@@ -74,11 +75,11 @@ export default defineType({
               type: 'string',
               name: 'alt',
               title: 'Alternative text',
-              
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'results',
@@ -93,41 +94,43 @@ export default defineType({
               type: 'string',
               name: 'alt',
               title: 'Alternative text',
-              
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'images',
       title: 'Project Images',
       type: 'array',
-      of: [{type: 'image'}],
+      of: [{ type: 'image' }],
+      validation: (rule) =>
+        rule.required().min(4).error('At least 4 images are needed'),
     }),
     defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: {
         layout: 'tags',
-      }
-    })
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {
@@ -136,9 +139,7 @@ export default defineType({
       media: 'coverImage',
     },
     prepare({ title, media, date }) {
-      
-
-      return { title, media, }
+      return { title, media }
     },
   },
 })

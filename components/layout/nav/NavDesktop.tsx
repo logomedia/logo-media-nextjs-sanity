@@ -1,32 +1,36 @@
-import { useState, useEffect } from 'react';
 // icons
-import chevronDown from '@iconify/icons-carbon/chevron-down';
-import chevronUp from '@iconify/icons-carbon/chevron-up';
-// next
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import chevronDown from '@iconify/icons-carbon/chevron-down'
+import chevronUp from '@iconify/icons-carbon/chevron-up'
+import { Link, LinkProps, Stack } from '@mui/material'
 // @mui
-import { styled } from '@mui/material/styles';
-import { Link, Stack, LinkProps } from '@mui/material';
-// @types
-import { NavProps, NavItemDesktopProps } from '../../@types/layout';
-// components
-import { Iconify } from '../../../components';
-//
-import NavDesktopMenu from './NavDesktopMenu';
+import { styled } from '@mui/material/styles'
+// next
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { forwardRef } from 'react'
 
+// components
+import { Iconify } from '../../../components'
+// @types
+import { NavItemDesktopProps, NavProps } from '../../@types/layout'
+//
+import NavDesktopMenu from './NavDesktopMenu'
 // ----------------------------------------------------------------------
 
 interface RootLinkStyleProps extends LinkProps {
-  open?: boolean;
-  active?: boolean;
-  scrolling?: boolean;
-  transparent?: boolean;
+  open?: boolean
+  active?: boolean
+  scrolling?: boolean
+  transparent?: boolean
 }
 
 const RootLinkStyle = styled(Link, {
   shouldForwardProp: (prop) =>
-    prop !== 'active' && prop !== 'scrolling' && prop !== 'transparent' && prop !== 'open',
+    prop !== 'active' &&
+    prop !== 'scrolling' &&
+    prop !== 'transparent' &&
+    prop !== 'open',
 })<RootLinkStyleProps>(({ active, scrolling, transparent, open, theme }) => {
   const dotActiveStyle = {
     '&:before': {
@@ -42,7 +46,7 @@ const RootLinkStyle = styled(Link, {
       position: 'absolute',
       backgroundColor: theme.palette.primary.main,
     },
-  };
+  }
   return {
     ...theme.typography.subtitle2,
     fontWeight: theme.typography.fontWeightMedium,
@@ -66,12 +70,18 @@ const RootLinkStyle = styled(Link, {
     ...(open && {
       color: theme.palette.primary.main,
     }),
-  };
-});
-
+  }
+})
+const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
+  return <NextLink ref={ref} {...props} />
+})
 // ----------------------------------------------------------------------
 
-export default function NavDesktop({ isScrolling, isTransparent, navConfig }: NavProps) {
+export default function NavDesktop({
+  isScrolling,
+  isTransparent,
+  navConfig,
+}: NavProps) {
   return (
     <Stack
       direction="row"
@@ -96,34 +106,39 @@ export default function NavDesktop({ isScrolling, isTransparent, navConfig }: Na
         />
       ))}
     </Stack>
-  );
+  )
 }
 
 // ----------------------------------------------------------------------
 
-function NavItemDesktop({ item, isScrolling, isTransparent }: NavItemDesktopProps) {
-  const { title, path, children } = item;
+function NavItemDesktop({
+  item,
+  isScrolling,
+  isTransparent,
+}: NavItemDesktopProps) {
+  const { title, path, children } = item
 
-  const { pathname, asPath } = useRouter();
+  const { pathname, asPath } = useRouter()
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const isActiveRoot = path === pathname || (path !== '/' && asPath.includes(path));
+  const isActiveRoot =
+    path === pathname || (path !== '/' && asPath.includes(path))
 
   useEffect(() => {
     if (open) {
-      handleClose();
+      handleClose()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname])
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   if (children) {
     return (
@@ -152,16 +167,21 @@ function NavItemDesktop({ item, isScrolling, isTransparent }: NavItemDesktopProp
           isScrolling={isScrolling}
         />
       </>
-    );
+    )
   }
 
-  
-
   return (
-    <NextLink key={title} href={path} passHref>
-      <RootLinkStyle active={isActiveRoot} scrolling={isScrolling} transparent={isTransparent}>
-        {title}
-      </RootLinkStyle>
-    </NextLink>
-  );
+    <RootLinkStyle
+      key={title}
+      href={{
+        pathname: path,
+      }}
+      component={LinkBehaviour}
+      active={isActiveRoot}
+      scrolling={isScrolling}
+      transparent={isTransparent}
+    >
+      {title}
+    </RootLinkStyle>
+  )
 }

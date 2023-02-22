@@ -1,18 +1,13 @@
-import Layout from "components/layout/Layout";
-import {
-  getAllPostsSlugs,
-  getPostAndMoreStories,
-} from 'lib/sanity.client'
+import Layout from 'components/layout/Layout'
+import { getAllPostsSlugs, getPostAndMoreStories } from 'lib/sanity.client'
 import { Post } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 
 import PostPage from '../../components/blog-components/PostPage'
 
-
 interface PageProps {
   post: Post
   morePosts: Post[]
-
 }
 
 interface Query {
@@ -24,26 +19,20 @@ interface PreviewData {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const {  post, morePosts, } = props
-
+  const { post, morePosts } = props
 
   return (
-  
     <Layout>
-        <PostPage post={post} morePosts={morePosts}  />
+      <PostPage post={post} morePosts={morePosts} />
     </Layout>
   )
 }
 
-export const getStaticProps: GetStaticProps<
-  PageProps,
-  Query,
-> = async (ctx) => {
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { params = {} } = ctx
 
-
-  const [ { post, morePosts }] = await Promise.all([
-    getPostAndMoreStories(params.slug, ),
+  const [{ post, morePosts }] = await Promise.all([
+    getPostAndMoreStories(params.slug),
   ])
 
   if (!post) {

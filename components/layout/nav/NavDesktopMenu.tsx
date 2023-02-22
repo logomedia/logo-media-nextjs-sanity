@@ -1,41 +1,48 @@
-import { useRef } from 'react';
-import Slider from 'react-slick';
-import { m } from 'framer-motion';
-// next
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-// @mui
-import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
-  Grid,
-  List,
-  Link,
-  Stack,
-  ListItem,
   BoxProps,
+  Grid,
+  Link,
+  List,
+  ListItem,
   ListItemProps,
   ListSubheader,
   ListSubheaderProps,
-} from '@mui/material';
-// config
-import { HEADER_DESKTOP_HEIGHT } from '../../../config';
-// @types
-import { NavDesktopMenuProps } from '../../@types/layout';
-//
-import { Image, CarouselDots, CarouselArrows } from '../../../components';
-import { DialogAnimate, MotionContainer, varFade } from '../../../components/animate';
+  Stack,
+} from '@mui/material'
+// @mui
+import { styled, useTheme } from '@mui/material/styles'
+import { m } from 'framer-motion'
+// next
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { useRef } from 'react'
+import { forwardRef } from 'react'
+import Slider from 'react-slick'
 
+//
+import { CarouselArrows, CarouselDots, Image } from '../../../components'
+import {
+  DialogAnimate,
+  MotionContainer,
+  varFade,
+} from '../../../components/animate'
+// config
+import { HEADER_DESKTOP_HEIGHT } from '../../../config'
+// @types
+import { NavDesktopMenuProps } from '../../@types/layout'
 // ----------------------------------------------------------------------
 
 interface SubLinkStyleProps extends ListItemProps {
-  active?: boolean;
+  active?: boolean
 }
 
 interface IconBulletStyleProps extends BoxProps {
-  active?: boolean;
+  active?: boolean
 }
-
+const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
+  return <NextLink ref={ref} {...props} />
+})
 const SubLinkStyle = styled(ListItem, {
   shouldForwardProp: (prop) => prop !== 'active',
 })<SubLinkStyleProps>(({ active, theme }) => ({
@@ -52,7 +59,7 @@ const SubLinkStyle = styled(ListItem, {
     ...theme.typography.subtitle3,
     color: theme.palette.text.primary,
   }),
-}));
+}))
 
 const IconBulletStyle = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'active',
@@ -81,7 +88,7 @@ const IconBulletStyle = styled(Box, {
       }),
     },
   }),
-}));
+}))
 
 const ListSubheaderStyled = styled((props: ListSubheaderProps) => (
   <ListSubheader disableSticky disableGutters {...props} />
@@ -89,7 +96,7 @@ const ListSubheaderStyled = styled((props: ListSubheaderProps) => (
   ...theme.typography.h5,
   marginBottom: theme.spacing(2.5),
   color: theme.palette.text.primary,
-}));
+}))
 
 // ----------------------------------------------------------------------
 
@@ -99,17 +106,17 @@ export default function NavDesktopMenu({
   onClose,
   isScrolling,
 }: NavDesktopMenuProps) {
-  const router = useRouter();
+  const router = useRouter()
 
-  const theme = useTheme();
+  const theme = useTheme()
 
-  const carouselRef = useRef<Slider | null>(null);
+  const carouselRef = useRef<Slider | null>(null)
 
-  const carouselList = lists.filter((list) => list.subheader !== 'Common');
+  const carouselList = lists.filter((list) => list.subheader !== 'Common')
 
-  const commonList = lists.filter((list) => list.subheader === 'Common')[0];
+  const commonList = lists.filter((list) => list.subheader === 'Common')[0]
 
-  const minList = lists.length > 5;
+  const minList = lists.length > 5
 
   const carouselSettings = {
     arrows: false,
@@ -119,15 +126,15 @@ export default function NavDesktopMenu({
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
-  };
+  }
 
   const handlePrevious = () => {
-    carouselRef.current?.slickPrev();
-  };
+    carouselRef.current?.slickPrev()
+  }
 
   const handleNext = () => {
-    carouselRef.current?.slickNext();
-  };
+    carouselRef.current?.slickNext()
+  }
 
   return (
     <DialogAnimate
@@ -163,38 +170,42 @@ export default function NavDesktopMenu({
           <Box sx={{ position: 'relative', px: 2, py: 6 }}>
             <Slider ref={carouselRef} {...carouselSettings}>
               {carouselList.map((list) => {
-                const { subheader, items, cover } = list;
+                const { subheader, items, cover } = list
 
-                const path = items.length > 0 ? items[0].path : '';
+                const path = items.length > 0 ? items[0].path : ''
 
                 return (
-                  <List key={subheader} disablePadding sx={{ px: 2 }} component={MotionContainer}>
+                  <List
+                    key={subheader}
+                    disablePadding
+                    sx={{ px: 2 }}
+                    component={MotionContainer}
+                  >
                     <m.div variants={varFade({ distance: 80 }).inLeft}>
                       <ListSubheaderStyled>{subheader}</ListSubheaderStyled>
                     </m.div>
 
                     {cover ? (
-                      <NextLink href={path} passHref>
-                        <Box
-                          component={m.a}
-                          variants={varFade({ distance: 80 }).inLeft}
-                          sx={{ display: 'block' }}
-                        >
-                          <Image
-                            alt={cover}
-                            src={cover}
-                            sx={{
-                              mb: 2.5,
-                              minHeight: 80,
-                              borderRadius: 1.5,
-                              cursor: 'pointer',
-                              transition: theme.transitions.create('opacity'),
-                              border: (theme) => `solid 1px ${theme.palette.divider}`,
-                              '&:hover': { opacity: 0.8 },
-                            }}
-                          />
-                        </Box>
-                      </NextLink>
+                      <Box
+                        component={m.a}
+                        variants={varFade({ distance: 80 }).inLeft}
+                        sx={{ display: 'block' }}
+                      >
+                        <Image
+                          alt={cover}
+                          src={cover}
+                          sx={{
+                            mb: 2.5,
+                            minHeight: 80,
+                            borderRadius: 1.5,
+                            cursor: 'pointer',
+                            transition: theme.transitions.create('opacity'),
+                            border: (theme) =>
+                              `solid 1px ${theme.palette.divider}`,
+                            '&:hover': { opacity: 0.8 },
+                          }}
+                        />
+                      </Box>
                     ) : (
                       <Box
                         sx={{
@@ -215,15 +226,23 @@ export default function NavDesktopMenu({
 
                     <Stack spacing={1.5} alignItems="flex-start">
                       {items?.map((item) => {
-                        const { title, path } = item;
+                        const { title, path } = item
 
-                        const active = router.pathname === path || router.asPath === path;
+                        const active =
+                          router.pathname === path || router.asPath === path
 
-                        return <LinkItem key={title} title={title} href={path} active={active} />;
+                        return (
+                          <LinkItem
+                            key={title}
+                            title={title}
+                            href={path}
+                            active={active}
+                          />
+                        )
                       })}
                     </Stack>
                   </List>
-                );
+                )
               })}
             </Slider>
 
@@ -240,42 +259,40 @@ export default function NavDesktopMenu({
             )}
           </Box>
         </Grid>
-
-        
       </Grid>
     </DialogAnimate>
-  );
+  )
 }
 
 // ----------------------------------------------------------------------
 
 type LinkItemProps = {
-  title: string;
-  href: string;
-  active: boolean;
-};
+  title: string
+  href: string
+  active: boolean
+}
 
 function LinkItem({ title, href, active }: LinkItemProps) {
   return (
-    <NextLink key={title} href={href} passHref>
-      <Link
-        color="inherit"
-        underline="hover"
-        component={m.a}
-        variants={
-          varFade({
-            distance: 12,
-            durationIn: 0.16,
-            durationOut: 0.12,
-            easeIn: 'easeIn',
-          }).inRight
-        }
-      >
-        <SubLinkStyle active={active}>
-          <IconBulletStyle active={active} />
-          {title}
-        </SubLinkStyle>
-      </Link>
-    </NextLink>
-  );
+    <Link
+      key={title}
+      href={href}
+      color="inherit"
+      underline="hover"
+      component={LinkBehaviour}
+      variants={
+        varFade({
+          distance: 12,
+          durationIn: 0.16,
+          durationOut: 0.12,
+          easeIn: 'easeIn',
+        }).inRight
+      }
+    >
+      <SubLinkStyle active={active}>
+        <IconBulletStyle active={active} />
+        {title}
+      </SubLinkStyle>
+    </Link>
+  )
 }

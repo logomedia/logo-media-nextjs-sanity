@@ -58,46 +58,48 @@ export default defineType({
               type: 'string',
               name: 'alt',
               title: 'Alternative text',
-              
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: [{ type: authorType.name }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: {
         layout: 'tags',
-      }
-    })
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {

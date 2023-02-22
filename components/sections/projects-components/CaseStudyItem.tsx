@@ -1,23 +1,24 @@
 // next
-import NextLink from 'next/link';
 // @mui
-import { Stack, Typography } from '@mui/material';
-// routes
-import Routes from '../../../routes';
+import { Stack, Typography } from '@mui/material'
+import NextLink from 'next/link'
+
 // @types
-import { CaseStudyProps } from '../../../@types/marketing';
+import { CaseStudyProps } from '../../../@types/marketing'
+// routes
+import Routes from '../../../routes'
 // components
-import { Image, TextMaxLine } from '../..';
+import { Image, TextMaxLine } from '../..'
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  project: CaseStudyProps;
-};
+  project: CaseStudyProps
+}
 
 export default function MarketingCaseStudyItem({ project }: Props) {
-  const { slug, frontmatter } = project;
-  const { title, coverImg, category } = frontmatter;
+  const { slug, frontmatter } = project
+  const { title, coverImg, category } = frontmatter
 
   return (
     <div>
@@ -38,5 +39,5 @@ export default function MarketingCaseStudyItem({ project }: Props) {
         </NextLink>
       </Stack>
     </div>
-  );
+  )
 }
