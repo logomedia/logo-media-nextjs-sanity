@@ -23,7 +23,15 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Hero(props) {
-  const { ctas, description, eyebrow, heading, heroImage, icons } = props
+  const {
+    ctas,
+    description,
+    eyebrow,
+    heading,
+    image,
+    icons,
+    heroImageAltText,
+  } = props
 
   const containerRef = useRef<HTMLDivElement>(null)
   const container = useBoundingClientRect(containerRef)
@@ -96,10 +104,7 @@ export default function Hero(props) {
           width: { md: `calc(100% - ${offsetLeft}px)` },
         }}
       >
-        <Image
-          alt="home-hero"
-          src="https://zone-assets-api.vercel.app/assets/images/home/home_hero.png"
-        />
+        <Image alt={heroImageAltText} src={image.asset.url} />
       </Box>
     </RootStyle>
   )

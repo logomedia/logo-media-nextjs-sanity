@@ -1,39 +1,40 @@
-import { useState, useEffect } from 'react';
+import chevronDown from '@iconify/icons-carbon/chevron-down'
+import chevronRight from '@iconify/icons-carbon/chevron-right'
 // icons
-import menuIcon from '@iconify/icons-carbon/menu';
-import chevronRight from '@iconify/icons-carbon/chevron-right';
-import chevronDown from '@iconify/icons-carbon/chevron-down';
-// next
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-// @mui
-import { alpha, styled } from '@mui/material/styles';
+import menuIcon from '@iconify/icons-carbon/menu'
 import {
   Box,
-  List,
-  Link,
-  Stack,
   Button,
-  Drawer,
   Collapse,
-  ListItemText,
+  Drawer,
+  Link,
+  List,
   ListItemButton,
   ListItemButtonProps,
-} from '@mui/material';
+  ListItemText,
+  Stack,
+} from '@mui/material'
+// @mui
+import { alpha, styled } from '@mui/material/styles'
+// next
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 // routes
-import Routes from 'routes';
-// config
-import { DRAWER_WIDTH } from '../../../config';
-// @types
-import { NavProps, NavItemMobileProps } from '../../@types/layout';
+import Routes from 'routes'
+
 // components
-import { Logo, Scrollbar, Iconify, NavSection } from '../../../components';
-import { IconButtonAnimate } from '../../../components/animate';
+import { Iconify, Logo, NavSection, Scrollbar } from '../../../components'
+import { IconButtonAnimate } from '../../../components/animate'
+// config
+import { DRAWER_WIDTH } from '../../../config'
+// @types
+import { NavItemMobileProps, NavProps } from '../../@types/layout'
 
 // ----------------------------------------------------------------------
 
 interface RootLinkStyleProps extends ListItemButtonProps {
-  active?: boolean;
+  active?: boolean
 }
 
 const RootLinkStyle = styled(ListItemButton, {
@@ -48,30 +49,33 @@ const RootLinkStyle = styled(ListItemButton, {
   ...(active && {
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: alpha(
+      theme.palette.primary.main,
+      theme.palette.action.selectedOpacity
+    ),
   }),
-}));
+}))
 
 // ----------------------------------------------------------------------
 
-export default function NavMobile({ navConfig, sx }: NavProps) {
-  const { pathname } = useRouter();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+export default function NavMobile({ navConfig, sx, settings }: NavProps) {
+  const { pathname } = useRouter()
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     if (drawerOpen) {
-      handleDrawerClose();
+      handleDrawerClose()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname])
 
   const handleDrawerOpen = () => {
-    setDrawerOpen(true);
-  };
+    setDrawerOpen(true)
+  }
 
   const handleDrawerClose = () => {
-    setDrawerOpen(false);
-  };
+    setDrawerOpen(false)
+  }
 
   return (
     <>
@@ -89,9 +93,9 @@ export default function NavMobile({ navConfig, sx }: NavProps) {
       >
         <Scrollbar>
           <Box sx={{ px: 2.5, py: 3, lineHeight: 0 }}>
-            <Logo />
+            <Logo settings={settings} />
           </Box>
-          
+
           <List sx={{ px: 0 }}>
             {navConfig.map((link) => (
               <NavItemMobile key={link.title} item={link} />
@@ -114,31 +118,34 @@ export default function NavMobile({ navConfig, sx }: NavProps) {
         </Scrollbar>
       </Drawer>
     </>
-  );
+  )
 }
 
 // ----------------------------------------------------------------------
 
 function NavItemMobile({ item }: NavItemMobileProps) {
-  const { pathname } = useRouter();
+  const { pathname } = useRouter()
 
-  const { title, path, children } = item;
-  const rootPath = pathname.split('/')[1];
-  const isActiveRoot = pathname === path;
-  const isActiveRootWithChild = pathname.includes(`/${rootPath}/`);
+  const { title, path, children } = item
+  const rootPath = pathname.split('/')[1]
+  const isActiveRoot = pathname === path
+  const isActiveRootWithChild = pathname.includes(`/${rootPath}/`)
 
-  const [open, setOpen] = useState(isActiveRootWithChild);
+  const [open, setOpen] = useState(isActiveRootWithChild)
 
   const handleOpen = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   if (children) {
     return (
       <>
         <RootLinkStyle onClick={handleOpen} active={isActiveRootWithChild}>
           <ListItemText disableTypography primary={title} />
-          <Iconify icon={open ? chevronDown : chevronRight} sx={{ width: 16, height: 16, ml: 1 }} />
+          <Iconify
+            icon={open ? chevronDown : chevronRight}
+            sx={{ width: 16, height: 16, ml: 1 }}
+          />
         </RootLinkStyle>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -194,7 +201,7 @@ function NavItemMobile({ item }: NavItemMobileProps) {
           </Box>
         </Collapse>
       </>
-    );
+    )
   }
 
   if (title === 'Documentation') {
@@ -204,7 +211,7 @@ function NavItemMobile({ item }: NavItemMobileProps) {
           <ListItemText disableTypography primary={title} />
         </RootLinkStyle>
       </Link>
-    );
+    )
   }
 
   return (
@@ -213,5 +220,5 @@ function NavItemMobile({ item }: NavItemMobileProps) {
         <ListItemText disableTypography primary={title} />
       </RootLinkStyle>
     </NextLink>
-  );
+  )
 }

@@ -191,6 +191,7 @@ export default function Header({ transparent, settings }) {
 
           {!isDesktop && (
             <NavMobile
+              settings={settings}
               navConfig={navConfig}
               sx={{
                 ml: 1,

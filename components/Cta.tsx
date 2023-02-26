@@ -26,9 +26,9 @@ function cta(props) {
     }
     if (title === 'Start a Project') {
       return (
-        <a className={btnStyles} onClick={toggleProjectModal}>
-          {title}{' '}
-        </a>
+        <button className={btnStyles} onClick={toggleProjectModal}>
+          {title}
+        </button>
       )
     }
     if (title === 'Call') {
@@ -53,7 +53,11 @@ function cta(props) {
       )
     }
     if (title === 'Contact Us') {
-      return <a className={btnStyles}>{title} </a>
+      return (
+        <Link className={btnStyles} href="/contact-us">
+          {title}{' '}
+        </Link>
+      )
     }
     return <a className={btnStyles}>{title} </a>
   }

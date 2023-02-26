@@ -46,7 +46,13 @@ export default defineType({
       name: 'content',
       type: 'array',
       title: 'Page sections',
-      of: [{ type: 'hero' }, { type: 'projects' }, { type: 'posts' }],
+      of: [
+        { type: 'hero' },
+        { type: 'projects' },
+        { type: 'posts' },
+        { type: 'textWithBackground' },
+        { type: 'boxedImageWithText' },
+      ],
     }),
     defineField({
       name: 'description',

@@ -13,7 +13,6 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
 import actionType from 'schemas/action'
 import authorType from 'schemas/author'
-//import block components
 import cta from 'schemas/blocks/cta'
 import icon from 'schemas/blocks/icon'
 import navItem from 'schemas/blocks/navItem'
@@ -23,10 +22,11 @@ import pageType from 'schemas/page'
 import partnerType from 'schemas/partner'
 import postType from 'schemas/post'
 import projectType from 'schemas/project'
-//import section components
+import boxedImageWithText from 'schemas/sections/boxedImageWithText'
 import hero from 'schemas/sections/hero'
 import posts from 'schemas/sections/posts'
 import projects from 'schemas/sections/projects'
+import textWithBackground from 'schemas/sections/textWithBackground'
 import settingsType from 'schemas/settings'
 
 const title =
@@ -42,6 +42,7 @@ export default defineConfig({
     types: [
       authorType,
       actionType,
+      boxedImageWithText,
       menus,
       clientType,
       pageType,
@@ -55,6 +56,7 @@ export default defineConfig({
       cta,
       icon,
       navItem,
+      textWithBackground,
     ],
   },
   plugins: [

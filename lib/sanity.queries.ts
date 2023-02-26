@@ -33,9 +33,9 @@ const pageFields = groq`
   "slug": slug.current,
   content[]{
     ...,
-    heroImage {..., asset->},
     icons[]{ ..., icon{..., asset->}},
-    ctas[]{..., route->}
+    ctas[]{..., route->},
+    image{...,asset->}
   },  
   description,
   ogImage{asset->},

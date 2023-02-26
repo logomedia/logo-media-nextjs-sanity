@@ -1,49 +1,25 @@
-.button {
-  background: var(--purple);
-  border: none;
-  color: var(--white);
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 1.rem;
-  font-weight: 700;
-  padding: 5px 20px;
-  border-radius: 8px;
-  box-shadow: var(--orange) 0 2px 7px;
-  transition: all ease 0.4s;
-  cursor: pointer;
-  text-shadow: 2px 2px 4px var(--black);
-  font-family: var(--BodyFonts);
-  
-}
+.button,
 .secondaryButton {
-  background: var(--orange);
-  text-shadow: 2px 2px 4px var(--black);
+  background: var(--purple);
   border: none;
   color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 700;
-  padding: 5px 20px;
-  border-radius: 9px;
-  box-shadow: var(--purple) 0 2px 7px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: var(--orange) 0 2px 7px;
   transition: all ease 0.4s;
   cursor: pointer;
-  font-family: var(--BodyFonts);
- 
+  text-shadow: 2px 2px 4px var(--black);
+}
+.secondaryButton {
+  background: var(--orange);
+  box-shadow: var(--purple) 0 2px 7px;
 }
 
-.button:hover {
-  transform: scale(1.05);
-}
-
-.button:active {
-  transform: scale(0.95);
-}
+.button:hover,
 .secondaryButton:hover {
   transform: scale(1.05);
-}
-
-.secondaryButton:active {
-  transform: scale(0.95);
 }

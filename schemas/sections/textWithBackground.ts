@@ -2,14 +2,14 @@ import { BookIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'hero',
-  title: 'Hero',
+  name: 'textWithBackground',
+  title: 'Text With Background',
   icon: BookIcon,
   type: 'object',
   fieldsets: [
     {
-      title: 'Hero image',
-      name: 'hero',
+      title: 'Background image',
+      name: 'background',
     },
   ],
   fields: [
@@ -17,12 +17,6 @@ export default defineType({
       name: 'heading',
       type: 'string',
       title: 'Heading',
-    }),
-    defineField({
-      name: 'description',
-      type: 'array',
-      title: 'Description',
-      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'eyebrow',
@@ -41,27 +35,16 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'icons',
-      type: 'array',
-      title: 'Below Button Icons',
-      of: [
-        {
-          title: 'Icon',
-          type: 'icon',
-        },
-      ],
-    }),
-    defineField({
       name: 'image',
       type: 'image',
-      title: 'Hero image',
-      fieldset: 'hero',
+      title: 'Background image',
+      fieldset: 'background',
     }),
     defineField({
-      name: 'heroImageAltText',
+      name: 'bgImageAltText',
       type: 'string',
-      title: 'Hero image alt Text',
-      fieldset: 'hero',
+      title: 'Background image alt Text',
+      fieldset: 'background',
     }),
   ],
   preview: {
