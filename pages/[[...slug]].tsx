@@ -27,6 +27,7 @@ export default function Page(props) {
           url: `https://logo.media${asPath}`,
           title: data.title,
           description: data.description,
+          type: 'website',
           images: [
             {
               url: data.ogImage.asset.url,
@@ -36,7 +37,7 @@ export default function Page(props) {
               type: 'image/jpeg',
             },
           ],
-          siteName: ' Logo Media',
+          siteName: 'Logo Media',
         }}
         twitter={{
           handle: '@Logo__Media',
