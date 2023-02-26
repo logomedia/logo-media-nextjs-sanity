@@ -28,13 +28,14 @@ export default function ProjectSlugRoute(props: PageProps) {
     <>
       <NextSeo
         title={post.title}
-        description={post.description}
+        description={post.excerpt}
         canonical={`https://logo.media${asPath}`}
         titleTemplate="%s | Logo Media"
         openGraph={{
           url: `https://logo.media${asPath}`,
           title: post.title,
-          description: post.description,
+          description: post.excerpt,
+          type: 'website',
           images: [
             {
               url: post.coverImage.asset.url,
@@ -44,7 +45,7 @@ export default function ProjectSlugRoute(props: PageProps) {
               type: 'image/jpeg',
             },
           ],
-          siteName: ' Logo Media',
+          siteName: 'Logo Media',
         }}
         twitter={{
           handle: '@Logo__Media',
