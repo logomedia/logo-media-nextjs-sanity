@@ -4,7 +4,7 @@ import { Post } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { ArticleJsonLd } from 'next-seo'
+import { ArticleJsonLd, BreadcrumbJsonLd, LogoJsonLd } from 'next-seo'
 
 import PostPage from '../../components/blog-components/PostPage'
 
@@ -69,6 +69,29 @@ export default function ProjectSlugRoute(props: PageProps) {
         dateModified={post.date}
         authorName={post.author.name}
         description={post.excerpt}
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: 'https://logo.media',
+          },
+          {
+            position: 2,
+            name: 'News and Trends',
+            item: 'https://logo.media/news-and-trends',
+          },
+          {
+            position: 3,
+            name: post.title,
+            item: 'https://logo.media/news-and-trends/' + post.slug,
+          },
+        ]}
+      />
+      <LogoJsonLd
+        logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
+        url="https//logo.media"
       />
       <Layout>
         <PostPage post={post} morePosts={morePosts} />

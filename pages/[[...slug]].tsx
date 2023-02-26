@@ -8,7 +8,7 @@ import {
 } from 'lib/sanity.client'
 import { useRouter } from 'next/router'
 // next
-import { NextSeo } from 'next-seo'
+import { LogoJsonLd, NextSeo } from 'next-seo'
 import { slugParamToPath } from 'utils/urls'
 
 export default function Page(props) {
@@ -46,7 +46,10 @@ export default function Page(props) {
           cardType: 'summary_large_image',
         }}
       />
-
+      <LogoJsonLd
+        logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
+        url="https//logo.media"
+      />
       <Layout>
         {content && (
           <RenderSections

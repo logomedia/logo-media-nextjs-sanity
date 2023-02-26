@@ -6,7 +6,7 @@ import {
 import { Project } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo'
+import { BreadcrumbJsonLd, LogoJsonLd, NextSeo } from 'next-seo'
 
 import ProjectPage from '../../components/project-components/ProjectPage'
 interface PageProps {
@@ -54,6 +54,29 @@ export default function ProjectSlugRoute(props: PageProps) {
           site: '@Logo__Media',
           cardType: 'summary_large_image',
         }}
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: 'https://logo.media',
+          },
+          {
+            position: 2,
+            name: 'News and Trends',
+            item: 'https://logo.media/projects',
+          },
+          {
+            position: 3,
+            name: project.name,
+            item: 'https://logo.media/projects/' + project.slug,
+          },
+        ]}
+      />
+      <LogoJsonLd
+        logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
+        url="https//logo.media"
       />
       <Layout>
         <ProjectPage project={project} moreProjects={moreProjects} />
