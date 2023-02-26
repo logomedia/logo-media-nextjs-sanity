@@ -74,10 +74,11 @@ export default function Page(props) {
           ]}
           logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
           images={[data.ogImage.asset.url]}
+          priceRange="$1000+"
           openingHours={[
             {
               opens: '08:00',
-              closes: '20:20:00',
+              closes: '20:00:00',
               dayOfWeek: [
                 'Monday',
                 'Tuesday',
