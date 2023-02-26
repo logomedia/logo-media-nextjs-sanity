@@ -4,19 +4,16 @@ import { Box, BoxProps } from '@mui/material'
 import Link from 'next/link'
 import SVG from 'react-inlinesvg'
 
-// ----------------------------------------------------------------------
+import styles from './Logo.module.css'
 
-interface LogoProps extends BoxProps {
-  onDark?: boolean
-  isSimple?: boolean
-}
+// ----------------------------------------------------------------------
 
 function Logo({ settings }) {
   const { logo } = settings
 
   return (
-    <Link href="/">
-      <SVG style={{ height: '40px' }} src={logo.asset.url} />
+    <Link href="/" className={styles.logoLink}>
+      <SVG className={styles.Logo} src={logo.asset.url} />
     </Link>
   )
 }

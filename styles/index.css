@@ -1,23 +1,33 @@
 :root {
-    --wide-container: 60rem;
-    --narrow-container: 40rem;
-  
-    --font-family-sans: 'Pokland One';
-  
-    --color-black: #000;
-    --color-dark-gray: #32373e;
-    --color-gray: #697a90;
-    --color-light-gray: #b4bcc7;
-    --color-very-light-gray: #333;
-    --color-white: #fff;
-    --color-accent: #f88d1b;
-    --purple: #540e6f;
-    --orange: #f88d1b;
-    --grey: #e3e3e3;
-    --black: #000;
-    --white: #fff;
+  --wide-container: 60rem;
+  --narrow-container: 40rem;
+
+  --font-family-sans: 'Pokland One';
+
+  --color-black: #000;
+  --color-dark-gray: #32373e;
+  --color-gray: #697a90;
+  --color-light-gray: #b4bcc7;
+  --color-very-light-gray: #333;
+  --color-white: #fff;
+  --color-accent: #f88d1b;
+  --purple: #540e6f;
+  --orange: #f88d1b;
+  --grey: #e3e3e3;
+  --black: #000;
+  --white: #fff;
 }
-a{
-    all: unset;
+a {
+  all: unset;
 }
-body{margin:0;}
+body {
+  margin: 0;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

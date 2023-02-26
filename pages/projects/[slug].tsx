@@ -80,7 +80,7 @@ export default function ProjectSlugRoute(props) {
         logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
         url="https//logo.media"
       />
-      <Layout settings={settings}>
+      <Layout siteSettings={settings}>
         <ProjectPage project={project} moreProjects={moreProjects} />
       </Layout>
     </>
