@@ -98,7 +98,7 @@ export default function Page(props) {
       ) : (
         ''
       )}
-      <Layout settings={settings}>
+      <Layout siteSettings={settings}>
         {content && (
           <RenderSections
             sections={content}
@@ -127,8 +127,7 @@ export const getStaticProps = async ({ params }) => {
   }
   const projects = await getAllProjects()
   const posts = await getAllPosts()
-  const settings = await getSettings(settingsQuery)
-
+  const settings = await getSettings()
   return {
     props: {
       data: data || {},

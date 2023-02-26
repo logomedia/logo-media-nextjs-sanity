@@ -26,7 +26,7 @@ interface PreviewData {
   token?: string
 }
 
-export default function ProjectSlugRoute(props: PageProps) {
+export default function ProjectSlugRoute(props) {
   const { post, morePosts, settings } = props
   const { asPath } = useRouter()
   return (

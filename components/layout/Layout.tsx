@@ -6,8 +6,6 @@ import { createContext, useState } from 'react'
 import MotionLazyContainer from '../../components/animate/MotionLazyContainer'
 import Header from '../../components/layout/header/Header'
 import ProgressBar from '../../components/ProgressBar'
-import RtlLayout from '../../components/RtlLayout'
-import Settings from '../../components/settings'
 // contexts
 import { SettingsProvider } from '../../contexts/SettingsContext'
 // theme
@@ -15,8 +13,9 @@ import ThemeProvider from '../../theme'
 
 export const ModalContext = createContext()
 
-export default function Layout({ children, settings }) {
+export default function Layout({ children, siteSettings }) {
   const [isOpen, setIsOpen] = useState(false)
+  console.log(siteSettings)
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function Layout({ children, settings }) {
               <MotionLazyContainer>
                 <ProgressBar />
                 <div className="App">
-                  <Header settings={settings} />
+                  <Header settings={siteSettings} />
                   <main>{children}</main>
                   {isOpen ? <ProjectModal /> : ''}
                 </div>

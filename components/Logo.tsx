@@ -1,9 +1,7 @@
 // @mui
 import { Box, BoxProps } from '@mui/material'
-import { useSettingsState } from 'context/settings'
 // next
 import Link from 'next/link'
-import { memo } from 'react'
 import SVG from 'react-inlinesvg'
 
 // ----------------------------------------------------------------------

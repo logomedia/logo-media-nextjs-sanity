@@ -16,8 +16,8 @@ const RootStyle = styled('div')(({ theme }) => ({
 }))
 
 export default function Posts({ posts }) {
-  return (
-    <Layout>
+  if (posts) {
+    return (
       <RootStyle>
         <BlogFeaturedPosts post={posts[0]} />
         <Container
@@ -32,6 +32,6 @@ export default function Posts({ posts }) {
           </Grid>
         </Container>
       </RootStyle>
-    </Layout>
-  )
+    )
+  }
 }

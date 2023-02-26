@@ -3,7 +3,6 @@ import { AppBar, Box, Button, Container, Divider, Stack } from '@mui/material'
 // @mui
 import { useTheme } from '@mui/material/styles'
 import SettingMode from 'components/settings/SettingMode'
-import { useSettingsState } from 'context/settings'
 import NextLink from 'next/link'
 import { forwardRef } from 'react'
 
@@ -25,7 +24,7 @@ type Props = {
   settings?: any
 }
 
-export default function Header({ transparent, settings }: Props) {
+export default function Header({ transparent, settings }) {
   const theme = useTheme()
 
   const isDesktop = useResponsive('up', 'md')
@@ -136,7 +135,7 @@ export default function Header({ transparent, settings }: Props) {
             pr: '10px',
           }}
         >
-          {settings && <Logo settings={settings} />}
+          <Logo settings={settings} />
 
           {isDesktop && (
             <NavDesktop

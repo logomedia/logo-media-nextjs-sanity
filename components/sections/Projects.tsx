@@ -20,7 +20,6 @@ export default function FeaturedProject(props) {
   const { projects } = props
 
   if (projects) {
-    console.log(projects)
     return (
       <RootStyle>
         <Container>
