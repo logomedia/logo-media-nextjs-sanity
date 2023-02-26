@@ -32,6 +32,7 @@ export default function ProjectSlugRoute(props: PageProps) {
         description={project.brief}
         canonical={`https://logo.media${asPath}`}
         titleTemplate="%s | Logo Media"
+        themeColor="#540e6f"
         openGraph={{
           url: `https://logo.media${asPath}`,
           title: project.name,
@@ -49,8 +50,8 @@ export default function ProjectSlugRoute(props: PageProps) {
           siteName: 'Logo Media',
         }}
         twitter={{
-          handle: '@Logo__Media',
-          site: '@site',
+          handle: '@logangelzer',
+          site: '@Logo__Media',
           cardType: 'summary_large_image',
         }}
       />

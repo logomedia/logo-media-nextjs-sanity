@@ -23,6 +23,7 @@ export default function Page(props) {
         description={data.description}
         canonical={`https://logo.media${asPath}`}
         titleTemplate="%s | Logo Media"
+        themeColor="#540e6f"
         openGraph={{
           url: `https://logo.media${asPath}`,
           title: data.title,
@@ -40,8 +41,8 @@ export default function Page(props) {
           siteName: 'Logo Media',
         }}
         twitter={{
-          handle: '@Logo__Media',
-          site: '@site',
+          handle: '@logangelzer',
+          site: '@Logo__Media',
           cardType: 'summary_large_image',
         }}
       />

@@ -4,6 +4,7 @@ import { Post } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { ArticleJsonLd } from 'next-seo'
 
 import PostPage from '../../components/blog-components/PostPage'
 
@@ -22,7 +23,7 @@ interface PreviewData {
 
 export default function ProjectSlugRoute(props: PageProps) {
   const { post, morePosts } = props
-  const { asPath } = useRouter
+  const { asPath } = useRouter()
 
   return (
     <>
@@ -31,11 +32,17 @@ export default function ProjectSlugRoute(props: PageProps) {
         description={post.excerpt}
         canonical={`https://logo.media${asPath}`}
         titleTemplate="%s | Logo Media"
+        themeColor="#540e6f"
         openGraph={{
           url: `https://logo.media${asPath}`,
           title: post.title,
           description: post.excerpt,
-          type: 'website',
+          type: 'article',
+          article: {
+            publishedTime: post.date,
+            authors: [post.author.name],
+            tags: post.tags,
+          },
           images: [
             {
               url: post.coverImage.asset.url,
@@ -48,10 +55,20 @@ export default function ProjectSlugRoute(props: PageProps) {
           siteName: 'Logo Media',
         }}
         twitter={{
-          handle: '@Logo__Media',
-          site: '@site',
+          handle: '@logangelzer',
+          site: '@@Logo__Media',
           cardType: 'summary_large_image',
         }}
+      />
+      <ArticleJsonLd
+        type="BlogPosting"
+        url={'https://logo.media/news-and-trends/' + post.slug}
+        title={post.title}
+        images={[post.coverImage.asset.url]}
+        datePublished={post.date}
+        dateModified={post.date}
+        authorName={post.author.name}
+        description={post.excerpt}
       />
       <Layout>
         <PostPage post={post} morePosts={morePosts} />
