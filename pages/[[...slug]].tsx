@@ -8,7 +8,7 @@ import {
 } from 'lib/sanity.client'
 import { useRouter } from 'next/router'
 // next
-import { LogoJsonLd, NextSeo } from 'next-seo'
+import { LocalBusinessJsonLd, LogoJsonLd, NextSeo } from 'next-seo'
 import { slugParamToPath } from 'utils/urls'
 
 export default function Page(props) {
@@ -50,6 +50,51 @@ export default function Page(props) {
         logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
         url="https//logo.media"
       />
+      {data.slug === '/' || data.slug === '/contact' ? (
+        <LocalBusinessJsonLd
+          type="ProfessionalService"
+          id="https://logo.media"
+          name="Logo Media"
+          description={data.description}
+          url="https://logo.media"
+          telephone="+13053172807"
+          email="info@logo.media"
+          address={{
+            streetAddress: '500 SW 19th Rd',
+            addressLocality: 'Miami',
+            addressRegion: 'Fl',
+            postalCode: '33129',
+            addressCountry: 'US',
+          }}
+          keywords={[
+            'Web Designer',
+            'Ecommerce Agency',
+            'Web Developer',
+            'Shopify Agency',
+          ]}
+          logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
+          images={[data.ogImage.asset.url]}
+          openingHours={[
+            {
+              opens: '08:00',
+              closes: '20:20:00',
+              dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+              ],
+            },
+          ]}
+          rating={{
+            ratingValue: '5.0',
+            ratingCount: '79',
+          }}
+        />
+      ) : (
+        ''
+      )}
       <Layout>
         {content && (
           <RenderSections
