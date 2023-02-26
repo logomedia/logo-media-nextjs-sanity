@@ -22,9 +22,10 @@ import { ToolbarShadowStyle, ToolbarStyle } from './HeaderToolbarStyle'
 
 type Props = {
   transparent?: boolean
+  settings?: any
 }
 
-export default function Header({ transparent }: Props) {
+export default function Header({ transparent, settings }: Props) {
   const theme = useTheme()
 
   const isDesktop = useResponsive('up', 'md')
@@ -37,7 +38,7 @@ export default function Header({ transparent }: Props) {
   })
 
   let navConfig = []
-  const mainMenu = useSettingsState().settings.mainMenu
+  const mainMenu = settings.mainMenu
   if (!mainMenu) {
     return
   } else {
@@ -135,7 +136,7 @@ export default function Header({ transparent }: Props) {
             pr: '10px',
           }}
         >
-          <Logo />
+          {settings && <Logo settings={settings} />}
 
           {isDesktop && (
             <NavDesktop

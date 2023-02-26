@@ -15,8 +15,9 @@ import ThemeProvider from '../../theme'
 
 export const ModalContext = createContext()
 
-export default function Layout({ children }) {
+export default function Layout({ children, settings }) {
   const [isOpen, setIsOpen] = useState(false)
+
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -26,7 +27,7 @@ export default function Layout({ children }) {
               <MotionLazyContainer>
                 <ProgressBar />
                 <div className="App">
-                  <Header />
+                  <Header settings={settings} />
                   <main>{children}</main>
                   {isOpen ? <ProjectModal /> : ''}
                 </div>

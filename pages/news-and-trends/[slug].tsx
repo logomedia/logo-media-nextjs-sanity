@@ -1,6 +1,10 @@
 import Layout from 'components/layout/Layout'
-import { getAllPostsSlugs, getPostAndMoreStories } from 'lib/sanity.client'
-import { Post } from 'lib/sanity.queries'
+import {
+  getAllPostsSlugs,
+  getPostAndMoreStories,
+  getSettings,
+} from 'lib/sanity.client'
+import { Post, settingsQuery } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -11,6 +15,7 @@ import PostPage from '../../components/blog-components/PostPage'
 interface PageProps {
   post: Post
   morePosts: Post[]
+  settings?: any
 }
 
 interface Query {
@@ -22,9 +27,8 @@ interface PreviewData {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const { post, morePosts } = props
+  const { post, morePosts, settings } = props
   const { asPath } = useRouter()
-
   return (
     <>
       <NextSeo
@@ -93,7 +97,7 @@ export default function ProjectSlugRoute(props: PageProps) {
         logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
         url="https//logo.media"
       />
-      <Layout>
+      <Layout settings={settings}>
         <PostPage post={post} morePosts={morePosts} />
       </Layout>
     </>
@@ -106,7 +110,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const [{ post, morePosts }] = await Promise.all([
     getPostAndMoreStories(params.slug),
   ])
-
+  const settings = await getSettings(settingsQuery)
   if (!post) {
     return {
       notFound: true,
@@ -117,6 +121,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     props: {
       post,
       morePosts,
+      settings: settings,
     },
   }
 }

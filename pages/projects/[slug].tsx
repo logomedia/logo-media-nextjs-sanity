@@ -2,8 +2,9 @@ import Layout from 'components/layout/Layout'
 import {
   getAllProjectSlugs,
   getProjectAndMoreProjects,
+  getSettings,
 } from 'lib/sanity.client'
-import { Project } from 'lib/sanity.queries'
+import { Project, settingsQuery } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { BreadcrumbJsonLd, LogoJsonLd, NextSeo } from 'next-seo'
@@ -12,6 +13,7 @@ import ProjectPage from '../../components/project-components/ProjectPage'
 interface PageProps {
   project: Project
   moreProjects: Project[]
+  settings?: any
 }
 
 interface Query {
@@ -23,7 +25,7 @@ interface PreviewData {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const { project, moreProjects } = props
+  const { project, moreProjects, settings } = props
   const { asPath } = useRouter()
   return (
     <>
@@ -78,7 +80,7 @@ export default function ProjectSlugRoute(props: PageProps) {
         logo="https://cdn.sanity.io/images/kgp6clwy/production/d2f37088c876a1ca329a045f1c291bced0e62f79-92x53.svg"
         url="https//logo.media"
       />
-      <Layout>
+      <Layout settings={settings}>
         <ProjectPage project={project} moreProjects={moreProjects} />
       </Layout>
     </>
@@ -91,7 +93,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const [{ project, moreProjects }] = await Promise.all([
     getProjectAndMoreProjects(params.slug),
   ])
-
+  const settings = await getSettings(settingsQuery)
   if (!project) {
     return {
       notFound: true,
@@ -102,6 +104,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     props: {
       project,
       moreProjects,
+      settings: settings,
     },
   }
 }

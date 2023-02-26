@@ -5,14 +5,16 @@ import {
   getAllPosts,
   getAllProjects,
   getPageBySlug,
+  getSettings,
 } from 'lib/sanity.client'
+import { settingsQuery } from 'lib/sanity.queries'
 import { useRouter } from 'next/router'
 // next
 import { LocalBusinessJsonLd, LogoJsonLd, NextSeo } from 'next-seo'
 import { slugParamToPath } from 'utils/urls'
 
 export default function Page(props) {
-  const { data, projects, posts } = props
+  const { data, projects, posts, settings } = props
   const content = data.content
   const { asPath } = useRouter()
 
@@ -96,7 +98,7 @@ export default function Page(props) {
       ) : (
         ''
       )}
-      <Layout>
+      <Layout settings={settings}>
         {content && (
           <RenderSections
             sections={content}
@@ -125,12 +127,14 @@ export const getStaticProps = async ({ params }) => {
   }
   const projects = await getAllProjects()
   const posts = await getAllPosts()
+  const settings = await getSettings(settingsQuery)
 
   return {
     props: {
       data: data || {},
       projects: projects,
       posts: posts,
+      settings: settings,
     },
   }
 }
