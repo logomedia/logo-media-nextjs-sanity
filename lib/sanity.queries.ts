@@ -136,18 +136,18 @@ export interface Page {
   content?: any
 }
 export interface Project {
-  _id:string
+  _id: string
   name?: string
-  logo?:any
-  description?:string
-  website?:string
-  brief?:string
+  logo?: any
+  description?: string
+  website?: string
+  brief?: string
   scope?: string
   results?: string
-  coverImage?:any
+  coverImage?: any
   date?: sting
-  images?:any
-  slug?:any
+  images?: any
+  slug?: any
   tags?: any
 }
 

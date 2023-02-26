@@ -1,57 +1,86 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import Link from 'next/link'
-import styles from './Cta.module.css'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { useContext } from 'react'
+
+import { ModalContext } from '../components/layout/Layout'
 import Calendly from './Calendly'
+import styles from './Cta.module.css'
 
 function cta(props) {
-  const { title, route, link, cta_types, calendy } = props
-  let btnStyles=''
-  if (cta_types.button_type === "primary")
-    {
-      btnStyles = styles.button
-    }
-  else if (cta_types.button_type === "secondary")
-    {
-      btnStyles = styles.secondaryButton
-  }
-  else if (cta_types.button_type === undefined){
+  const modalContext = useContext(ModalContext)
+  const toggleProjectModal = () => modalContext.setIsOpen(!modalContext.isOpen)
+
+  const { title, route, link, cta_types, _type } = props
+  let btnStyles = ''
+  if (cta_types.button_type === 'primary') {
+    btnStyles = styles.button
+  } else if (cta_types.button_type === 'secondary') {
+    btnStyles = styles.secondaryButton
+  } else if (cta_types.button_type === undefined) {
     btnStyles = styles.button
   }
-  if (calendy) {
+  if (route._type === 'action') {
+    if (title === 'Book a Call') {
+      return <Calendly styles={btnStyles} text={title} />
+    }
+    if (title === 'Start a Project') {
       return (
-        
-              <Calendly styles={btnStyles} text={title} />
-             
-    )
-    
+        <a className={btnStyles} onClick={toggleProjectModal}>
+          {title}{' '}
+        </a>
+      )
+    }
+    if (title === 'Call') {
+      return (
+        <a className={btnStyles} href="tel:3053172807">
+          {title}
+        </a>
+      )
+    }
+    if (title === 'Text') {
+      return (
+        <a className={btnStyles} href="sms:3053172807">
+          {title}
+        </a>
+      )
+    }
+    if (title === 'Email') {
+      return (
+        <a className={btnStyles} href="mailto:info@logo.media">
+          {title}
+        </a>
+      )
+    }
+    if (title === 'Contact Us') {
+      return <a className={btnStyles}>{title} </a>
+    }
+    return <a className={btnStyles}>{title} </a>
   }
-  if (route && route.slug && route.slug.current) {
-      return (
-          
-              <Link
+  if (route._type === 'page' && route.slug.current) {
+    return (
+      <Link className={btnStyles} href={`${route.slug.current}`}>
+        {title}
+      </Link>
+    )
+  }
+  if (route._type === 'post' && route.slug.current) {
+    return (
+      <Link
         className={btnStyles}
-        href={{
-          pathname: '/LandingPage',
-          query: {slug: route.slug.current},
-        }}
-        as={`/${route.slug.current}`}
+        href={`/news-and-trends/${route.slug.current}`}
       >
         {title}
       </Link>
-     
-      
     )
   }
-
-  if (link) {
+  if (route._type === 'project' && route.slug.current) {
     return (
-      <Link className={btnStyles} href={link}>
+      <Link className={btnStyles} href={`/projects/${route.slug.current}`}>
         {title}
       </Link>
     )
   }
-  
 
   return <a className={btnStyles}>{title}</a>
 }

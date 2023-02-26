@@ -11,6 +11,7 @@ import { defineConfig } from 'sanity'
 import { component, deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
+import actionType from 'schemas/action'
 import authorType from 'schemas/author'
 //import block components
 import cta from 'schemas/blocks/cta'
@@ -40,6 +41,7 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [
       authorType,
+      actionType,
       menus,
       clientType,
       pageType,
@@ -69,6 +71,7 @@ export default defineConfig({
                   .items([
                     S.documentListItem().id('settings').schemaType('settings'),
                     S.documentTypeListItem('menus'),
+                    S.documentTypeListItem('action'),
                   ])
               ),
             S.divider(),

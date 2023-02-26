@@ -1,35 +1,40 @@
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import ProjectModal from 'components/projectModal'
+import { createContext, useState } from 'react'
 
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
-import MotionLazyContainer from '../../components/animate/MotionLazyContainer';
+import MotionLazyContainer from '../../components/animate/MotionLazyContainer'
 import Header from '../../components/layout/header/Header'
-import ProgressBar from '../../components/ProgressBar';
-import RtlLayout from '../../components/RtlLayout';
-import Settings from '../../components/settings';
+import ProgressBar from '../../components/ProgressBar'
+import RtlLayout from '../../components/RtlLayout'
+import Settings from '../../components/settings'
 // contexts
-import { SettingsProvider } from '../../contexts/SettingsContext';
+import { SettingsProvider } from '../../contexts/SettingsContext'
 // theme
-import ThemeProvider from '../../theme';
+import ThemeProvider from '../../theme'
+
+export const ModalContext = createContext()
 
 export default function Layout({ children }) {
-    return (
-      <>
-
-       
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <SettingsProvider>
-        <ThemeProvider>
-            <MotionLazyContainer>
-                  <ProgressBar />
-                   <div className="App">
-                    <Header/>
-                      <main>{children}</main>
-                    </div>
-            </MotionLazyContainer>
-        </ThemeProvider>
-      </SettingsProvider>
-    </LocalizationProvider>
-      </>
-    )
-  }
+        <SettingsProvider>
+          <ModalContext.Provider value={{ isOpen, setIsOpen }}>
+            <ThemeProvider>
+              <MotionLazyContainer>
+                <ProgressBar />
+                <div className="App">
+                  <Header />
+                  <main>{children}</main>
+                  {isOpen ? <ProjectModal /> : ''}
+                </div>
+              </MotionLazyContainer>
+            </ThemeProvider>
+          </ModalContext.Provider>
+        </SettingsProvider>
+      </LocalizationProvider>
+    </>
+  )
+}
