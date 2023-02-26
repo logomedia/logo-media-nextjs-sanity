@@ -6,18 +6,44 @@ import {
   getAllProjects,
   getPageBySlug,
 } from 'lib/sanity.client'
+import { useRouter } from 'next/router'
 // next
-import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 import { slugParamToPath } from 'utils/urls'
 
 export default function Page(props) {
   const { data, projects, posts } = props
   const content = data.content
+  const { asPath } = useRouter()
+
   return (
     <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        canonical={`https://logo.media${asPath}`}
+        titleTemplate="%s | Logo Media"
+        openGraph={{
+          url: `https://logo.media${asPath}`,
+          title: data.title,
+          description: data.description,
+          images: [
+            {
+              url: data.ogImage.asset.url,
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+              type: 'image/jpeg',
+            },
+          ],
+          siteName: ' Logo Media',
+        }}
+        twitter={{
+          handle: '@Logo__Media',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
 
       <Layout>
         {content && (

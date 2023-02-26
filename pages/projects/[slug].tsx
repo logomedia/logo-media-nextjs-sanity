@@ -1,17 +1,17 @@
-import Layout from "components/layout/Layout";
+import Layout from 'components/layout/Layout'
 import {
   getAllProjectSlugs,
   getProjectAndMoreProjects,
 } from 'lib/sanity.client'
 import { Project } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 
 import ProjectPage from '../../components/project-components/ProjectPage'
-
 interface PageProps {
   project: Project
   moreProjects: Project[]
-
 }
 
 interface Query {
@@ -23,28 +23,48 @@ interface PreviewData {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const {  project, moreProjects } = props
-
-
-
+  const { project, moreProjects } = props
+  const { asPath } = useRouter()
   return (
-  
-    <Layout>
-      <ProjectPage project={project} moreProjects={moreProjects}/>
-    </Layout>
+    <>
+      <NextSeo
+        title={project.title}
+        description={project.description}
+        canonical={`https://logo.media${asPath}`}
+        titleTemplate="%s | Logo Media"
+        openGraph={{
+          url: `https://logo.media${asPath}`,
+          title: project.title,
+          description: project.description,
+          images: [
+            {
+              url: project.coverImage.asset.url,
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+              type: 'image/jpeg',
+            },
+          ],
+          siteName: ' Logo Media',
+        }}
+        twitter={{
+          handle: '@Logo__Media',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
+      <Layout>
+        <ProjectPage project={project} moreProjects={moreProjects} />
+      </Layout>
+    </>
   )
 }
 
-export const getStaticProps: GetStaticProps<
-  PageProps,
-  Query,
-> = async (ctx) => {
-  const {  params = {} } = ctx
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { params = {} } = ctx
 
-
-
-  const [ { project, moreProjects }] = await Promise.all([
-    getProjectAndMoreProjects(params.slug,),
+  const [{ project, moreProjects }] = await Promise.all([
+    getProjectAndMoreProjects(params.slug),
   ])
 
   if (!project) {
