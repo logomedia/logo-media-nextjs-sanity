@@ -15,7 +15,6 @@ export const ModalContext = createContext()
 
 export default function Layout({ children, siteSettings }) {
   const [isOpen, setIsOpen] = useState(false)
-  console.log(siteSettings)
 
   return (
     <>

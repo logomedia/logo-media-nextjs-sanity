@@ -17,40 +17,40 @@ export default defineType({
       name: 'heading',
       type: 'string',
       title: 'Heading',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'eyebrow',
       type: 'string',
       title: 'Eyebrow Text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
       type: 'array',
       title: 'Description',
       of: [{ type: 'block' }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'ctas',
-      type: 'array',
+      name: 'cta',
+      type: 'cta',
       title: 'Call to actions',
-      of: [
-        {
-          title: 'Call to action',
-          type: 'cta',
-        },
-      ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'image',
       type: 'image',
       title: ' Image',
       fieldset: 'image',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'imageAltText',
       type: 'string',
       title: 'Image alt Text',
       fieldset: 'image',
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

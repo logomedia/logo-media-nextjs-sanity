@@ -17,16 +17,19 @@ export default defineType({
       name: 'heading',
       type: 'string',
       title: 'Heading',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'eyebrow',
       type: 'string',
       title: 'Eyebrow Text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'ctas',
       type: 'array',
       title: 'Call to actions',
+      validation: (rule) => rule.required(),
       of: [
         {
           title: 'Call to action',
@@ -39,12 +42,14 @@ export default defineType({
       type: 'image',
       title: 'Background image',
       fieldset: 'background',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'bgImageAltText',
       type: 'string',
       title: 'Background image alt Text',
       fieldset: 'background',
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

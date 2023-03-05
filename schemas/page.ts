@@ -52,6 +52,8 @@ export default defineType({
         { type: 'posts' },
         { type: 'textWithBackground' },
         { type: 'boxedImageWithText' },
+        { type: 'backgroundMovement' },
+        { type: 'pricingTable1' },
       ],
     }),
     defineField({

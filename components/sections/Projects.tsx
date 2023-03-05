@@ -1,16 +1,17 @@
-import { Box, Chip, Container, Stack, Typography } from '@mui/material'
+import directionStraightRight from '@iconify/icons-carbon/direction-straight-right'
+import { Box, Button, Chip, Container, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { BgOverlay, Image } from 'components'
-import { getAllProjects } from 'lib/sanity.client'
-// next
+import { BgOverlay, Iconify, Image } from 'components'
+import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { forwardRef } from 'react'
 import { useEffect, useState } from 'react'
 
 const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(10, 0),
+  padding: theme.spacing(10, 0, 2, 0),
+  backgroundColor: theme.palette.background.neutral,
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(15, 0),
+    padding: theme.spacing(20, 0, 10, 0),
   },
 }))
 const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
@@ -21,9 +22,16 @@ export default function FeaturedProject(props) {
 
   if (projects) {
     return (
-      <RootStyle>
+      <>
+        <RootStyle>
+          <Container>
+            <ProjectItemLarge project={projects[0]} />
+          </Container>
+        </RootStyle>
         <Container>
-          <ProjectItemLarge project={projects[0]} />
+          <Typography variant="h2" component="h2" sx={{ mt: 2, mb: 2 }}>
+            Our Recent Projects
+          </Typography>
           <Box
             sx={{
               display: 'grid',
@@ -40,7 +48,7 @@ export default function FeaturedProject(props) {
             ))}
           </Box>
         </Container>
-      </RootStyle>
+      </>
     )
   } else {
     return <></>
@@ -48,65 +56,103 @@ export default function FeaturedProject(props) {
 }
 
 function ProjectItem({ project }) {
-  const { brief, coverImage, logo, name, slug, tags } = project
+  const { description, coverImage, logo, name, slug, tags } = project
 
   return (
-    <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
-      <Image src={coverImage.asset.url} alt={name} ratio="1/1" />
-      <Box
-        sx={{
-          typography: 'body2',
-          pt: 1.5,
-          position: 'absolute',
-          top: '10px',
-          left: '10px',
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        {tags.slice(0, 3).map((tag) => (
-          <Chip
-            key={tag}
-            size="small"
-            label={tag}
-            sx={{
-              m: 0.5,
-              color: '#fff',
-              backgroundColor: 'rgb(248 141 27 / 30%)',
-            }}
-          />
-        ))}
-      </Box>
-
-      <Stack
-        spacing={1}
-        sx={{
-          p: 1,
-          bottom: 0,
-          zIndex: 9,
-          position: 'absolute',
-          color: 'common.white',
-        }}
-      >
-        <Box>
-          <Image src={logo.asset.url} alt={name + ' logo'} />
+    <Stack>
+      <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
+        <Image src={coverImage.asset.url} alt={name} ratio="1/1" />
+        <Box
+          sx={{
+            typography: 'body2',
+            zIndex: 2,
+            position: 'absolute',
+            top: {
+              xs: '5px',
+              md: '10px',
+            },
+            left: {
+              xs: '5px',
+              md: '10px',
+            },
+            display: 'flex',
+            flexWrap: 'wrap',
+          }}
+        >
+          {tags.slice(0, 3).map((tag) => (
+            <Chip
+              key={tag}
+              size="small"
+              label={tag}
+              sx={{
+                m: 0.5,
+                color: '#fff',
+                backgroundColor: 'rgb(248 141 27 / 30%)',
+                fontSize: {
+                  xs: '10px',
+                },
+              }}
+            />
+          ))}
         </Box>
-        <NextLink href={'/projects/' + slug}>
-          <Typography
-            sx={{ mt: 2, textAlign: 'right', cursor: 'pointer' }}
-            color="inherit"
-          >
-            View Project
-          </Typography>
-        </NextLink>
-      </Stack>
 
-      <BgOverlay />
-    </Box>
+        <Stack
+          spacing={1}
+          sx={{
+            p: 1,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%,-50%)',
+            zIndex: 9,
+            position: 'absolute',
+            color: 'common.white',
+          }}
+        >
+          <Box>
+            <NextImage
+              style={{ height: '45px', width: 'auto' }}
+              src={logo.asset.url}
+              alt={name + ' logo'}
+              width={logo.asset.metadata.dimensions.width}
+              height={logo.asset.metadata.dimensions.height}
+            />
+          </Box>
+        </Stack>
+
+        <BgOverlay />
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Typography
+          sx={{
+            color: 'text.secondary',
+            flexGrow: 1,
+            mt: 1,
+            fontSize: { xs: '14px' },
+          }}
+        >
+          {description}
+        </Typography>
+
+        <NextLink href={'/projects/' + slug} style={{ marginLeft: 'auto' }}>
+          <Button
+            size="large"
+            endIcon={<Iconify icon={directionStraightRight} />}
+            sx={{
+              mt: 5,
+              color: 'var(--purple)',
+              mt: 1,
+              fontSize: { xs: '14px' },
+            }}
+          >
+            View Project{' '}
+          </Button>
+        </NextLink>
+      </Box>
+    </Stack>
   )
 }
 function ProjectItemLarge({ project }) {
-  const { brief, coverImage, logo, name, slug, tags } = project
+  const { description, coverImage, logo, name, slug, tags } = project
 
   return (
     <Stack direction={{ xs: 'column', md: 'row' }}>
@@ -126,10 +172,8 @@ function ProjectItemLarge({ project }) {
         />
         <Box
           sx={{
-            typography: 'body2',
-            pt: 1.5,
             position: 'absolute',
-            bottom: '30px',
+            bottom: '10px',
             left: '10px',
             display: 'flex',
             flexWrap: 'wrap',
@@ -144,6 +188,9 @@ function ProjectItemLarge({ project }) {
                 m: 0.5,
                 color: '#fff',
                 backgroundColor: 'rgb(248 141 27 / 30%)',
+                fontSize: {
+                  xs: '10px',
+                },
               }}
             />
           ))}
@@ -151,7 +198,6 @@ function ProjectItemLarge({ project }) {
       </Box>
 
       <Stack
-        align-items="start"
         spacing={1}
         sx={{
           mx: 'auto',
@@ -159,24 +205,44 @@ function ProjectItemLarge({ project }) {
           py: { xs: 3, md: 5 },
           maxWidth: { md: 408 },
           width: '100%',
+          justifyContent: 'center',
         }}
       >
+        <Typography
+          variant="h6"
+          component="h3"
+          sx={{
+            m: 1,
+            fontWeight: '700',
+            fontFamily: 'Barlow',
+            textTransform: 'uppercase',
+          }}
+        >
+          Featured Project
+        </Typography>
         <Box>
-          <Image src={logo.asset.url} alt={name + ' logo'} />
+          <NextImage
+            style={{ height: '45px', width: 'auto' }}
+            src={logo.asset.url}
+            alt={name + ' logo'}
+            width={logo.asset.metadata.dimensions.width}
+            height={logo.asset.metadata.dimensions.height}
+          />
         </Box>
 
         <Box>
           <Typography sx={{ color: 'text.secondary', flexGrow: 1 }}>
-            {brief}
+            {description}
           </Typography>
 
           <NextLink href={'/projects/' + slug}>
-            <Typography
-              sx={{ mt: 2, textAlign: 'right', cursor: 'pointer' }}
-              color="inherit"
+            <Button
+              size="large"
+              endIcon={<Iconify icon={directionStraightRight} />}
+              sx={{ mt: 5, color: 'var(--purple)', mt: 1 }}
             >
-              View Project
-            </Typography>
+              View Project{' '}
+            </Button>
           </NextLink>
         </Box>
       </Stack>

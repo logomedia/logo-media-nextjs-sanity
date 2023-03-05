@@ -1,7 +1,9 @@
 import Layout from 'components/layout/Layout'
 import {
+  getAllPosts,
   getAllPostsSlugs,
   getPostAndMoreStories,
+  getPostBySlug,
   getSettings,
 } from 'lib/sanity.client'
 import { Post, settingsQuery } from 'lib/sanity.queries'
@@ -107,9 +109,8 @@ export default function ProjectSlugRoute(props) {
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { params = {} } = ctx
 
-  const [{ post, morePosts }] = await Promise.all([
-    getPostAndMoreStories(params.slug),
-  ])
+  const post = await getPostBySlug(params.slug)
+  const morePosts = await getAllPosts()
   const settings = await getSettings(settingsQuery)
   if (!post) {
     return {

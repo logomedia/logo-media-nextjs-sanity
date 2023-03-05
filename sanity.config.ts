@@ -16,15 +16,19 @@ import authorType from 'schemas/author'
 import cta from 'schemas/blocks/cta'
 import icon from 'schemas/blocks/icon'
 import navItem from 'schemas/blocks/navItem'
+import plan from 'schemas/blocks/plan'
+import planOption from 'schemas/blocks/planOption'
 import clientType from 'schemas/client'
 import menus from 'schemas/menus'
 import pageType from 'schemas/page'
 import partnerType from 'schemas/partner'
 import postType from 'schemas/post'
 import projectType from 'schemas/project'
+import backgroundMovement from 'schemas/sections/backgroundMovement'
 import boxedImageWithText from 'schemas/sections/boxedImageWithText'
 import hero from 'schemas/sections/hero'
 import posts from 'schemas/sections/posts'
+import pricingTable1 from 'schemas/sections/pricingTable1'
 import projects from 'schemas/sections/projects'
 import textWithBackground from 'schemas/sections/textWithBackground'
 import settingsType from 'schemas/settings'
@@ -42,7 +46,10 @@ export default defineConfig({
     types: [
       authorType,
       actionType,
+      backgroundMovement,
       boxedImageWithText,
+      plan,
+      planOption,
       menus,
       clientType,
       pageType,
@@ -53,6 +60,7 @@ export default defineConfig({
       hero,
       posts,
       projects,
+      pricingTable1,
       cta,
       icon,
       navItem,
