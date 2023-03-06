@@ -31,8 +31,7 @@ export default function MarketingCaseStudySummary({ frontmatter }) {
           <Box
             sx={{
               position: 'relative',
-              height: '35px',
-              width: '100%',
+
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
