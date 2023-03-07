@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { useContext } from 'react'
 
-import { ModalContext } from '../components/layout/Layout'
 import Calendly from './Calendly'
 import styles from './Cta.module.css'
+import { ModalContext } from './layout/Layout'
 
 function cta(props) {
   const modalContext = useContext(ModalContext)

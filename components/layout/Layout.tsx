@@ -3,13 +3,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import ProjectModal from 'components/projectModal'
 import { createContext, useState } from 'react'
 
-import MotionLazyContainer from '../../components/animate/MotionLazyContainer'
-import Header from '../../components/layout/header/Header'
-import ProgressBar from '../../components/ProgressBar'
 // contexts
 import { SettingsProvider } from '../../contexts/SettingsContext'
 // theme
 import ThemeProvider from '../../theme'
+import MotionLazyContainer from '../animate/MotionLazyContainer'
+import ProgressBar from '../ProgressBar'
+import Footer from './footer/Footer'
+import Header from './header/Header'
 
 export const ModalContext = createContext()
 
@@ -27,6 +28,7 @@ export default function Layout({ children, siteSettings }) {
                 <div className="App">
                   <Header settings={siteSettings} />
                   <main>{children}</main>
+                  <Footer settings={siteSettings} />
                   {isOpen ? <ProjectModal /> : ''}
                 </div>
               </MotionLazyContainer>

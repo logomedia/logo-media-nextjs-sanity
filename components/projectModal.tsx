@@ -2,7 +2,7 @@ import emailjs from '@emailjs/browser'
 import { useContext, useState } from 'react'
 
 import CloseIcon from '../components/icons/Close'
-import { ModalContext } from '../components/layout/Layout'
+import { ModalContext } from './layout/Layout'
 import styles from './projectModal.module.css'
 
 const ProjectModal = (props) => {
