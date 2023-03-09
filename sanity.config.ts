@@ -32,6 +32,7 @@ import pricingTable1 from 'schemas/sections/pricingTable1'
 import projects from 'schemas/sections/projects'
 import textWithBackground from 'schemas/sections/textWithBackground'
 import settingsType from 'schemas/settings'
+import teamType from 'schemas/team'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -64,6 +65,7 @@ export default defineConfig({
       cta,
       icon,
       navItem,
+      teamType,
       textWithBackground,
     ],
   },
@@ -107,6 +109,7 @@ export default defineConfig({
                   ])
               ),
             S.documentTypeListItem('partner'),
+            S.documentTypeListItem('team'),
           ]),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton

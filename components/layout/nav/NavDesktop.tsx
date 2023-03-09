@@ -121,6 +121,7 @@ function NavItemDesktop({
   const { pathname, asPath } = useRouter()
 
   const [open, setOpen] = useState(false)
+  const router = useRouter()
 
   const isActiveRoot =
     path === pathname || (path !== '/' && asPath.includes(path))
@@ -129,6 +130,8 @@ function NavItemDesktop({
     if (open) {
       handleClose()
     }
+    router.events.on('routeChangeStart', handleClose)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 

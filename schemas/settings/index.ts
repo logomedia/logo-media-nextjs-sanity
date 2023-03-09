@@ -36,6 +36,41 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'facebook',
+      description: 'Facebook Page URL',
+      title: 'Facebook',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'instagram',
+      description: 'Instagram Page URL',
+      title: 'Instagram',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'twitter',
+      description: 'Twitter Page URL',
+      title: 'Twitter',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'linkedin',
+      description: 'LinkedIn Page URL',
+      title: 'LinkedIn',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'youtube',
+      description: 'Youtube Page URL',
+      title: 'Youtube',
+      type: 'url',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'url',
       description: 'This website url, used to create canonical url.',
       title: 'URL',
@@ -60,6 +95,17 @@ export default defineType({
     defineField({
       name: 'mainMenu',
       title: 'Main Menu Navigation',
+      type: 'array',
+      of: [
+        {
+          title: 'Nav Links',
+          type: 'navItem',
+        },
+      ],
+    }),
+    defineField({
+      name: 'footerMenus',
+      title: 'Footer Menus',
       type: 'array',
       of: [
         {

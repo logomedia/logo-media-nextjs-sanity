@@ -28,62 +28,60 @@ export default function PostPage(props) {
   }
 
   return (
-    <Page title={project.title}>
-      <RootStyle>
-        <Container>
-          <Box
-            sx={{
-              pt: { xs: 5, md: 10 },
-            }}
-          >
-            <Image
-              alt="hero"
-              src={project.coverImage.asset.url}
-              ratio="16/9"
-              sx={{ borderRadius: 2 }}
-            />
-          </Box>
-
-          <Breadcrumbs
-            sx={{ my: { xs: 5, md: 10 } }}
-            links={[
-              { name: 'Home', href: '/' },
-              { name: 'Projects', href: '/projects' },
-              { name: project.name },
-            ]}
+    <RootStyle>
+      <Container>
+        <Box
+          sx={{
+            pt: { xs: 5, md: 10 },
+          }}
+        >
+          <Image
+            alt="hero"
+            src={project.coverImage.asset.url}
+            ratio="16/9"
+            sx={{ borderRadius: 2 }}
           />
-          <Grid
-            container
-            spacing={{ md: 8 }}
-            direction={{ md: 'row-reverse' }}
-            sx={{
-              pb: { xs: 10, md: 15 },
-            }}
-          >
-            <Grid item xs={12} md={4}>
-              <CaseStudySummary frontmatter={project} />
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <Typography variant="h3" component="h2" sx={{ mb: 2 }}>
-                {' '}
-                Project Brief
-              </Typography>
-              <Typography>{project.brief}</Typography>
-              <Typography variant="h3" component="h2" sx={{ mt: 2, mb: 2 }}>
-                {' '}
-                Project Scope
-              </Typography>
-              <PostBody content={project.scope} />
-              <Typography variant="h3" component="h2" sx={{ mt: 2, mb: 2 }}>
-                {' '}
-                Results
-              </Typography>
-              <PostBody content={project.results} />
-              <CaseStudyGallery images={images} />
-            </Grid>
+        </Box>
+
+        <Breadcrumbs
+          sx={{ my: { xs: 5, md: 10 } }}
+          links={[
+            { name: 'Home', href: '/' },
+            { name: 'Projects', href: '/projects' },
+            { name: project.name },
+          ]}
+        />
+        <Grid
+          container
+          spacing={{ md: 8 }}
+          direction={{ md: 'row-reverse' }}
+          sx={{
+            pb: { xs: 10, md: 15 },
+          }}
+        >
+          <Grid item xs={12} md={4}>
+            <CaseStudySummary frontmatter={project} />
           </Grid>
-        </Container>
-      </RootStyle>
-    </Page>
+          <Grid item xs={12} md={8}>
+            <Typography variant="h3" component="h2" sx={{ mb: 2 }}>
+              {' '}
+              Project Brief
+            </Typography>
+            <Typography>{project.brief}</Typography>
+            <Typography variant="h3" component="h2" sx={{ mt: 2, mb: 2 }}>
+              {' '}
+              Project Scope
+            </Typography>
+            <PostBody content={project.scope} />
+            <Typography variant="h3" component="h2" sx={{ mt: 2, mb: 2 }}>
+              {' '}
+              Results
+            </Typography>
+            <PostBody content={project.results} />
+            <CaseStudyGallery images={images} />
+          </Grid>
+        </Grid>
+      </Container>
+    </RootStyle>
   )
 }
