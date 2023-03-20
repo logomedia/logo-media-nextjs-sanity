@@ -1,6 +1,6 @@
 // @mui
-import { Box, Button, Pagination } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { Box } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 //
 import BlogPostItem from './BlogPostItem'
