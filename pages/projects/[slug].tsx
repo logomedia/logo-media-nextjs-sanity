@@ -33,7 +33,7 @@ export default function ProjectSlugRoute(props) {
         title={project.name}
         description={project.brief}
         canonical={`https://logo.media${asPath}`}
-        titleTemplate="%s | Projects | Logo Media"
+        titleTemplate="%s | Logo Media"
         themeColor="#540e6f"
         openGraph={{
           url: `https://logo.media${asPath}`,

@@ -61,12 +61,11 @@ const RootLinkStyle = styled(ListItemButton, {
 export default function NavMobile({ navConfig, sx, settings }: NavProps) {
   const { pathname } = useRouter()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const router = useRouter()
+
   useEffect(() => {
     if (drawerOpen) {
       handleDrawerClose()
     }
-    router.events.on('routeChangeStart', handleDrawerClose)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
