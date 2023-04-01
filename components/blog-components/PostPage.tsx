@@ -148,7 +148,7 @@ export default function PostPage(props) {
             <Grid item xs={12} md={4}>
               <BlogSidebar
                 recentPosts={{
-                  list: posts.slice(0, 6).filter((post) => post.slug !== slug),
+                  list: posts.slice(0, 5),
                   path: '/news-and-trends',
                 }}
               />

@@ -2,8 +2,11 @@ import { Container, Grid } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import BlogFeaturedPosts from 'components/blog-components/BlogFeaturedPosts'
 import BlogPostList from 'components/blog-components/BlogPostList'
+import Layout from 'components/layout/Layout'
+import { getAllPosts } from 'lib/sanity.client'
 
 import { HEADER_DESKTOP_HEIGHT, HEADER_MOBILE_HEIGHT } from '../../config'
+import { Page } from '..'
 
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: HEADER_MOBILE_HEIGHT,

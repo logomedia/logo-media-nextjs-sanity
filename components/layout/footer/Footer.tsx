@@ -60,7 +60,7 @@ export default function Footer({ settings }) {
   return (
     <>
       <Divider />
-      <Container id="footer" sx={{ py: { xs: 8, md: 10 } }}>
+      <Container sx={{ py: { xs: 8, md: 10 } }}>
         <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
           <Grid item xs={12} md={4}>
             <Stack spacing={{ xs: 3, md: 5 }}>

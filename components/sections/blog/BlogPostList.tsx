@@ -1,13 +1,17 @@
 // @mui
-import { Box, Pagination } from '@mui/material'
-import {useState}
+import { Pagination, Box } from '@mui/material';
+// @types
+import { BlogPostProps } from '../../../@types/blog';
 //
-import BlogPostItem from './BlogPostItem'
+import BlogTravelPostItem from './BlogPostItem';
 
 // ----------------------------------------------------------------------
 
-export default function BlogPostList({ posts }) {
-  const [items, setItems] = useState(posts.slice(1, 7))
+type Props = {
+  posts: BlogPostProps[];
+};
+
+export default function BlogTravelPostList({ posts }: Props) {
   return (
     <>
       <Box
@@ -21,10 +25,22 @@ export default function BlogPostList({ posts }) {
           },
         }}
       >
-        {items.map((post) => (
-          <BlogPostItem key={post.slug} post={post} />
+        {posts.slice(0, 8).map((post) => (
+          <BlogTravelPostItem key={post.slug} post={post} />
         ))}
       </Box>
+
+      <Pagination
+        count={10}
+        color="primary"
+        size="large"
+        sx={{
+          py: { xs: 8, md: 10 },
+          '& .MuiPagination-ul': {
+            justifyContent: 'center',
+          },
+        }}
+      />
     </>
-  )
+  );
 }
