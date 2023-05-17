@@ -1,7 +1,9 @@
 export default async function RootLayout({ children }) {
 	return (
 		<html>
-			<body>{children}</body>
+			<body>
+				<div id='app'>{children}</div>
+			</body>
 		</html>
 	)
 }

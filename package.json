@@ -36,7 +36,8 @@
 		"react-slick": "^0.29.0",
 		"sanity": "^3.10.0",
 		"sanity-plugin-media": "^2.0.5",
-		"simplebar-react": "^3.2.4"
+		"simplebar-react": "^3.2.4",
+		"yet-another-react-lightbox": "^3.8.3"
 	},
 	"devDependencies": {
 		"typescript": "5.0.4"

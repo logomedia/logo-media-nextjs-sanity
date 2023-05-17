@@ -17,6 +17,6 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
-		return <>{content && <RenderSections sections={content} />}</>
+		return <ProjectPage project={project} />
 	}
 }

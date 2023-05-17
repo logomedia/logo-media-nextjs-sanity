@@ -1,3 +1,4 @@
+"use client"
 import { m } from "framer-motion"
 // @mui
 import { styled, alpha } from "@mui/material/styles"
@@ -31,23 +32,23 @@ export default function TextWithBackground(props) {
 	return (
 		<MotionViewport>
 			<StyledRoot>
-				<m.div variants={varFade({ distance: 40 }).inUp}>
+				<div variants={varFade({ distance: 40 }).inUp}>
 					<Typography variant='overline' sx={{ opacity: 0.48 }}>
 						{eyebrow}
 					</Typography>
-				</m.div>
+				</div>
 
-				<m.div variants={varFade({ distance: 40 }).inUp}>
+				<div variants={varFade({ distance: 40 }).inUp}>
 					<Typography variant='h2' sx={{ mt: 2, mb: 5 }}>
 						{heading}
 					</Typography>
-				</m.div>
+				</div>
 
-				<m.div variants={varFade({ distance: 40 }).inUp}>
+				<div variants={varFade({ distance: 40 }).inUp}>
 					{ctas.map((cta) => (
 						<CTA {...cta} key={cta._key} />
 					))}
-				</m.div>
+				</div>
 			</StyledRoot>
 		</MotionViewport>
 	)
