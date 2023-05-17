@@ -1,0 +1,53 @@
+import PropTypes from "prop-types"
+// next
+import NextLink from "next/link"
+// @mui
+import { Link, ListItemText, ListItemIcon } from "@mui/material"
+// components
+import Iconify from "../../iconify"
+//
+import { StyledNavItem } from "./styles"
+
+// ----------------------------------------------------------------------
+
+export default function NavItem({ item, open, active, isExternalLink, ...other }) {
+	const { title, path, icon, children } = item
+
+	const renderContent = (
+		<StyledNavItem active={active} {...other}>
+			<ListItemIcon> {icon} </ListItemIcon>
+
+			<ListItemText disableTypography primary={title} />
+
+			{!!children && <Iconify width={16} icon={open ? "carbon:chevron-down" : "carbon:chevron-right"} sx={{ ml: 1 }} />}
+		</StyledNavItem>
+	)
+
+	// ExternalLink
+	if (isExternalLink) {
+		return (
+			<Link href={path} target='_blank' rel='noopener' underline='none'>
+				{renderContent}
+			</Link>
+		)
+	}
+
+	// Has child
+	if (children) {
+		return renderContent
+	}
+
+	// Default
+	return (
+		<Link component={NextLink} href={path} underline='none'>
+			{renderContent}
+		</Link>
+	)
+}
+
+NavItem.propTypes = {
+	active: PropTypes.bool,
+	isExternalLink: PropTypes.bool,
+	item: PropTypes.object,
+	open: PropTypes.bool,
+}
