@@ -64,5 +64,16 @@ export default defineType({
 				},
 			],
 		}),
+		defineField({
+			name: "footerMenu",
+			title: "Footer Menu Navigation",
+			type: "array",
+			of: [
+				{
+					title: "Nav Links",
+					type: "navItem",
+				},
+			],
+		}),
 	],
 })
