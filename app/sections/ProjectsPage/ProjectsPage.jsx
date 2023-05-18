@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles"
 import Image from "../../components/image"
 import CustomBreadcrumbs from "../../components/custom-breadcrumbs"
 import ProjectBody from "./ProjectBody"
-import { CaseStudySummary } from "./details"
+import { CaseStudySummary, CaseStudyGallery } from "./details"
 
 import { HEADER_DESKTOP_HEIGHT, HEADER_MOBILE_HEIGHT } from "../../../config"
 
