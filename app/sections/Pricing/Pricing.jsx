@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { Box, Stack, Switch, Container, Typography } from '@mui/material';
 // components
 import PlanCard from './PlanCard';
+import StyledPortableText from '../../components/StyledPortableText/StyledPortableText';
 
 // ----------------------------------------------------------------------
 
-export default function Pricing({ plans }) {
+export default function Pricing(props) {
+  const { heading, description, eyebrow, plans } = props;
+
   return (
     <Container
       sx={{
@@ -30,15 +33,16 @@ export default function Pricing({ plans }) {
           }}
         >
           <Typography variant="overline" sx={{ color: 'text.disabled' }}>
-            Pricing
+            {eyebrow}
           </Typography>
 
-          <Typography variant="h2">Check Our Pricing</Typography>
+          <Typography variant="h2">{heading}</Typography>
 
-          <Typography sx={{ color: 'text.secondary' }}>
-            Choose the perfect plan for your needs.
-            <br /> Always flexible to grow
-          </Typography>
+          <StyledPortableText
+            value={description}
+            variant=""
+            sx={{ color: 'text.secondary' }}
+          />
         </Stack>
 
         <Stack direction="row" alignItems="center">
@@ -61,8 +65,8 @@ export default function Pricing({ plans }) {
           },
         }}
       >
-        {plans.map((plan) => (
-          <PlanCard key={plan.license} plan={plan} />
+        {plans.map((plan, index) => (
+          <PlanCard key={plan._key} plan={plan} index={index} />
         ))}
       </Box>
     </Container>

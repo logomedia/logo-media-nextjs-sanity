@@ -19,10 +19,6 @@ import StyledPortableText from '../../components/StyledPortableText/StyledPortab
 
 // ----------------------------------------------------------------------
 
-const COLORS = ['primary', 'secondary', 'success', 'warning'];
-
-// ----------------------------------------------------------------------
-
 export default function OurServices(props) {
   const { eyebrow, heading, description, cards } = props;
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 // @mui
 import {
@@ -9,17 +11,18 @@ import {
   AccordionDetails,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-// _mock
-import { _faqs } from 'src/_mock';
 // hooks
-import useResponsive from 'src/hooks/useResponsive';
+import useResponsive from '../../../hooks/useResponsive';
 // components
-import Image from 'src/components/image';
-import Iconify from 'src/components/iconify';
+import Image from '../../components/image/Image';
+import Iconify from '../../components/iconify/Iconify';
+import { PortableText } from '@portabletext/react';
 
 // ----------------------------------------------------------------------
 
-export default function Faqs() {
+export default function Faqs(props) {
+  const { heading, eyebrow, image, imageAltText, faqsList } = props;
+
   const isMdUp = useResponsive('up', 'md');
 
   const [expanded, setExpanded] = useState(false);
@@ -47,15 +50,15 @@ export default function Faqs() {
             sx={{ mb: 5, textAlign: { xs: 'center', md: 'left' } }}
           >
             <Typography variant="overline" color="text.disabled">
-              FAQS
+              {eyebrow}
             </Typography>
 
-            <Typography variant="h2">Frequently Asked Questions</Typography>
+            <Typography variant="h2">{heading}</Typography>
           </Stack>
 
-          {_faqs.map((faq) => (
+          {faqsList.map((faq) => (
             <Accordion
-              key={faq.id}
+              key={faq._key}
               expanded={expanded === faq.question}
               onChange={handleChangeExpanded(faq.question)}
             >
@@ -71,17 +74,14 @@ export default function Faqs() {
                 />
               </AccordionSummary>
 
-              <AccordionDetails>{faq.answer}</AccordionDetails>
+              <PortableText value={faq.answer} />
             </Accordion>
           ))}
         </Grid>
 
         {isMdUp && (
           <Grid xs={12} md={6} lg={5}>
-            <Image
-              alt="faqs"
-              src="/assets/illustrations/illustration_faqs.svg"
-            />
+            <Image alt={imageAltText} src={image.asset.url} />
           </Grid>
         )}
       </Grid>

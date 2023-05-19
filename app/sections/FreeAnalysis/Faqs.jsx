@@ -10,16 +10,18 @@ import {
   Unstable_Grid2 as Grid,
 } from '@mui/material';
 // utils
-import { bgGradient } from 'src/utils/cssStyles';
+import { bgGradient } from '../../../utils/cssStyles';
 // components
-import Iconify from 'src/components/iconify';
+import Image from '../../components/image/Image';
 
 // ----------------------------------------------------------------------
+
+let bgImg;
 
 const StyledRoot = styled('div')(({ theme }) => ({
   ...bgGradient({
     color: alpha(theme.palette.grey[900], 0),
-    imgUrl: '/assets/images/marketing/marketing_get_free_seo.jpg',
+    imgUrl: bgImg,
   }),
   padding: theme.spacing(10, 0),
   overflow: 'hidden',
@@ -41,7 +43,11 @@ const StyledInput = styled((props) => <TextField fullWidth {...props} />)(
 
 // ----------------------------------------------------------------------
 
-export default function Faqs() {
+export default function FreeAnalysis(props) {
+  const { heading, image, imageAltText, info } = props;
+
+  bgImg = image.asset.url;
+
   return (
     <StyledRoot>
       <Container>
@@ -63,11 +69,31 @@ export default function Faqs() {
                 textAlign: { xs: 'center', md: 'left' },
               }}
             >
-              Get Free
-              <br /> SEO Analysis
+              {heading}
             </Typography>
 
-            <Stack
+            {info.map((item) => (
+              <Stack
+                key={item._key}
+                spacing={1}
+                direction="row"
+                alignItems="center"
+                justifyContent={{ xs: 'center', md: 'flex-start' }}
+                sx={{ color: 'common.white', mb: 2 }}
+              >
+                <Image
+                  alt={item.icon.asset.originalFilename}
+                  src={item.icon.asset.url}
+                  sx={{ width: 24, height: 24 }}
+                />
+
+                <Link color="inherit" href={item.url}>
+                  {item.title}
+                </Link>
+              </Stack>
+            ))}
+
+            {/* <Stack
               direction="row"
               alignItems="center"
               justifyContent={{ xs: 'center', md: 'flex-start' }}
@@ -88,7 +114,7 @@ export default function Faqs() {
             >
               <Iconify icon="carbon:location" width={24} sx={{ mr: 2 }} />
               508 Bridle Avenue Newnan, GA 30263
-            </Stack>
+            </Stack> */}
           </Grid>
 
           <Grid xs={12} md={5}>

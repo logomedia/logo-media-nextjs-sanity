@@ -14,10 +14,8 @@ import { bgGradient } from '../../../utils/cssStyles';
 import useResponsive from '../../../hooks/useResponsive';
 // components
 import Image from '../../components/image/Image';
-import Iconify from '../../components/iconify/Iconify';
 import StyledPortableText from '../../components/StyledPortableText/StyledPortableText';
 import Cta from '../../components/CTA/CTA';
-import { PortableText } from '@portabletext/react';
 
 // ----------------------------------------------------------------------
 

@@ -10,13 +10,16 @@ import {
   InputAdornment,
 } from '@mui/material';
 // components
-import SvgColor from 'src/components/svg-color';
+import SvgColor from '../../components/svg-color/SvgColor';
+import StyledPortableText from '../../components/StyledPortableText/StyledPortableText';
 
 // ----------------------------------------------------------------------
 
-export default function NewsletterSignup({ sx, ...other }) {
+export default function NewsletterSignup(props) {
+  const { heading, description, image } = props;
+
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.neutral' }} {...other}>
+    <Box sx={{ py: 8, bgcolor: 'background.neutral' }}>
       <Container>
         <Stack
           spacing={3}
@@ -31,18 +34,20 @@ export default function NewsletterSignup({ sx, ...other }) {
             sx={{ textAlign: { xs: 'center', md: 'left' } }}
           >
             <SvgColor
-              src="/assets/icons/ic_newsletter.svg"
+              src={image.asset.url}
               sx={{ width: 80, height: 80, color: 'primary.main' }}
             />
 
             <div>
               <Typography variant="h4" gutterBottom>
-                Sign Up For Newsletter
+                {heading}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                Receive 50% discount on first project
-              </Typography>
+              <StyledPortableText
+                value={description}
+                variant="body2"
+                sx={{ color: 'text.secondary' }}
+              />
             </div>
           </Stack>
 

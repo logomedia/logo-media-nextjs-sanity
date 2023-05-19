@@ -2,19 +2,29 @@ import PropTypes from 'prop-types';
 import { useRef } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Typography, Container, Stack, Box, Unstable_Grid2 as Grid } from '@mui/material';
+import {
+  Typography,
+  Container,
+  Stack,
+  Box,
+  Unstable_Grid2 as Grid,
+} from '@mui/material';
 // components
-import Carousel, { CarouselDots, CarouselArrows } from 'src/components/carousel';
-//
+import Carousel, {
+  CarouselDots,
+  CarouselArrows,
+} from '../../components/Carousel';
 import TestimonialItem from './TestimonialItem';
 
 // ----------------------------------------------------------------------
 
-TestimonialMarketing.propTypes = {
+Testimonials.propTypes = {
   testimonials: PropTypes.array,
 };
 
-export default function TestimonialMarketing({ testimonials }) {
+export default function Testimonials(props) {
+  const { heading, eyebrow, addTestimonial } = props;
+
   const theme = useTheme();
 
   const carouselRef = useRef(null);
@@ -52,10 +62,10 @@ export default function TestimonialMarketing({ testimonials }) {
       >
         <Stack spacing={2} sx={{ textAlign: 'center', mb: { xs: 8, md: 10 } }}>
           <Typography variant="overline" sx={{ color: 'text.disabled' }}>
-            Testimonials
+            {eyebrow}
           </Typography>
 
-          <Typography variant="h2">Who Love Our Work</Typography>
+          <Typography variant="h2">{heading}</Typography>
         </Stack>
 
         <CarouselArrows
@@ -67,8 +77,11 @@ export default function TestimonialMarketing({ testimonials }) {
           <Grid container spacing={10} justifyContent="center">
             <Grid xs={12} md={8}>
               <Carousel ref={carouselRef} {...carouselSettings}>
-                {testimonials.map((testimonial) => (
-                  <TestimonialItem key={testimonial.id} testimonial={testimonial} />
+                {addTestimonial.map((testimonial) => (
+                  <TestimonialItem
+                    key={testimonial._key}
+                    testimonial={testimonial}
+                  />
                 ))}
               </Carousel>
             </Grid>

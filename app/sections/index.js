@@ -1,17 +1,18 @@
 export { default as Hero } from './Hero';
 export { default as TextWithBackground } from './TextWithBackground';
 export { default as PricingTable1 } from './PricingTable1';
+// Landing page
 export { default as HeroLanding } from './HeroLanding';
 export { default as Clients } from './Clients';
 export { default as WhoWeAre } from './WhoWeAre';
 export { default as OurServices } from './OurServices';
 export { default as Workflow } from './Workflow';
 export { default as Team } from './Team';
-// export { default as Pricing } from './Pricing'
-// export { default as Faqs } from './Faqs'
-// export { default as Testimonials } from './Testimonials'
-// export { default as FreeAnalysis } from './FreeAnalysis'
-// export { default as NewsletterSignup } from './NewsletterSignup'
+export { default as Pricing } from './Pricing';
+export { default as Faqs } from './Faqs';
+export { default as Testimonials } from './Testimonials';
+export { default as FreeAnalysis } from './FreeAnalysis';
+export { default as NewsletterSignup } from './NewsletterSignup';
 
 // =================================================================
 

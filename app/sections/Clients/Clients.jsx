@@ -25,7 +25,7 @@ export default function Clients(props) {
           sx={{ maxWidth: 680, overflow: 'hidden' }}
         >
           {logos.slice(0, 8).map((logo) => (
-            <Box key={logo.id}>
+            <Box key={logo._key}>
               <Image
                 alt={logo.asset.originalFilename}
                 src={logo.asset.url}
