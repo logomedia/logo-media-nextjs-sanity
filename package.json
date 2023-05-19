@@ -1,44 +1,46 @@
 {
-	"name": "logomedia-v2",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"@emailjs/browser": "^3.10.0",
-		"@emotion/cache": "^11.9.3",
-		"@emotion/react": "^11.9.3",
-		"@emotion/server": "^11.4.0",
-		"@emotion/styled": "^11.9.3",
-		"@hookform/resolvers": "^2.9.3",
-		"@iconify/icons-carbon": "^1.2.6",
-		"@iconify/react": "^3.2.2",
-		"@mui/lab": "^5.0.0-alpha.87",
-		"@mui/material": "^5.13.0",
-		"@mui/x-date-pickers": "^5.0.0-alpha.7",
-		"@portabletext/react": "^2.0.3",
-		"@sanity/image-url": "^1.0.2",
-		"@sanity/orderable-document-list": "^1.0.4",
-		"@sanity/vision": "^3.10.0",
-		"framer-motion": "^10.9.2",
-		"lodash.merge": "^4.6.2",
-		"next": "^13.4.2",
-		"next-sanity": "^4.3.2",
-		"react": "18.2.0",
-		"react-calendly": "^4.1.1",
-		"react-dom": "18.2.0",
-		"react-inlinesvg": "^3.0.2",
-		"react-lazy-load-image-component": "^1.5.6",
-		"react-slick": "^0.29.0",
-		"sanity": "^3.10.0",
-		"sanity-plugin-media": "^2.0.5",
-		"simplebar-react": "^3.2.4"
-	},
-	"devDependencies": {
-		"typescript": "5.0.4"
-	}
+  "name": "logomedia-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "@emotion/cache": "^11.9.3",
+    "@emotion/react": "^11.9.3",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.9.3",
+    "@hookform/resolvers": "^2.9.3",
+    "@iconify/icons-carbon": "^1.2.6",
+    "@iconify/react": "^3.2.2",
+    "@mui/lab": "^5.0.0-alpha.87",
+    "@mui/material": "^5.13.0",
+    "@mui/x-date-pickers": "^5.0.0-alpha.7",
+    "@portabletext/react": "^2.0.3",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/orderable-document-list": "^1.0.4",
+    "@sanity/vision": "^3.10.0",
+    "framer-motion": "^10.9.2",
+    "lodash.merge": "^4.6.2",
+    "next": "^13.4.2",
+    "next-sanity": "^4.3.2",
+    "numeral": "^2.0.6",
+    "react": "18.2.0",
+    "react-calendly": "^4.1.1",
+    "react-dom": "18.2.0",
+    "react-inlinesvg": "^3.0.2",
+    "react-lazy-load-image-component": "^1.5.6",
+    "react-slick": "^0.29.0",
+    "sanity": "^3.10.0",
+    "sanity-plugin-media": "^2.0.5",
+    "simplebar-react": "^3.2.4",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4"
+  }
 }
