@@ -20,10 +20,11 @@ export { default as ServicesInclude } from './ServicesInclude';
 export { default as BenefitsAchieved } from './BenefitsAchieved';
 export { default as RoadMap } from './RoadMap';
 // About page
-// export { default as AboutHero } from './AboutHero'
-// export { default as OurVision } from './OurVision'
-// export { default as CoreValues } from './CoreValues'
-// export { default as AboutTeam } from './AboutTeam'
+export { default as AboutHero } from './AboutHero';
+export { default as OurVision } from './OurVision';
+export { default as CoreValues } from './CoreValues';
+export { default as AboutTeam } from './AboutTeam';
+//
 
 // =================================================================
 
