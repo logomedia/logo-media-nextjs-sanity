@@ -2,7 +2,7 @@
 import PropTypes from "prop-types"
 // @mui
 import { useTheme } from "@mui/material/styles"
-import { Box, Link, Stack, Button, AppBar, Toolbar, Container } from "@mui/material"
+import { Box, Stack, AppBar, Toolbar, Container } from "@mui/material"
 // hooks
 import useOffSetTop from "../../../hooks/useOffsetTop"
 import useResponsive from "../../../hooks/useResponsive"
@@ -21,7 +21,6 @@ import { NavMobile, NavDesktop } from "../../components/Nav"
 
 import HeaderShadow from "../Header/components/HeaderShadow"
 import ModeOptions from "../../components/settings/drawer/components/ModeOptions"
-import Cta from "../../components/CTA/CTA"
 
 // ----------------------------------------------------------------------
 
