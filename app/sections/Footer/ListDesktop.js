@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types"
 // @mui
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography } from "@mui/material"
 //
-import { StyledLink } from './styles';
+import { StyledLink } from "./styles"
 
 // ----------------------------------------------------------------------
 
 export default function ListDesktop({ list }) {
-  const { subheader, items } = list;
+	const { subheader, items } = list
 
-  return (
-    <Stack spacing={1.5} alignItems="flex-start">
-      <Typography variant="subtitle2">{subheader}</Typography>
+	return (
+		<Stack spacing={1.5} alignItems='flex-start'>
+			<Typography variant='subtitle2'>{subheader}</Typography>
 
-      {items?.map((link) => (
-        <StyledLink key={link.title} href={link.path}>
-          {link.title}
-        </StyledLink>
-      ))}
-    </Stack>
-  );
+			{items?.map((link) => (
+				<StyledLink key={link.title} href={link.path} sx={{ cursor: "pointer" }}>
+					{link.title}
+				</StyledLink>
+			))}
+		</Stack>
+	)
 }
 
 ListDesktop.propTypes = {
-  list: PropTypes.shape({
-    items: PropTypes.array,
-    subheader: PropTypes.string,
-  }),
-};
+	list: PropTypes.shape({
+		items: PropTypes.array,
+		subheader: PropTypes.string,
+	}),
+}

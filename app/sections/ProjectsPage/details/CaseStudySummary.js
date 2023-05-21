@@ -8,7 +8,7 @@ import { fDate } from "../../../../utils/formatTime"
 // ----------------------------------------------------------------------
 
 export default function CaseStudySummary({ caseStudy }) {
-	const { title, logo, description, tags, website, date } = caseStudy
+	const { name, logo, description, tags, website, date } = caseStudy
 
 	return (
 		<Stack spacing={3} sx={{ p: 5, borderRadius: 2, bgcolor: "background.neutral" }}>
@@ -25,9 +25,9 @@ export default function CaseStudySummary({ caseStudy }) {
 						alignItems: "flex-start",
 					}}
 				>
-					<Image style={{ height: "35px", width: "auto" }} src={logo.asset.url} alt={title} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+					<Image style={{ height: "35px", width: "auto" }} src={logo.asset.url} alt={name} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 				</Box>
-				<Typography variant='h6'>{title}</Typography>
+				<Typography variant='h6'>{name}</Typography>
 
 				<Typography variant='body2'>{description}</Typography>
 			</Stack>
@@ -39,7 +39,7 @@ export default function CaseStudySummary({ caseStudy }) {
 					Website
 				</Typography>
 
-				<Link variant='body2' color='inherit'>
+				<Link variant='body2' color='inherit' target='_blank' sx={{ cursor: "pointer" }}>
 					{website}
 				</Link>
 

@@ -1,23 +1,34 @@
 // next
-import { usePathname } from "next/navigation"
-import { useSelectedLayoutSegment } from "next/navigation"
+"use client"
+import { usePathname, useSelectedLayoutSegments } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
-export default function useActiveLink(path, deep = true) {
-	const { pathname, asPath } = usePathname()
-	const segment = useSelectedLayoutSegment()
+export default function useActiveLink(item) {
+	const pathname = usePathname()
 
-	const checkPath = path.startsWith("#")
+	const normalActive = pathname.includes(item.path)
+	const deepActive = item.path.startsWith("#")
+	const navLinks = []
+	if (item.children) {
+		item.children.forEach((item) => {
+			item.items.forEach((item) => {
+				navLinks.push(item.path)
+			})
+		})
+	}
 
-	const currentPath = path === "/" ? "/" : `${path}/`
+	const pathWithoutSlash = pathname.slice(1)
 
-	const normalActive = (!checkPath && pathname === currentPath) || (!checkPath && asPath === currentPath)
+	let deep = navLinks.includes(pathWithoutSlash)
 
-	const deepActive = (!checkPath && pathname) || (!checkPath && asPath)
-
+	if (normalActive) {
+		let deep = false
+	} else {
+		let deep = true
+	}
 	return {
 		active: deep ? deepActive : normalActive,
-		isExternalLink: path.includes("http"),
+		//isExternalLink: path.includes("http"),
 	}
 }

@@ -1,7 +1,7 @@
 import { PortableText } from "@portabletext/react"
 import Image from "next/image"
 
-export default function ProjectBody({ content }) {
+export default function PortableBody({ content }) {
 	const myPortableTextComponents = {
 		types: {
 			image: ({ value }) => {

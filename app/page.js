@@ -3,7 +3,7 @@ import RenderSections from "../app/components/RenderSections/RenderSections"
 import { ProjectModalProvider } from "../context/projectModal"
 import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
-import { ThemeSettings, SettingsProvider } from "./components/Settings"
+import { ThemeSettings, SettingsProvider } from "./components/settings"
 import ThemeProvider from "../theme"
 import styles from "./globals.css"
 

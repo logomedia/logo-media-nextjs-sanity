@@ -9,13 +9,14 @@ import { NAV } from "../../../../config-global"
 // components
 import Logo from "../../Logo"
 import Iconify from "../../iconify"
-import Scrollbar from "../../Scrollbar"
+import Scrollbar from "../../scrollbar"
 //
 import NavList from "./NavList"
+import Cta from "../../CTA"
 
 // ----------------------------------------------------------------------
 
-export default function NavMobile({ data }) {
+export default function NavMobile({ data, settings }) {
 	const { pathname } = usePathname()
 
 	const [open, setOpen] = useState(false)
@@ -37,6 +38,7 @@ export default function NavMobile({ data }) {
 
 	return (
 		<>
+			<Cta {...settings.mainMenuCTAs[0]} />
 			<IconButton onClick={handleOpen} sx={{ ml: 1, color: "inherit" }}>
 				<Iconify icon='carbon:menu' />
 			</IconButton>
@@ -46,13 +48,16 @@ export default function NavMobile({ data }) {
 				onClose={handleClose}
 				PaperProps={{
 					sx: {
-						pb: 5,
+						p: 2,
 						width: NAV.W_BASE,
 					},
 				}}
 			>
-				<Scrollbar>
-					<Logo sx={{ mx: 2.5, my: 3 }} />
+				<Scrollbar sx={{ position: "relative" }}>
+					<IconButton fontSize='large' onClick={handleClose} sx={{ ml: 1, color: "inherit", position: "absolute", top: "0px", right: "0px" }}>
+						<Iconify icon='carbon:close' fontSize='large' />
+					</IconButton>
+					<Logo settings={settings} sx={{ mx: 2.5, my: 3, p: 1 }} />
 
 					<List component='nav' disablePadding>
 						{data.map((link) => (
@@ -61,9 +66,9 @@ export default function NavMobile({ data }) {
 					</List>
 
 					<Stack spacing={1.5} sx={{ p: 3 }}>
-						<Button fullWidth variant='contained' color='inherit'>
-							Buy Now
-						</Button>
+						{settings.mainMenuCTAs.map((cta) => (
+							<Cta {...cta} key={cta._key} />
+						))}
 					</Stack>
 				</Scrollbar>
 			</Drawer>

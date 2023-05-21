@@ -2,6 +2,7 @@ import { defineField, defineType } from "sanity"
 
 import ctatypes from "./ctatypes"
 import ctaVariant from "./ctaVariant"
+import ctaSize from "./ctaSize"
 
 export default defineType({
 	title: "Call to Action",
@@ -51,6 +52,23 @@ export default defineType({
 					initialValue: "contained",
 					options: {
 						list: [...ctaVariant],
+					},
+				},
+			],
+		}),
+		defineField({
+			title: "Button Size",
+			name: "cta_size",
+			type: "document",
+			validation: (Rule) => Rule.required(),
+			fields: [
+				{
+					name: "button_size",
+					type: "string",
+					title: "Button Size",
+					initialValue: "medium",
+					options: {
+						list: [...ctaSize],
 					},
 				},
 			],

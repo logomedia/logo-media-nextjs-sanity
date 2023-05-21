@@ -5,7 +5,7 @@ import { useMemo } from "react"
 import { CssBaseline } from "@mui/material"
 import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles"
 // components
-import { useSettingsContext } from "../app/components/Settings"
+import { useSettingsContext } from "../app/components/settings"
 //
 import palette from "./palette"
 import typography from "./typography"

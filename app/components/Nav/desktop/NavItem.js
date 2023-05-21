@@ -10,10 +10,13 @@ import Iconify from "../../iconify"
 //
 import { StyledNavItem } from "./styles"
 
+import useActiveLink from "../../../../hooks/useActiveLink"
+
 // ----------------------------------------------------------------------
 
-export const NavItem = forwardRef(({ item, open, active, subItem, isExternalLink, ...other }, ref) => {
+export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...other }, ref) => {
 	const { title, path, children } = item
+	const active = useActiveLink(item)
 
 	const renderContent = (
 		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={active} open={open} {...other}>
@@ -22,7 +25,7 @@ export const NavItem = forwardRef(({ item, open, active, subItem, isExternalLink
 			{!!children && <Iconify width={16} icon='carbon:chevron-down' sx={{ ml: 1 }} />}
 		</StyledNavItem>
 	)
-
+	//console.log(item, active)
 	// ExternalLink
 	if (isExternalLink) {
 		return (
@@ -39,7 +42,7 @@ export const NavItem = forwardRef(({ item, open, active, subItem, isExternalLink
 
 	// Default
 	return (
-		<Link component={NextLink} href={path} color='inherit' underline='none'>
+		<Link component={NextLink} href={path} color='inherit' active={active} underline='none'>
 			{renderContent}
 		</Link>
 	)

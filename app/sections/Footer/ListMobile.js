@@ -11,7 +11,8 @@ import { StyledLink } from "./styles"
 // ----------------------------------------------------------------------
 
 export default function ListMobile({ list }) {
-	const { subheader, items } = list
+	const { title, children } = list
+	//console.log(children)
 
 	const [expand, setExpand] = useState(false)
 
@@ -22,22 +23,24 @@ export default function ListMobile({ list }) {
 	return (
 		<Stack spacing={1.5} alignItems='flex-start'>
 			<Typography
-				variant='subtitle2'
+				variant='h6'
 				onClick={onExpand}
 				sx={{
 					cursor: "pointer",
 					display: "inline-flex",
 					alignItems: "center",
+					justifyContent: "space-between",
+					width: "100%",
 				}}
 			>
-				{subheader}
+				{title}
 				<Iconify width={16} icon={expand ? "carbon:chevron-down" : "carbon:chevron-right"} sx={{ ml: 0.5 }} />
 			</Typography>
 
 			<Collapse in={expand} unmountOnExit sx={{ width: 1 }}>
 				<Stack spacing={1.5} alignItems='flex-start'>
-					{items?.map((link) => (
-						<StyledLink key={link.title} href={link.path}>
+					{children[0].items?.map((link, index) => (
+						<StyledLink key={index} href={link.path}>
 							{link.title}
 						</StyledLink>
 					))}

@@ -3,8 +3,8 @@ import { Box, Container, Grid, Typography } from "@mui/material"
 import { styled } from "@mui/material/styles"
 import Image from "../../components/image"
 import CustomBreadcrumbs from "../../components/custom-breadcrumbs"
-import ProjectBody from "./ProjectBody"
-import { CaseStudySummary, CaseStudyGallery } from "./details"
+import PortableBody from "../../components/portable-body"
+import { CaseStudySummary } from "./details"
 
 import { HEADER_DESKTOP_HEIGHT, HEADER_MOBILE_HEIGHT } from "../../../config"
 
@@ -56,17 +56,17 @@ export default function ProjectsPage(props) {
 							{" "}
 							Project Scope
 						</Typography>
-						<ProjectBody content={project.scope} />
+						<PortableBody content={project.scope} />
 
 						<Typography variant='h3' component='h2' sx={{ mt: 2, mb: 2 }}>
 							{" "}
 							Results
 						</Typography>
-						<ProjectBody content={project.results} />
+						<PortableBody content={project.results} />
 						<Grid container spacing={2} columns={16}>
 							{images.map((image, index) => (
-								<Grid item xs={8}>
-									<Image ratio='1/1' src={image} key={index} alt={project.name + " image " + index} />
+								<Grid item xs={8} key={index}>
+									<Image ratio='1/1' src={image} alt={project.name + " image " + index} />
 								</Grid>
 							))}
 						</Grid>
