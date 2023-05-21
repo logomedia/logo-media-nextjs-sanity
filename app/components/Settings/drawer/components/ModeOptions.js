@@ -1,5 +1,5 @@
 // @mui
-import { ToggleButton, Typography } from "@mui/material"
+import { ToggleButton } from "@mui/material"
 //
 import Iconify from "../../../iconify"
 import { useSettingsContext } from "../../SettingsContext"

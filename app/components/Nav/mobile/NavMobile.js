@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 // next
 import { usePathname } from "next/navigation"
 // @mui
-import { List, Drawer, IconButton, Button, Stack } from "@mui/material"
+import { List, Drawer, IconButton, Stack } from "@mui/material"
 // config
 import { NAV } from "../../../../config-global"
 // components
