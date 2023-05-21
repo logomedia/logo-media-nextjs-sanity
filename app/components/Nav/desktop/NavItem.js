@@ -9,23 +9,35 @@ import { Link } from "@mui/material"
 import Iconify from "../../iconify"
 //
 import { StyledNavItem } from "./styles"
-
-import useActiveLink from "../../../../hooks/useActiveLink"
+import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
 export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...other }, ref) => {
 	const { title, path, children } = item
-	const active = useActiveLink(item)
+
+	const navLinks = []
+	if (children) {
+		children.forEach((item) => {
+			item.items.forEach((item) => {
+				navLinks.push(item.path)
+			})
+		})
+	}
+	const pathname = usePathname()
+	const pathWithoutSlash = pathname.slice(1)
+
+	const active = navLinks.includes(pathWithoutSlash)
+	console.log(item, active)
 
 	const renderContent = (
-		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={active} open={open} {...other}>
+		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={item.path === pathWithoutSlash} open={open} {...other}>
 			{title}
 
 			{!!children && <Iconify width={16} icon='carbon:chevron-down' sx={{ ml: 1 }} />}
 		</StyledNavItem>
 	)
-	//console.log(item, active)
+	console.log(item, active)
 	// ExternalLink
 	if (isExternalLink) {
 		return (
@@ -42,7 +54,7 @@ export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...oth
 
 	// Default
 	return (
-		<Link component={NextLink} href={path} color='inherit' active={active} underline='none'>
+		<Link component={NextLink} href={path} color='inherit' underline='none'>
 			{renderContent}
 		</Link>
 	)

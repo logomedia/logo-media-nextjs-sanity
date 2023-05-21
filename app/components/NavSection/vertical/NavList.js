@@ -14,7 +14,7 @@ import NavItem from "./NavItem"
 export default function NavList({ data, depth, hasChild }) {
 	const { pathname } = useRouter()
 
-	const { active, isExternalLink } = useActiveLink(data.path)
+	const { active, isExternalLink } = useActiveLink(data)
 
 	const [open, setOpen] = useState(active)
 

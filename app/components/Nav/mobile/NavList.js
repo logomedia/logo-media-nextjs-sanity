@@ -18,7 +18,7 @@ export default function NavList({ item }) {
 
 	const { path, children } = item
 
-	const { isExternalLink } = useActiveLink(path)
+	const { isExternalLink } = useActiveLink(item)
 
 	const [open, setOpen] = useState(false)
 

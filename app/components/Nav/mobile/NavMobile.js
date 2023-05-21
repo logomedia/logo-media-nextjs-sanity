@@ -17,7 +17,7 @@ import Cta from "../../CTA"
 // ----------------------------------------------------------------------
 
 export default function NavMobile({ data, settings }) {
-	const { pathname } = usePathname()
+	const pathname = usePathname()
 
 	const [open, setOpen] = useState(false)
 
