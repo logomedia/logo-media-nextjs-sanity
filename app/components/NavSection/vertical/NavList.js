@@ -14,7 +14,7 @@ import NavItem from "./NavItem"
 export default function NavList({ data, depth, hasChild }) {
 	const { pathname } = useRouter()
 
-	const { active, isExternalLink } = useActiveLink(data)
+	const active = useActiveLink(data)
 
 	const [open, setOpen] = useState(active)
 
@@ -35,7 +35,7 @@ export default function NavList({ data, depth, hasChild }) {
 
 	return (
 		<>
-			<NavItem item={data} depth={depth} open={open} active={active} isExternalLink={isExternalLink} onClick={handleToggle} />
+			<NavItem item={data} depth={depth} open={open} active={active} onClick={handleToggle} />
 
 			{hasChild && (
 				<Collapse in={open} unmountOnExit>
