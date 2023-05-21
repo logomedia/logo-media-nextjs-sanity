@@ -13,18 +13,22 @@ import { bgBlur } from "../../../utils/cssStyles"
 import { HEADER } from "../../../config-global"
 // components
 import Logo from "../../components/Logo"
-import Label from "../../components/label"
+
+import CTA from "../../components/CTA"
 
 //
 import { NavMobile, NavDesktop } from "../../components/Nav"
 
 import HeaderShadow from "../Header/components/HeaderShadow"
+import ModeOptions from "../../components/settings/drawer/components/ModeOptions"
+import Cta from "../../components/CTA/CTA"
 
 // ----------------------------------------------------------------------
 
 export default function Header({ headerOnDark, settings }) {
 	let navConfig = []
 	const mainMenu = settings.mainMenu
+
 	if (!mainMenu) {
 		return
 	} else {
@@ -106,6 +110,7 @@ export default function Header({ headerOnDark, settings }) {
 			navConfig.push(obj1)
 		}
 	}
+	//console.log(navConfig)
 	const theme = useTheme()
 
 	const isMdUp = useResponsive("up", "md")
@@ -145,14 +150,18 @@ export default function Header({ headerOnDark, settings }) {
 					{isMdUp && <NavDesktop data={navConfig} />}
 
 					<Stack spacing={2} flexGrow={1} direction='row' alignItems='center' justifyContent='flex-end'>
+						<ModeOptions />
+
 						{isMdUp && (
-							<Button variant='contained' color='inherit' href='/' target='_blank' rel='noopener'>
-								Buy Now
-							</Button>
+							<>
+								{settings.mainMenuCTAs.map((cta) => (
+									<CTA {...cta} key={cta._key} />
+								))}
+							</>
 						)}
 					</Stack>
 
-					{!isMdUp && <NavMobile data={navConfig} />}
+					{!isMdUp && <NavMobile settings={settings} data={navConfig} />}
 				</Container>
 			</Toolbar>
 
