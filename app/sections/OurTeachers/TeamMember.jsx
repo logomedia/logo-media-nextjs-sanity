@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
-import { m } from 'framer-motion';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
-import { Typography, Box, Stack, IconButton } from '@mui/material';
+import { Typography, Card, Box, Stack, IconButton } from '@mui/material';
 // utils
 import { bgGradient } from '../../../utils/cssStyles';
 // components
 import Image from '../../components/image/Image';
 import Iconify from '../../components/iconify/Iconify';
-import { varHover, varTranHover } from '../../components/animate';
 
 // ----------------------------------------------------------------------
 export const _socials = [
@@ -37,7 +35,6 @@ export const _socials = [
     color: '#00AAEC',
   },
 ];
-// ----------------------------------------------------------------------
 
 const StyledOverlay = styled('div')(({ theme }) => ({
   ...bgGradient({
@@ -60,18 +57,22 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function TeamMember({ member, ...other }) {
+export default function TeamMember({ member }) {
   const { name, position, image, icons } = member;
 
   return (
-    <Stack {...other}>
-      <Box
-        component={m.div}
-        whileHover="hover"
-        variants={varHover(0.95)}
-        transition={varTranHover()}
-        sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden' }}
-      >
+    <Card>
+      <Stack spacing={0.5} sx={{ textAlign: 'center', pt: 3, pb: 1.5 }}>
+        <Typography variant="h6">{name}</Typography>
+
+        <Typography variant="body2" sx={{ color: 'text.disabled' }}>
+          {position}
+        </Typography>
+      </Stack>
+
+      <Box sx={{ position: 'relative' }}>
+        <Shape />
+
         <StyledOverlay>
           <Stack
             direction="row"
@@ -86,22 +87,38 @@ export default function TeamMember({ member, ...other }) {
           </Stack>
         </StyledOverlay>
 
-        <m.div variants={varHover(1.15)} transition={varTranHover()}>
-          <Image src={image.asset.url} alt={name} ratio="3/4" />
-        </m.div>
+        <Image src={image.asset.url} alt={name} ratio="1/1" />
       </Box>
-
-      <Stack spacing={0.5} sx={{ mt: 2.5, textAlign: 'center' }}>
-        <Typography variant="h6">{name}</Typography>
-
-        <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-          {position}
-        </Typography>
-      </Stack>
-    </Stack>
+    </Card>
   );
 }
 
 TeamMember.propTypes = {
   member: PropTypes.object,
 };
+
+// ----------------------------------------------------------------------
+
+function Shape() {
+  return (
+    <Box
+      sx={{
+        top: 0,
+        width: 1,
+        height: 8,
+        zIndex: 9,
+        position: 'absolute',
+        color: 'background.paper',
+      }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1080"
+        height="32"
+        viewBox="0 0 1080 32"
+      >
+        <path fill="currentColor" d="M1080 32L0 0h1080v32z" />
+      </svg>
+    </Box>
+  );
+}

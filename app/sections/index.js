@@ -25,20 +25,20 @@ export { default as OurVision } from './OurVision';
 export { default as CoreValues } from './CoreValues';
 export { default as AboutTeam } from './AboutTeam';
 //
+export { default as ELearningHero } from './ELearningHero';
+export { default as BestForCustomers } from './BestForCustomers';
+export { default as FavoriteDestinations } from './FavoriteDestinations';
+export { default as OurTeachers } from './OurTeachers';
+export { default as Contact } from './Contact';
+export { default as Pricing2 } from './Pricing2';
 
 // =================================================================
 
 // export { default as BackgroundMovement } from './BackgroundMovement'
-// export { default as BestForCustomers } from './BestForCustomers'
 // export { default as BoxedImageWithText } from './BoxedImageWithText'
-// export { default as Contact } from './Contact'
-// export { default as ELearningHero } from './ELearningHero'
 // export { default as ErrorsSection } from './ErrorsSection'
-// export { default as FavoriteDestinations } from './FavoriteDestinations'
 // export { default as Hero } from './Hero'
 // export { default as HeroLanding } from './HeroLanding'
-// export { default as OurTeachers } from './OurTeachers'
 // export { default as Posts } from './Posts'
-// export { default as Pricing2 } from './Pricing2'
 // export { default as PricingTable1 } from './PricingTable1'
 // export { default as Projects } from './Projects'
