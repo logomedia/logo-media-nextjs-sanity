@@ -18,13 +18,13 @@ export default function NavList({ item }) {
 
 	const { path, children } = item
 
-	const { isExternalLink } = useActiveLink(item)
+	const { active, isExternalLink } = useActiveLink(item)
 
 	const [open, setOpen] = useState(false)
 
 	return (
 		<>
-			<NavItem item={item} open={open} onClick={() => setOpen(!open)} active={pathname === path} isExternalLink={isExternalLink} />
+			<NavItem item={item} open={open} onClick={() => setOpen(!open)} active={active} isExternalLink={isExternalLink} />
 
 			{!!children && (
 				<Collapse in={open} unmountOnExit>

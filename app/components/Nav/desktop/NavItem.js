@@ -28,7 +28,6 @@ export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...oth
 	const pathWithoutSlash = pathname.slice(1)
 
 	const active = navLinks.includes(pathWithoutSlash)
-	console.log(item, active)
 
 	const renderContent = (
 		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={item.path === pathWithoutSlash} open={open} {...other}>
@@ -37,7 +36,7 @@ export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...oth
 			{!!children && <Iconify width={16} icon='carbon:chevron-down' sx={{ ml: 1 }} />}
 		</StyledNavItem>
 	)
-	console.log(item, active)
+
 	// ExternalLink
 	if (isExternalLink) {
 		return (
