@@ -1,4 +1,3 @@
-'use client';
 import { m } from 'framer-motion';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
@@ -7,11 +6,7 @@ import { Button, Typography } from '@mui/material';
 import { bgGradient } from '../../../utils/cssStyles';
 // components
 
-import {
-  MotionLazyContainer,
-  MotionViewport,
-  varFade,
-} from '../../components/animate';
+import { MotionViewport, varFade } from '../../components/animate';
 import CTA from '../../components/CTA';
 // ----------------------------------------------------------------------
 

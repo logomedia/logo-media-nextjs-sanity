@@ -1,5 +1,3 @@
-// next
-import NextLink from 'next/link';
 // @mui
 import {
   Box,
@@ -9,11 +7,8 @@ import {
   Stack,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-// routes
-// import { paths } from 'src/routes/paths';
 // components
 import Image from '../../components/image/Image';
-import Iconify from '../../components/iconify/Iconify';
 import StyledPortableText from '../../components/StyledPortableText/StyledPortableText';
 import Cta from '../../components/CTA/CTA';
 

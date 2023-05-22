@@ -2,6 +2,8 @@
 export { default as Hero } from './Hero';
 export { default as TextWithBackground } from './TextWithBackground';
 export { default as PricingTable1 } from './PricingTable1';
+export { default as BoxedImageWithText } from './BoxedImageWithText';
+export { default as BackgroundMovement } from './BackgroundMovement';
 // Landing page
 export { default as HeroLanding } from './HeroLanding';
 export { default as Clients } from './Clients';
@@ -33,11 +35,6 @@ export { default as OurTeachers } from './OurTeachers';
 export { default as Contact } from './Contact';
 export { default as Pricing2 } from './Pricing2';
 export { default as ErrorsSection } from './ErrorsSection';
-
-// =================================================================
-
-// export { default as BackgroundMovement } from './BackgroundMovement'
-// export { default as BoxedImageWithText } from './BoxedImageWithText'
-// export { default as HeroLanding } from './HeroLanding'
-// export { default as Posts } from './Posts'
+//
+export { default as Posts } from './Posts';
 // export { default as Projects } from './Projects'
