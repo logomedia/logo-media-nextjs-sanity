@@ -7,7 +7,10 @@ import { usePathname, useSelectedLayoutSegments } from "next/navigation"
 export default function useActiveLink(item) {
 	const pathname = usePathname()
 	if (pathname === "/") {
-		return
+		return {
+			active: false,
+			isExternalLink: false,
+		}
 	} else {
 		const normalActive = pathname.includes(item.path)
 		const deepActive = item.path.startsWith("#")
