@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 // next
 import { usePathname } from "next/navigation"
 // @mui
-import { List, Drawer, IconButton, Stack } from "@mui/material"
+import { List, Drawer, IconButton, Stack, Box } from "@mui/material"
 // config
 import { NAV } from "../../../../config-global"
 // components
@@ -53,7 +53,7 @@ export default function NavMobile({ data, settings }) {
 					},
 				}}
 			>
-				<Scrollbar sx={{ position: "relative" }}>
+				<Box sx={{ position: "relative" }}>
 					<IconButton fontSize='large' onClick={handleClose} sx={{ ml: 1, color: "inherit", position: "absolute", top: "0px", right: "0px" }}>
 						<Iconify icon='carbon:close' fontSize='large' />
 					</IconButton>
@@ -70,7 +70,7 @@ export default function NavMobile({ data, settings }) {
 							<Cta {...cta} key={cta._key} />
 						))}
 					</Stack>
-				</Scrollbar>
+				</Box>
 			</Drawer>
 		</>
 	)
