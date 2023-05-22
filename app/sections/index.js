@@ -31,12 +31,12 @@ export { default as FavoriteDestinations } from './FavoriteDestinations';
 export { default as OurTeachers } from './OurTeachers';
 export { default as Contact } from './Contact';
 export { default as Pricing2 } from './Pricing2';
+export { default as ErrorsSection } from './ErrorsSection';
 
 // =================================================================
 
 // export { default as BackgroundMovement } from './BackgroundMovement'
 // export { default as BoxedImageWithText } from './BoxedImageWithText'
-// export { default as ErrorsSection } from './ErrorsSection'
 // export { default as Hero } from './Hero'
 // export { default as HeroLanding } from './HeroLanding'
 // export { default as Posts } from './Posts'
