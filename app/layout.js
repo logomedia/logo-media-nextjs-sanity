@@ -1,34 +1,34 @@
-import { ProjectModalProvider } from '../context/projectModal';
-import { getSettings } from '../lib/sanity.client';
-import { Header } from './sections/Header';
-import { Footer } from './sections/Footer';
-import { ThemeSettings, SettingsProvider } from './components/settings';
-import ThemeProvider from '../theme';
-import styles from './globals.css';
+import { ProjectModalProvider } from "../context/projectModal"
+import { getSettings } from "../lib/sanity.client"
+import { Header } from "./sections/Header"
+import { Footer } from "./sections/Footer"
+import { ThemeSettings, SettingsProvider } from "./components/Settings"
+import ThemeProvider from "../theme"
+import styles from "./globals.css"
 
 // slick-carousel
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 export default async function RootLayout({ children }) {
-  const settings = await getSettings();
-  return (
-    <html>
-      <body>
-        <SettingsProvider>
-          <ThemeProvider>
-            <ThemeSettings>
-              <ProjectModalProvider>
-                <div id="app">
-                  <Header settings={settings} />
-                  {children}
-                  <Footer settings={settings} />
-                </div>
-              </ProjectModalProvider>
-            </ThemeSettings>
-          </ThemeProvider>
-        </SettingsProvider>
-      </body>
-    </html>
-  );
+	const settings = await getSettings()
+	return (
+		<html>
+			<body>
+				<SettingsProvider>
+					<ThemeProvider>
+						<ThemeSettings>
+							<ProjectModalProvider>
+								<div id='app'>
+									<Header settings={settings} />
+									{children}
+									<Footer settings={settings} />
+								</div>
+							</ProjectModalProvider>
+						</ThemeSettings>
+					</ThemeProvider>
+				</SettingsProvider>
+			</body>
+		</html>
+	)
 }
