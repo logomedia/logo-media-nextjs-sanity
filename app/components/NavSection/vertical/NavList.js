@@ -17,7 +17,7 @@ export default function NavList({ data, depth, hasChild }) {
 	const { active, isExternalLink } = useActiveLink(data)
 
 	const [open, setOpen] = useState(active)
-	console.log(data, active)
+
 	useEffect(() => {
 		if (!active) {
 			handleClose()
