@@ -242,7 +242,7 @@ export default function Footer({ settings }) {
 		</>
 	)
 
-	return <footer>{isHome ? simpleFooter : mainFooter}</footer>
+	return <footer>{mainFooter}</footer>
 }
 
 // ----------------------------------------------------------------------
