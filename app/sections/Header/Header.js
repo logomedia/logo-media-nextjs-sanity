@@ -1,30 +1,31 @@
-"use client"
-import PropTypes from "prop-types"
+'use client';
+import PropTypes from 'prop-types';
 // @mui
-import { useTheme } from "@mui/material/styles"
-import { Box, Stack, AppBar, Toolbar, Container } from "@mui/material"
+import { useTheme } from '@mui/material/styles';
+import { Box, Stack, AppBar, Toolbar, Container } from '@mui/material';
 // hooks
-import useOffSetTop from "../../../hooks/useOffsetTop"
-import useResponsive from "../../../hooks/useResponsive"
+import useOffSetTop from '../../../hooks/useOffsetTop';
+import useResponsive from '../../../hooks/useResponsive';
 // utils
-import { bgBlur } from "../../../utils/cssStyles"
+import { bgBlur } from '../../../utils/cssStyles';
 
 // config
-import { HEADER } from "../../../config-global"
+import { HEADER } from '../../../config-global';
 // components
-import Logo from "../../components/Logo"
+import Logo from '../../components/Logo';
 
-import CTA from "../../components/CTA"
+import CTA from '../../components/CTA';
 
 //
-import { NavMobile, NavDesktop } from "../../components/Nav"
+import { NavMobile, NavDesktop } from '../../components/Nav';
 
-import HeaderShadow from "../Header/components/HeaderShadow"
-import ModeOptions from "../../components/settings/drawer/components/ModeOptions"
+import HeaderShadow from '../Header/components/HeaderShadow';
+import ModeOptions from '../../components/settings/drawer/components/ModeOptions';
 
 // ----------------------------------------------------------------------
 
 export default function Header({ headerOnDark, settings }) {
+
 	let navConfig = []
 	let navConfig2 = []
 	const mainMenu = settings.mainMenu
@@ -171,5 +172,5 @@ export default function Header({ headerOnDark, settings }) {
 }
 
 Header.propTypes = {
-	headerOnDark: PropTypes.bool,
-}
+  headerOnDark: PropTypes.bool,
+};
