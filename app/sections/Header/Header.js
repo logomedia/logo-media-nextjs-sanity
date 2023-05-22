@@ -2,15 +2,7 @@
 import PropTypes from 'prop-types';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Link,
-  Stack,
-  Button,
-  AppBar,
-  Toolbar,
-  Container,
-} from '@mui/material';
+import { Box, Stack, AppBar, Toolbar, Container } from '@mui/material';
 // hooks
 import useOffSetTop from '../../../hooks/useOffsetTop';
 import useResponsive from '../../../hooks/useResponsive';
@@ -21,18 +13,21 @@ import { bgBlur } from '../../../utils/cssStyles';
 import { HEADER } from '../../../config-global';
 // components
 import Logo from '../../components/Logo';
-import Label from '../../components/label';
+
+import CTA from '../../components/CTA';
 
 //
 import { NavMobile, NavDesktop } from '../../components/Nav';
 
 import HeaderShadow from '../Header/components/HeaderShadow';
+import ModeOptions from '../../components/settings/drawer/components/ModeOptions';
 
 // ----------------------------------------------------------------------
 
 export default function Header({ headerOnDark, settings }) {
   let navConfig = [];
   const mainMenu = settings.mainMenu;
+
   if (!mainMenu) {
     return;
   } else {
@@ -114,6 +109,7 @@ export default function Header({ headerOnDark, settings }) {
       navConfig.push(obj1);
     }
   }
+  //console.log(navConfig)
   const theme = useTheme();
 
   const isMdUp = useResponsive('up', 'md');
@@ -159,20 +155,18 @@ export default function Header({ headerOnDark, settings }) {
             alignItems="center"
             justifyContent="flex-end"
           >
+            <ModeOptions />
+
             {isMdUp && (
-              <Button
-                variant="contained"
-                color="inherit"
-                href="/"
-                target="_blank"
-                rel="noopener"
-              >
-                Buy Now
-              </Button>
+              <>
+                {settings.mainMenuCTAs.map((cta) => (
+                  <CTA {...cta} key={cta._key} />
+                ))}
+              </>
             )}
           </Stack>
 
-          {!isMdUp && <NavMobile data={navConfig} />}
+          {!isMdUp && <NavMobile settings={settings} data={navConfig} />}
         </Container>
       </Toolbar>
 

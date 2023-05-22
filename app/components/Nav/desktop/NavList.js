@@ -17,17 +17,15 @@ import { usePathname, useRouter } from "next/navigation"
 // ----------------------------------------------------------------------
 
 export default function NavList({ item }) {
-	const { pathname } = usePathname()
+	const pathname = usePathname()
 
 	const [openMenu, setOpenMenu] = useState(false)
 
 	const { path, children } = item
 
-	const { active, isExternalLink } = useActiveLink(path, false)
+	const { active, isExternalLink } = useActiveLink(item)
 
 	const mainList = children ? children.filter((list) => list.subheader !== "Common") : []
-
-	const commonList = children ? children.find((list) => list.subheader === "Common") : null
 
 	useEffect(() => {
 		if (openMenu) {
@@ -54,12 +52,12 @@ export default function NavList({ item }) {
 				<Portal>
 					<Fade in={openMenu}>
 						<StyledMenu onMouseEnter={handleOpenMenu} onMouseLeave={handleCloseMenu}>
-							<Grid container columns={15}>
-								<Grid xs={12}>
+							<Grid container columns={16}>
+								<Grid xs={16}>
 									<Box
 										gap={5}
-										display='grid'
-										gridTemplateColumns='repeat(5, 1fr)'
+										display='flex'
+										justifyContent='center'
 										sx={{
 											p: 5,
 											height: 1,
@@ -68,18 +66,10 @@ export default function NavList({ item }) {
 										}}
 									>
 										{mainList.map((list) => (
-											<NavSubList key={list.subheader} subheader={list.subheader} cover={list.cover} items={list.items} isNew={list.isNew} />
+											<NavSubList key={list.subheader} subheader={list.subheader} cover={list.cover} items={list.items} sx={{ maxWidth: "200px" }} />
 										))}
 									</Box>
 								</Grid>
-
-								{commonList && (
-									<Grid xs={3}>
-										<Box sx={{ bgcolor: "background.default", p: 5 }}>
-											<NavSubList subheader={commonList.subheader} items={commonList.items} />
-										</Box>
-									</Grid>
-								)}
 							</Grid>
 						</StyledMenu>
 					</Fade>
@@ -96,14 +86,12 @@ NavList.propTypes = {
 // ----------------------------------------------------------------------
 
 function NavSubList({ subheader, isNew, cover, items }) {
-	const { pathname } = useRouter()
+	const pathname = usePathname()
 
 	const coverPath = items.length ? items[0].path : ""
 
-	const commonList = subheader === "Common"
-
 	return (
-		<Stack spacing={2}>
+		<Stack spacing={2} sx={{ maxWidth: "300px", width: "100%" }}>
 			<StyledSubheader>
 				{subheader}
 				{isNew && (
@@ -113,30 +101,28 @@ function NavSubList({ subheader, isNew, cover, items }) {
 				)}
 			</StyledSubheader>
 
-			{!commonList && (
-				<Link component={NextLink} href={coverPath}>
-					<Image
-						disabledEffect
-						alt={cover}
-						src={cover || "/assets/placeholder.svg"}
-						ratio='16/9'
-						sx={{
-							borderRadius: 1,
-							cursor: "pointer",
-							boxShadow: (theme) => theme.customShadows.z8,
-							transition: (theme) => theme.transitions.create("all"),
-							"&:hover": {
-								opacity: 0.8,
-								boxShadow: (theme) => theme.customShadows.z24,
-							},
-						}}
-					/>
-				</Link>
-			)}
+			<Link component={NextLink} href={coverPath}>
+				<Image
+					disabledEffect
+					alt={cover}
+					src={cover || "/assets/placeholder.svg"}
+					ratio='16/9'
+					sx={{
+						borderRadius: 1,
+						cursor: "pointer",
+						boxShadow: (theme) => theme.customShadows.z8,
+						transition: (theme) => theme.transitions.create("all"),
+						"&:hover": {
+							opacity: 0.8,
+							boxShadow: (theme) => theme.customShadows.z24,
+						},
+					}}
+				/>
+			</Link>
 
 			<Stack spacing={1.5} alignItems='flex-start'>
 				{items.map((item) => (
-					<NavItem key={item.title} item={item} active={item.path === pathname} subItem />
+					<NavItem key={item.title} item={item} subItem />
 				))}
 			</Stack>
 		</Stack>

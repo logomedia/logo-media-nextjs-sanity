@@ -1,5 +1,5 @@
-import { getAllProjectSlugs } from "../../../lib/sanity.client"
-
+import { getAllProjectSlugs, getProjectBySlug } from "../../../lib/sanity.client"
+import ProjectsPage from "../../sections/ProjectsPage"
 export async function generateStaticParams() {
 	const pageSlugs = await getAllProjectSlugs()
 
@@ -8,11 +8,13 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default function Page({ params }) {
-	console.log(params)
-	return (
-		<>
-			<h2> Test</h2>
-		</>
-	)
+export default async function Page({ params }) {
+	const { page } = params
+	const project = await getProjectBySlug(page)
+
+	if (project === undefined) {
+		return <NotFound />
+	} else {
+		return <ProjectsPage project={project} />
+	}
 }

@@ -26,6 +26,13 @@ export default defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: "address",
+			description: "Company Address",
+			title: "Address",
+			type: "string",
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
 			name: "phone",
 			description: "Website Phone Number",
 			title: "Phone",
@@ -61,6 +68,54 @@ export default defineType({
 				{
 					title: "Nav Links",
 					type: "navItem",
+				},
+			],
+		}),
+		defineField({
+			name: "mainMenuCTAs",
+			title: "Main Menu CTAs",
+			type: "array",
+			of: [
+				{
+					title: "Call to action",
+					type: "cta",
+				},
+			],
+		}),
+		defineField({
+			name: "footerMenu",
+			title: "Footer Menu Navigation",
+			type: "array",
+			of: [
+				{
+					title: "Nav Links",
+					type: "navItem",
+				},
+			],
+		}),
+		defineField({
+			name: "newsletterTitle",
+			description: "Newsletter Title",
+			title: "Newsletter Title",
+			type: "string",
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
+			name: "newsletterDescription",
+			description: "Newsletter Description",
+			title: "Newsletter Description",
+			type: "string",
+			validation: (rule) => rule.required(),
+		}),
+
+		defineField({
+			name: "socials",
+			title: "Social Media",
+			type: "array",
+			of: [
+				{
+					title: "Social Media",
+					type: "social",
 				},
 			],
 		}),

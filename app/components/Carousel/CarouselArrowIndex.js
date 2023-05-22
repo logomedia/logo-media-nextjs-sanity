@@ -64,12 +64,3 @@ export default function CarouselArrowIndex({
     </StyledRoot>
   );
 }
-
-CarouselArrowIndex.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  index: PropTypes.number,
-  onNext: PropTypes.func,
-  onPrev: PropTypes.func,
-  sx: PropTypes.object,
-  total: PropTypes.number,
-};

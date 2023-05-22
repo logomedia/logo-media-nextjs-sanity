@@ -1,3 +1,4 @@
+// Home page
 export { default as Hero } from './Hero';
 export { default as TextWithBackground } from './TextWithBackground';
 export { default as PricingTable1 } from './PricingTable1';
@@ -37,8 +38,6 @@ export { default as ErrorsSection } from './ErrorsSection';
 
 // export { default as BackgroundMovement } from './BackgroundMovement'
 // export { default as BoxedImageWithText } from './BoxedImageWithText'
-// export { default as Hero } from './Hero'
 // export { default as HeroLanding } from './HeroLanding'
 // export { default as Posts } from './Posts'
-// export { default as PricingTable1 } from './PricingTable1'
 // export { default as Projects } from './Projects'

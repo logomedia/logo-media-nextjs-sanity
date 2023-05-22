@@ -4,14 +4,13 @@ import { PopupButton } from "react-calendly"
 
 const Calendly = ({ url, prefill, pageSettings, utm, text, styles }) => {
 	const [root, setRoot] = useState("")
-	useEffect(() => setRoot(document.querySelector(".css-1yuf5ci")), [])
+	useEffect(() => setRoot(document.getElementById("app")), [])
 
 	return (
 		<PopupButton
 			url='https://calendly.com/logo_media'
 			rootElement={root}
 			text={text}
-			className={styles}
 			pageSettings={{
 				backgroundColor: "ffffff",
 				hideEventTypeDetails: false,

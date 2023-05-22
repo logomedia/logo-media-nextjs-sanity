@@ -9,14 +9,28 @@ import { Link } from "@mui/material"
 import Iconify from "../../iconify"
 //
 import { StyledNavItem } from "./styles"
+import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
-export const NavItem = forwardRef(({ item, open, active, subItem, isExternalLink, ...other }, ref) => {
+export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...other }, ref) => {
 	const { title, path, children } = item
 
+	const navLinks = []
+	if (children) {
+		children.forEach((item) => {
+			item.items.forEach((item) => {
+				navLinks.push(item.path)
+			})
+		})
+	}
+	const pathname = usePathname()
+	const pathWithoutSlash = pathname.slice(1)
+
+	const active = navLinks.includes(pathWithoutSlash)
+
 	const renderContent = (
-		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={active} open={open} {...other}>
+		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={item.path === pathWithoutSlash} open={open} {...other}>
 			{title}
 
 			{!!children && <Iconify width={16} icon='carbon:chevron-down' sx={{ ml: 1 }} />}

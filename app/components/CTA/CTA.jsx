@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Button } from "@mui/material"
 
 import React from "react"
 import { useContext } from "react"
@@ -11,79 +12,89 @@ function Cta(props) {
 	const modalContext = useContext(ModalContext)
 	const toggleProjectModal = () => modalContext.setIsOpen(!modalContext.isOpen)
 
-	const { title, route, link, cta_types, _type } = props
+	const { title, route, link, cta_types, cta_variant, cta_size, _type } = props
 	let btnStyles = ""
-	if (cta_types.button_type === "primary") {
-		btnStyles = styles.button
-	} else if (cta_types.button_type === "secondary") {
-		btnStyles = styles.secondaryButton
-	} else if (cta_types.button_type === undefined) {
-		btnStyles = styles.button
-	}
+
 	if (route._type === "action") {
 		if (title === "Book a Call") {
-			return <Calendly styles={btnStyles} text={title} />
+			return (
+				<Button component='div' color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+					<Calendly text={title} />
+				</Button>
+			)
 		}
 		if (title === "Start a Project") {
 			return (
-				<button className={btnStyles} onClick={toggleProjectModal}>
+				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size} onClick={toggleProjectModal}>
 					{title}
-				</button>
+				</Button>
 			)
 		}
 		if (title === "Call") {
 			return (
-				<a className={btnStyles} href='tel:3053172807'>
-					{title}
-				</a>
+				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+					<a href='tel:3053172807'>{title}</a>
+				</Button>
 			)
 		}
 		if (title === "Text") {
 			return (
-				<a className={btnStyles} href='sms:3053172807'>
-					{title}
-				</a>
+				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+					<a href='sms:3053172807'>{title}</a>
+				</Button>
 			)
 		}
 		if (title === "Email") {
 			return (
-				<a className={btnStyles} href='mailto:info@logo.media'>
-					{title}
-				</a>
+				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+					<a href='mailto:info@logo.media'>{title}</a>
+				</Button>
 			)
 		}
 		if (title === "Contact Us") {
 			return (
-				<Link className={btnStyles} href='/contact-us'>
-					{title}{" "}
-				</Link>
+				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+					<Link href='/contact-us'>{title} </Link>
+				</Button>
 			)
 		}
-		return <a className={btnStyles}>{title} </a>
+		return (
+			<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+				{title}{" "}
+			</Button>
+		)
 	}
 	if (route._type === "page" && route.slug.current) {
 		return (
-			<Link className={btnStyles} href={`${route.slug.current}`}>
-				{title}
-			</Link>
+			<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+				<Link href={`${route.slug.current}`}>{title}</Link>
+			</Button>
 		)
 	}
 	if (route._type === "post" && route.slug.current) {
 		return (
-			<Link className={btnStyles} href={`/news-and-trends/${route.slug.current}`}>
-				{title}
-			</Link>
+			<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+				<Link className={btnStyles} href={`/news-and-trends/${route.slug.current}`}>
+					{title}
+				</Link>
+			</Button>
 		)
 	}
 	if (route._type === "project" && route.slug.current) {
 		return (
-			<Link className={btnStyles} href={`/projects/${route.slug.current}`}>
-				{title}
-			</Link>
+			<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+				<Link className={btnStyles} href={`/projects/${route.slug.current}`}>
+					{title}
+				</Link>
+			</Button>
 		)
 	}
 
-	return <a className={btnStyles}>{title}</a>
+	return (
+		<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
+			{title}
+		</Button>
+	)
 }
 
 export default Cta

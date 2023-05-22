@@ -1,37 +1,37 @@
-import PropTypes from 'prop-types';
-import { memo } from 'react';
+import PropTypes from "prop-types"
+import { memo } from "react"
 // @mui
-import { Box } from '@mui/material';
+import { Box } from "@mui/material"
 //
-import { StyledRootScrollbar, StyledScrollbar } from './styles';
+import { StyledRootScrollbar, StyledScrollbar } from "./styles"
 
 // ----------------------------------------------------------------------
 
 function Scrollbar({ children, sx, ...other }) {
-  const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
+	const userAgent = typeof navigator === "undefined" ? "SSR" : navigator.userAgent
 
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+	const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
 
-  if (isMobile) {
-    return (
-      <Box sx={{ overflowX: 'auto', ...sx }} {...other}>
-        {children}
-      </Box>
-    );
-  }
+	if (isMobile) {
+		return (
+			<Box sx={{ overflowX: "auto", ...sx }} {...other}>
+				{children}
+			</Box>
+		)
+	}
 
-  return (
-    <StyledRootScrollbar>
-      <StyledScrollbar clickOnTrack={false} sx={sx} {...other}>
-        {children}
-      </StyledScrollbar>
-    </StyledRootScrollbar>
-  );
+	return (
+		<StyledRootScrollbar>
+			<StyledScrollbar clickOnTrack={false} sx={sx} {...other}>
+				{children}
+			</StyledScrollbar>
+		</StyledRootScrollbar>
+	)
 }
 
 Scrollbar.propTypes = {
-  children: PropTypes.node,
-  sx: PropTypes.object,
-};
+	children: PropTypes.node,
+	sx: PropTypes.object,
+}
 
-export default memo(Scrollbar);
+export default memo(Scrollbar)

@@ -6,11 +6,11 @@ import { Card, Link, Stack, Button, Divider, Typography } from '@mui/material';
 import Iconify from '../../components/iconify';
 import Image from '../../components/image';
 import Label from '../../components/label';
-
+import urlFor from '../../../utils/imageUrl';
 // ----------------------------------------------------------------------
 
 export default function PlanCard({ plan, index }) {
-  const { license, commons, options, icons, price } = plan;
+  const { title, commons, options, icons, price } = plan;
 
   return (
     <Card
@@ -36,7 +36,7 @@ export default function PlanCard({ plan, index }) {
             component="div"
             sx={{ textTransform: 'uppercase' }}
           >
-            {license}
+            {title}
           </Typography>
 
           <Stack direction="row" spacing={0.5}>
@@ -49,20 +49,16 @@ export default function PlanCard({ plan, index }) {
           </Stack>
         </Stack>
 
-        {index === 0 ? (
-          <Image alt="standard" src={icons[0]} sx={{ width: 24, height: 24 }} />
-        ) : (
-          <Stack direction="row" spacing={1.5}>
-            {icons.map((i) => (
-              <Image
-                key={i._key}
-                alt={i}
-                src={i.icon.asset.url}
-                sx={{ width: 24, height: 24 }}
-              />
-            ))}
-          </Stack>
-        )}
+        <Stack direction="row" spacing={1.5}>
+          {icons.map((i) => (
+            <Image
+              key={i._key}
+              alt={i}
+              src={urlFor(i.icon.asset)}
+              sx={{ width: 24, height: 24 }}
+            />
+          ))}
+        </Stack>
 
         <Stack spacing={2.5}>
           {commons.map((option) => (
