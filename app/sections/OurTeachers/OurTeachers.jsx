@@ -34,7 +34,7 @@ export default function TeamElearningAbout(props) {
         }}
       >
         {cards.map((member) => (
-          <TeamMember key={member.id} member={member} />
+          <TeamMember key={member._key} member={member} />
         ))}
       </Box>
     </Container>
