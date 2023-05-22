@@ -12,7 +12,7 @@ import Label from "../../label"
 //
 import { StyledMenu, StyledSubheader } from "./styles"
 import { NavItem } from "./NavItem"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 

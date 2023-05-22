@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import { Card, Link, Stack, Button, Divider, Typography } from '@mui/material';
 
 // components
-import Iconify from '../../components/iconify';
-import Image from '../../components/image';
-import Label from '../../components/label';
-import urlFor from '../../../utils/imageUrl';
+
+import Iconify from "../../components/iconify"
+import Image from "../../components/image"
+import Label from "../../components/label"
+import urlFor from "../../../utils/imageUrl"
+import CTA from "../../components/CTA"
 // ----------------------------------------------------------------------
 
 export default function PlanCard({ plan, index }) {
-  const { title, commons, options, icons, price } = plan;
+	const { title, commons, options, icons, price, cta } = plan
+
 
   return (
     <Card
@@ -105,20 +108,12 @@ export default function PlanCard({ plan, index }) {
           ))}
         </Stack>
 
-        <Stack alignItems="flex-end" spacing={3}>
-          <Button
-            size="large"
-            fullWidth
-            variant={index === 0 ? 'outlined' : 'contained'}
-            color={index === 2 ? 'primary' : 'inherit'}
-            target="_blank"
-            rel="noopener"
-            href={'/'}
-          >
-            Choose Package
-          </Button>
-        </Stack>
-      </Stack>
-    </Card>
-  );
+
+				<Stack alignItems='flex-center' spacing={3}>
+					<CTA {...cta} key={cta._key} />
+				</Stack>
+			</Stack>
+		</Card>
+	)
+
 }
