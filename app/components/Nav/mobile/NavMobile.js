@@ -10,7 +10,7 @@ import { NAV } from "../../../../config-global"
 // components
 import Logo from "../../Logo"
 import Iconify from "../../iconify"
-import Scrollbar from "../../scrollbar"
+import Scrollbar from "../../Scrollbar"
 //
 import NavList from "./NavList"
 import Cta from "../../CTA"
