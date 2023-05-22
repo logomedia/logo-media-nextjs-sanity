@@ -1,6 +1,6 @@
 "use client"
 // next
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 // @mui
 import { alpha, styled } from "@mui/material/styles"
 import Masonry from "@mui/lab/Masonry"
@@ -107,7 +107,7 @@ export default function Footer({ settings }) {
 
 	const isMdUp = useResponsive("up", "md")
 
-	const { pathname } = useRouter()
+	const pathname = usePathname()
 
 	const mobileList = navConfig
 

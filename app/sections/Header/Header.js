@@ -26,6 +26,7 @@ import ModeOptions from "../../components/settings/drawer/components/ModeOptions
 
 export default function Header({ headerOnDark, settings }) {
 	let navConfig = []
+	let navConfig2 = []
 	const mainMenu = settings.mainMenu
 
 	if (!mainMenu) {
@@ -109,7 +110,7 @@ export default function Header({ headerOnDark, settings }) {
 			navConfig.push(obj1)
 		}
 	}
-	//console.log(navConfig)
+	console.log(navConfig)
 	const theme = useTheme()
 
 	const isMdUp = useResponsive("up", "md")
