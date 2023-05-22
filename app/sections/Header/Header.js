@@ -110,7 +110,7 @@ export default function Header({ headerOnDark, settings }) {
 			navConfig.push(obj1)
 		}
 	}
-	console.log(navConfig)
+
 	const theme = useTheme()
 
 	const isMdUp = useResponsive("up", "md")

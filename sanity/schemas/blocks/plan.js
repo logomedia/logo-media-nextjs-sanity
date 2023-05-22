@@ -66,16 +66,10 @@ export default defineType({
 			],
 		}),
 		defineField({
-			name: "ctas",
-			type: "array",
+			name: "cta",
+			type: "cta",
 			title: "Call to actions",
 			validation: (rule) => rule.required(),
-			of: [
-				{
-					title: "Call to action",
-					type: "cta",
-				},
-			],
 		}),
 	],
 
