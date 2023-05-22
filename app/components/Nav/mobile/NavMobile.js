@@ -1,3 +1,4 @@
+"use client"
 import PropTypes from "prop-types"
 import { useState, useEffect } from "react"
 // next
@@ -9,7 +10,7 @@ import { NAV } from "../../../../config-global"
 // components
 import Logo from "../../Logo"
 import Iconify from "../../iconify"
-
+import Scrollbar from "../../scrollbar"
 //
 import NavList from "./NavList"
 import Cta from "../../CTA"
@@ -53,7 +54,7 @@ export default function NavMobile({ data, settings }) {
 					},
 				}}
 			>
-				<Box sx={{ position: "relative" }}>
+				<Scrollbar sx={{ position: "relative" }}>
 					<IconButton fontSize='large' onClick={handleClose} sx={{ ml: 1, color: "inherit", position: "absolute", top: "0px", right: "0px" }}>
 						<Iconify icon='carbon:close' fontSize='large' />
 					</IconButton>
@@ -70,7 +71,7 @@ export default function NavMobile({ data, settings }) {
 							<Cta {...cta} key={cta._key} />
 						))}
 					</Stack>
-				</Box>
+				</Scrollbar>
 			</Drawer>
 		</>
 	)
