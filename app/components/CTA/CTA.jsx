@@ -5,7 +5,7 @@ import React from "react"
 import { useContext } from "react"
 
 import Calendly from "../Calendly"
-import styles from "./Cta.module.css"
+
 import { ModalContext } from "../../../context/projectModal"
 
 function Cta(props) {
