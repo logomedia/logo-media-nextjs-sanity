@@ -2,6 +2,7 @@ import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
+import LazyMotion from "../app/components/LazyMotion"
 import styles from "./globals.css"
 
 // slick-carousel
@@ -15,9 +16,11 @@ export default async function RootLayout({ children }) {
 			<body>
 				<div id='app'>
 					<ContextWrapper>
-						<Header settings={settings} />
-						{children}
-						<Footer settings={settings} />
+						<LazyMotion>
+							<Header settings={settings} />
+							{children}
+							<Footer settings={settings} />
+						</LazyMotion>
 					</ContextWrapper>
 				</div>
 			</body>

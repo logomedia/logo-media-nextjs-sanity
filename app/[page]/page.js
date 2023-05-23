@@ -1,6 +1,6 @@
 import { getAllPageSlugs, getPageBySlug } from "../../lib/sanity.client"
 import RenderSections from "../components/RenderSections/RenderSections"
-import LazyMotion from "../components/LazyMotion"
+
 import NotFound from "../not-found"
 
 export async function generateStaticParams() {
@@ -18,10 +18,6 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
-		return (
-			<>
-				<LazyMotion>{content && <RenderSections sections={content} />}</LazyMotion>
-			</>
-		)
+		return <>{content && <RenderSections sections={content} />}</>
 	}
 }
