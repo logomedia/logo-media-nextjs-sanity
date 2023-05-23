@@ -30,7 +30,7 @@ export default function PostsPage({ morePosts, post }) {
 				}}
 			/>
 			<Container>
-				<Grid container spacing={{ md: 8 }} justifyContent={{ md: "center" }}>
+				<Grid container justifyContent={{ md: "center" }} sx={{ mt: 0 }}>
 					<Grid item xs={12} md={8}>
 						<Stack
 							spacing={3}
@@ -81,7 +81,7 @@ export default function PostsPage({ morePosts, post }) {
 
 						<Divider sx={{ mt: 8 }} />
 					</Grid>
-					<Grid item xs={12} md={4}>
+					<Grid item xs={12} md={4} sx={{ pl: 2 }}>
 						<BlogSidebar
 							recentPosts={{
 								list: morePosts.slice(0, 5),
