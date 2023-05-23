@@ -1,9 +1,7 @@
-import { ProjectModalProvider } from "../context/projectModal"
 import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
-import { ThemeSettings, SettingsProvider } from "./components/Settings"
-import ThemeProvider from "../theme"
+import ContextWrapper from "../app/components/ContextWrapper"
 import styles from "./globals.css"
 
 // slick-carousel
@@ -15,19 +13,13 @@ export default async function RootLayout({ children }) {
 	return (
 		<html>
 			<body>
-				<SettingsProvider>
-					<ThemeProvider>
-						<ThemeSettings>
-							<ProjectModalProvider>
-								<div id='app'>
-									<Header settings={settings} />
-									{children}
-									<Footer settings={settings} />
-								</div>
-							</ProjectModalProvider>
-						</ThemeSettings>
-					</ThemeProvider>
-				</SettingsProvider>
+				<div id='app'>
+					<ContextWrapper>
+						<Header settings={settings} />
+						{children}
+						<Footer settings={settings} />
+					</ContextWrapper>
+				</div>
 			</body>
 		</html>
 	)
