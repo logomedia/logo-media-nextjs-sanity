@@ -40,7 +40,7 @@ export default function NavMobile({ data, settings }) {
 	return (
 		<>
 			<Cta {...settings.mainMenuCTAs[0]} />
-			<IconButton onClick={handleOpen} sx={{ ml: 1, color: "inherit" }}>
+			<IconButton onClick={handleOpen} sx={{ ml: 0, color: "inherit" }}>
 				<Iconify icon='carbon:menu' />
 			</IconButton>
 

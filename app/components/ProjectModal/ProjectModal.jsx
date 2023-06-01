@@ -2,14 +2,19 @@
 
 import emailjs from "@emailjs/browser"
 import { useContext, useState } from "react"
-
 import CloseIcon from "../icons/Close"
 import { ModalContext } from "../../../context/projectModal"
 import styles from "./projectModal.module.css"
+import ContactMarketingForm from "../../sections/Contact/ContactForm"
+import { SettingsContext } from "../Settings/SettingsContext"
 
 const ProjectModal = (props) => {
 	const modalContext = useContext(ModalContext)
-	console.log(modalContext)
+	const modeContent = useContext(SettingsContext)
+	const { themeMode } = modeContent
+	const dark = themeMode === "dark"
+	console.log(dark)
+
 	const [firstName, setFirstName] = useState("")
 	const [lastName, setLastName] = useState("")
 	const [email, setEmail] = useState("")
@@ -64,43 +69,19 @@ const ProjectModal = (props) => {
 				setSuccessMessage("Error:", error)
 			})
 	}
+	const innerModalStyles = dark ? styles.darkInnerModal : styles.innerModal
+	const closeStyles = dark ? styles.darkClose : styles.close
 	return (
 		<div className={styles.modal}>
-			<div className={styles.innerModal}>
-				<CloseIcon className={styles.close} onClick={() => modalContext.setIsOpen(false)} />
-				<form id='projectForm' className={styles.projectForm} onSubmit={handleSubmit}>
-					<div className={styles.formHeading}>Start a Project</div>
-					<p>Complete the form below and our team will reach out to get started working on your project.</p>
-					<div className={styles.formFields}>
-						<div className={styles.halfBlock}>
-							<label>First Name:</label>
-							<input name='firstName' type='name' placeholder='Your First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-						</div>
-						<div className={styles.halfBlock}>
-							<label>Last Name:</label>
-							<input name='lastName' type='name' placeholder='Your Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-						</div>
-						<div className={styles.halfBlock}>
-							<label>Email:</label>
-							<input name='email' type='email' placeholder='Your Email Address' value={email} onChange={(e) => setEmail(e.target.value)} required />
-						</div>
-						<div className={styles.halfBlock}>
-							<label>Phone:</label>
-							<input name='phone' type='phone' placeholder='Your Phone Number' value={phone} onChange={(e) => setPhone(e.target.value)} required />
-						</div>
-						<div className={styles.fullBlock}>
-							<label>Your Website:</label>
-							<input name='website' type='url' placeholder='Enter Your Website URL' value={website} onChange={(e) => setWebsite(e.target.value)} required />
-						</div>
-						<div className={styles.fullBlock}>
-							<label>Project Details:</label>
-							<textarea name='message' type='text' value={message} onChange={(e) => setMessage(e.target.value)} required />
-						</div>
-					</div>
-
-					<div className={styles.successMessage}>{successMessage}</div>
-					<button className='button'>Submit Project</button>
-				</form>
+			<div className={`${innerModalStyles}`}>
+				<CloseIcon
+					className={`${closeStyles}`}
+					onClick={() => {
+						modalContext.setIsOpen(false)
+					}}
+				/>
+				<h2> Start a Project</h2>
+				<ContactMarketingForm />
 			</div>
 		</div>
 	)

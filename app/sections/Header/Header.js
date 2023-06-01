@@ -142,8 +142,8 @@ export default function Header({ headerOnDark, settings }) {
 					}),
 				}}
 			>
-				<Container sx={{ height: 1, display: "flex", alignItems: "center" }}>
-					<Box sx={{ lineHeight: 0, position: "relative", mr: 6 }}>
+				<Container sx={{ height: 1, display: "flex", alignItems: "center", pl: 1, pr: 0 }}>
+					<Box sx={{ lineHeight: 0, position: "relative", mr: 0 }}>
 						<Logo settings={settings} />
 					</Box>
 

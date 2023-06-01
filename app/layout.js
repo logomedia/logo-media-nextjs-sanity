@@ -2,7 +2,7 @@ import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
-import LazyMotion from "../app/components/LazyMotion"
+import { ModalContext } from "../context/projectModal"
 import styles from "./globals.css"
 
 // slick-carousel
@@ -11,16 +11,15 @@ import "slick-carousel/slick/slick-theme.css"
 
 export default async function RootLayout({ children }) {
 	const settings = await getSettings()
+
 	return (
 		<html>
 			<body>
 				<div id='app'>
 					<ContextWrapper>
-						<LazyMotion>
-							<Header settings={settings} />
-							{children}
-							<Footer settings={settings} />
-						</LazyMotion>
+						<Header settings={settings} />
+						{children}
+						<Footer settings={settings} />
 					</ContextWrapper>
 				</div>
 			</body>

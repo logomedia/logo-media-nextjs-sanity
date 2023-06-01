@@ -9,6 +9,8 @@ import { bgGradient } from "../../../utils/cssStyles"
 
 import { MotionViewport, varFade } from "../../components/animate"
 import CTA from "../../components/CTA"
+import urlFor from "../../../utils/imageUrl"
+
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
@@ -19,7 +21,7 @@ export default function TextWithBackground(props) {
 	const StyledRoot = styled("div")(({ theme }) => ({
 		...bgGradient({
 			color: alpha(theme.palette.grey[900], 0.8),
-			imgUrl: image.asset.url,
+			imgUrl: urlFor(image.asset),
 		}),
 		textAlign: "center",
 		color: theme.palette.common.white,

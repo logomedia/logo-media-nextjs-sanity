@@ -9,12 +9,13 @@ import Image from "../../components/image"
 import Iconify from "../../components/iconify"
 import { MotionViewport, varFade } from "../../components/animate"
 import StyledPortableText from "../../components/StyledPortableText/StyledPortableText"
-import Cta from "../../components/CTA/CTA"
+import Cta from "../../components/CTA"
+import urlFor from "../../../utils/imageUrl"
 
 // ----------------------------------------------------------------------
 
 export default function BoxedImageWithText(props) {
-	const { ctas, description, heading, eyebrow, image, imageAltText } = props
+	const { cta, description, heading, eyebrow, image, imageAltText } = props
 
 	const isMdUp = useResponsive("up", "md")
 
@@ -53,13 +54,13 @@ export default function BoxedImageWithText(props) {
 				}}
 			>
 				<m.div variants={varFade().inUp}>
-					<Typography variant='overline' sx={{ color: "text.disabled" }}>
+					<Typography variant='overline' sx={{ color: "text.disabled", maxWidth: "400px", width: "100%" }}>
 						{eyebrow}
 					</Typography>
 				</m.div>
 
 				<m.div variants={varFade().inUp}>
-					<Typography variant='h3' sx={{ my: 3 }}>
+					<Typography variant='h3' sx={{ my: 3, maxWidth: "400px", width: "100%" }}>
 						{heading}
 					</Typography>
 				</m.div>
@@ -70,30 +71,31 @@ export default function BoxedImageWithText(props) {
 						variant=''
 						sx={{
 							color: "text.secondary",
-							maxWidth: 360,
+							maxWidth: 400,
 							mx: {
 								xs: "auto",
 								md: "unset",
 							},
+							mb: 2,
 						}}
 					/>
 				</m.div>
 
-				{/* {isMdUp && ctas.map((cta) => <Cta {...cta} key={cta._key} />)} */}
+				{isMdUp && <Cta {...cta} />}
 			</Box>
 
 			<Box
 				sx={{
 					top: { md: -40 },
 					right: { md: -120 },
-					my: { xs: 8, md: 0 },
+					my: { xs: 1, md: 0 },
 					position: { md: "absolute" },
 				}}
 			>
 				<m.div variants={varFade().inDown}>
 					<Image
 						alt={imageAltText}
-						src={image.asset.url}
+						src={urlFor(image.asset)}
 						sx={{
 							maxWidth: { md: 790 },
 						}}
@@ -101,7 +103,7 @@ export default function BoxedImageWithText(props) {
 				</m.div>
 			</Box>
 
-			{/* {!isMdUp && ctas.map((cta) => <Cta {...cta} key={cta._key} />)} */}
+			{!isMdUp && <Cta {...cta} />}
 		</Container>
 	)
 }

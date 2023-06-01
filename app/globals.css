@@ -24,6 +24,7 @@ button {
 body {
 	margin: 0;
 }
+
 @keyframes rotation {
 	from {
 		transform: rotate(0deg);

@@ -1,86 +1,120 @@
 .modal {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #00000085;
-  bottom: 0;
-  z-index: 11;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #00000085;
+	bottom: 0;
+	z-index: 1110;
 }
 .innerModal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background: white;
-  @media (--media-max-mobile) {
-    width: calc(100% - 20px);
-    padding: 10px;
-  }
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background: white;
+	height: 800px;
+	width: 800px;
+	z-index: 30;
+	@media (max-width: 767px) {
+		width: 100vw;
+		height: 100%;
+		overflow: auto;
+	}
+}
+.darkInnerModal {
+	background: #161c24;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	height: 800px;
+	width: 800px;
+	z-index: 30;
+	@media (max-width: 767px) {
+		width: 100vw;
+		height: 100%;
+		overflow: auto;
+	}
 }
 .close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: block;
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: block;
+	cursor: pointer;
+	width: 25px;
+	height: 25px;
 }
 .close path {
-  stroke: #000;
-  stroke-width: 1px;
+	stroke: #000;
+	stroke-width: 1px;
+}
+.darkClose {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: block;
+	cursor: pointer;
+	width: 25px;
+	height: 25px;
+}
+.darkClose path {
+	stroke: #ffffff;
+	fill: #fff;
+	stroke-width: 1px;
 }
 .halfBlock,
 .fullBlock {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
 }
 .halfBlock {
-  width: calc(50% -20px);
+	width: calc(50% -20px);
 }
 .fullBlock {
-  width: 100%;
+	width: 100%;
 }
 .formFields {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 .formHeading {
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-  @media (--media-max-mobile) {
-    font-size: 1.5rem;
-  }
+	font-size: 2rem;
+	font-weight: 700;
+	text-align: center;
+	@media (--media-max-mobile) {
+		font-size: 1.5rem;
+	}
 }
 .projectForm p {
-  font-size: 1rem;
-  margin-top: 0;
-  text-align: center;
+	font-size: 1rem;
+	margin-top: 0;
+	text-align: center;
 }
 .projectForm label {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .projectForm input,
 .projectForm textarea {
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 1.5px solid var(--black);
-  border-radius: 0;
-  font-family: var(--BodyFonts);
-  padding: 5px;
-  font-size: 1rem;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1.5px solid var(--black);
+	border-radius: 0;
+	font-family: var(--BodyFonts);
+	padding: 5px;
+	font-size: 1rem;
 }
 .projectForm textarea {
-  min-height: 100px;
+	min-height: 100px;
 }
 .projectForm button {
-  display: block;
-  margin: auto;
+	display: block;
+	margin: auto;
 }

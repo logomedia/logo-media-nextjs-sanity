@@ -10,7 +10,9 @@ import { ModalContext } from "../../../context/projectModal"
 
 function Cta(props) {
 	const modalContext = useContext(ModalContext)
-	const toggleProjectModal = () => modalContext.setIsOpen(!modalContext.isOpen)
+	const toggleProjectModal = () => {
+		modalContext.setIsOpen(!modalContext.isOpen)
+	}
 
 	const { title, route, link, cta_types, cta_variant, cta_size, _type } = props
 	let btnStyles = ""

@@ -61,6 +61,20 @@ export default defineType({
 			],
 		}),
 		defineField({
+			title: "Brand logo Dark",
+			description: "Best choice is to use an SVG where the color are set with currentColor",
+			name: "logoDark",
+			type: "image",
+			fields: [
+				{
+					name: "alt",
+					type: "string",
+					title: "Alternative text",
+					description: "Important for SEO and accessiblity.",
+				},
+			],
+		}),
+		defineField({
 			name: "mainMenu",
 			title: "Main Menu Navigation",
 			type: "array",

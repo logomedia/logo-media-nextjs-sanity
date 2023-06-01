@@ -3,6 +3,7 @@ import { Suspense } from "react"
 
 import capitalizeString from "../../../utils/capitalizeString"
 import * as SectionComponents from "../../sections"
+import LazyMotion from "../LazyMotion"
 
 function resolveSections(section) {
 	const Section = SectionComponents[capitalizeString(section._type)]
@@ -24,14 +25,16 @@ function RenderSections(props) {
 
 	return (
 		<Suspense>
-			{sections.map((section) => {
-				const SectionComponent = resolveSections(section)
+			<LazyMotion>
+				{sections.map((section) => {
+					const SectionComponent = resolveSections(section)
 
-				if (!SectionComponent) {
-					return <div key={section._key}>Missing section {section._type}</div>
-				}
-				return <SectionComponent {...section} key={section._key} />
-			})}
+					if (!SectionComponent) {
+						return <div key={section._key}>Missing section {section._type}</div>
+					}
+					return <SectionComponent {...section} key={section._key} />
+				})}
+			</LazyMotion>
 		</Suspense>
 	)
 }
