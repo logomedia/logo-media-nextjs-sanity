@@ -1,0 +1,48 @@
+import { BookIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
+
+export default defineType({
+  name: 'testimonials',
+  title: 'Testimonials',
+  icon: BookIcon,
+  type: 'object',
+
+  fields: [
+    defineField({
+      name: 'heading',
+      type: 'string',
+      title: 'Heading',
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: 'eyebrow',
+      type: 'string',
+      title: 'Eyebrow Text',
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: 'addTestimonial',
+      type: 'array',
+      title: 'Add Testimonial',
+      validation: (rule) => rule.required(),
+      of: [
+        {
+          type: 'testimonial',
+        },
+      ],
+    }),
+  ],
+
+  preview: {
+    select: {
+      title: 'eyebrow',
+    },
+    prepare({ title }) {
+      return {
+        title,
+      }
+    },
+  },
+})
