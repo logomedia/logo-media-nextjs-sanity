@@ -19,6 +19,10 @@ export const metadata = {
 			url: "public/icon.svg",
 		},
 	},
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#540e6f" },
+		{ media: "(prefers-color-scheme: dark)", color: "#bce6f4" },
+	],
 }
 
 export default async function RootLayout({ children }) {
