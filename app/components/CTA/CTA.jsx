@@ -7,16 +7,19 @@ import { useContext } from "react"
 import Calendly from "../Calendly"
 
 import { ModalContext } from "../../../context/projectModal"
+import { ClassNames } from "@emotion/react"
 
 function Cta(props) {
 	const modalContext = useContext(ModalContext)
 	const toggleProjectModal = () => {
 		modalContext.setIsOpen(!modalContext.isOpen)
+		document.body.style.height = "100vh"
+		document.body.style.overflow = "hidden"
 	}
 
-	const { title, route, link, cta_types, cta_variant, cta_size, _type } = props
+	const { title, route, link, cta_types, cta_variant, cta_size, _type, className } = props
 	let btnStyles = ""
-
+	const btnClass = className ? className : ""
 	if (route._type === "action") {
 		if (title === "Book a Call") {
 			return (
@@ -27,7 +30,7 @@ function Cta(props) {
 		}
 		if (title === "Start a Project") {
 			return (
-				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size} onClick={toggleProjectModal}>
+				<Button className={btnClass} color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size} onClick={toggleProjectModal}>
 					{title}
 				</Button>
 			)

@@ -14,6 +14,7 @@ import Scrollbar from "../../Scrollbar"
 //
 import NavList from "./NavList"
 import Cta from "../../CTA"
+import styles from "./NavMobile.module.css"
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ export default function NavMobile({ data, settings }) {
 
 	return (
 		<>
-			<Cta {...settings.mainMenuCTAs[0]} />
+			<Cta className={styles.headerBtn} {...settings.mainMenuCTAs[0]} />
 			<IconButton onClick={handleOpen} sx={{ ml: 0, color: "inherit" }}>
 				<Iconify icon='carbon:menu' />
 			</IconButton>

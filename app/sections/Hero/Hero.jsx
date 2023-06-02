@@ -46,14 +46,14 @@ const Hero = (props) => {
 
 	return (
 		<StyledRoot>
-			<Grid columnSpacing={0} alignItems='center' sx={{ height: 1, maxWidth: "600px", py: 10 }}>
+			<Grid columnSpacing={0} alignItems='center' sx={{ height: 1, maxWidth: "600px", py: { xs: 2, md: 10 } }}>
 				<Grid xs={12} md={8}>
 					<Stack
 						spacing={5}
 						justifyContent='center'
 						alignItems={{ xs: "center", md: "flex-start" }}
 						sx={{
-							py: { xs: 10, md: 15 },
+							py: { xs: 8, md: 15 },
 							px: 3,
 							textAlign: { xs: "center", md: "left" },
 						}}

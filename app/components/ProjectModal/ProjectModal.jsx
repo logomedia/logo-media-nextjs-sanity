@@ -78,6 +78,8 @@ const ProjectModal = (props) => {
 					className={`${closeStyles}`}
 					onClick={() => {
 						modalContext.setIsOpen(false)
+						document.body.style.height = ""
+						document.body.style.overflow = ""
 					}}
 				/>
 				<h2> Start a Project</h2>
