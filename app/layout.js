@@ -9,6 +9,18 @@ import styles from "./globals.css"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+export const metadata = {
+	icons: {
+		icon: "public/icon.svg",
+		shortcut: "public/icon.svg",
+		apple: "public/icon.svg",
+		other: {
+			rel: "public/icon.svg",
+			url: "public/icon.svg",
+		},
+	},
+}
+
 export default async function RootLayout({ children }) {
 	const settings = await getSettings()
 
