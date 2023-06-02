@@ -1,6 +1,46 @@
 import { getAllPostSlugs, getPostBySlug, getAllPosts } from "../../../lib/sanity.client"
 import PostsPage from "../../sections/PostsPage"
 
+export async function generateMetadata({ params }) {
+	const { page } = params
+
+	const post = await getPostBySlug(page)
+
+	const ogImage = post.coverImage.asset.url
+	return {
+		title: post.title,
+		description: post.description,
+		alternates: {
+			canonical: `https://logo.media/news-and-trends/${post.slug}`,
+		},
+		openGraph: {
+			images: ogImage,
+		},
+		robots: {
+			index: true,
+			follow: true,
+			nocache: true,
+			googleBot: {
+				index: true,
+				follow: true,
+				noimageindex: true,
+				"max-video-preview": -1,
+				"max-image-preview": "large",
+				"max-snippet": -1,
+			},
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: post.title,
+			description: post.description,
+			siteId: "1485472568299737088",
+			creator: "@Logo__Media ",
+			creatorId: "1485472568299737088",
+			images: [ogImage],
+		},
+	}
+}
+
 export async function generateStaticParams() {
 	const pageSlugs = await getAllPostSlugs()
 
@@ -13,9 +53,30 @@ export default async function Page({ params }) {
 	const { page } = params
 	const post = await getPostBySlug(page)
 	const posts = await getAllPosts()
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
+		name: post.title,
+		description: pageData.schemaDescription,
+		articleBody: post.content,
+		articleSection: post.tags,
+		creator: post.author,
+		dateCreated: post.date,
+		datePublished: post.date,
+		keywords: post.tags,
+		publisher: "Logo Media",
+		image: post.coverImage,
+		url: `https://logo.media/news-and-trends/${post.slug}`,
+	}
 	if (post === undefined) {
 		return <NotFound />
 	} else {
-		return <PostsPage post={post} morePosts={posts} />
+		return (
+			<>
+				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+				<PostsPage post={post} morePosts={posts} />
+			</>
+		)
 	}
 }
