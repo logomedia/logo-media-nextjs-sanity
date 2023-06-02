@@ -25,16 +25,18 @@ export default async function RootLayout({ children }) {
 	const settings = await getSettings()
 
 	return (
-		<html>
-			<body>
-				<div id='app'>
-					<ContextWrapper>
-						<Header settings={settings} />
-						{children}
-						<Footer settings={settings} />
-					</ContextWrapper>
-				</div>
-			</body>
-		</html>
+		<>
+			<html>
+				<body>
+					<div id='app'>
+						<ContextWrapper>
+							<Header settings={settings} />
+							{children}
+							<Footer settings={settings} />
+						</ContextWrapper>
+					</div>
+				</body>
+			</html>
+		</>
 	)
 }
