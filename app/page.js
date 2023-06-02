@@ -4,7 +4,7 @@ import RenderSections from "../app/components/RenderSections/RenderSections"
 export async function generateMetadata() {
 	const home = await getHomepage()
 	return {
-		title: home.title,
+		title: home.metaTitle,
 		description: home.description,
 		alternates: {
 			canonical: "/",
@@ -27,7 +27,7 @@ export async function generateMetadata() {
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: home.title,
+			title: home.metaTitle,
 			description: home.description,
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
@@ -39,12 +39,15 @@ export async function generateMetadata() {
 
 export default async function Page() {
 	const home = await getHomepage()
+	console.log(home)
 	const content = home?.content
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "ProfessionalService",
+		"@type": "Service",
 		name: "Logo Media",
-		description: home.description,
+		description: home.schemaDescription,
+		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
+		category: "Ecommerce Agency",
 		url: "https://logo.media",
 		telephone: "+13053172807",
 		email: "info@logo.media",
@@ -55,7 +58,20 @@ export default async function Page() {
 			postalCode: "33131",
 			addressCountry: "US",
 		},
-		keywords: ["Web Designer", "Ecommerce Agency", "Web Developer", "Shopify Agency"],
+		keywords: home.keywords,
+		images: [home.ogImage.asset.url],
+		priceRange: "$1000+",
+		openingHours: [
+			{
+				opens: "08:00",
+				closes: "20:00:00",
+				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+			},
+		],
+		rating: {
+			ratingValue: "5.0",
+			ratingCount: "152",
+		},
 	}
 	return (
 		<>
