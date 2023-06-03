@@ -39,7 +39,7 @@ export async function generateMetadata() {
 
 export default async function Page() {
 	const home = await getHomepage()
-	console.log(home)
+
 	const content = home?.content
 	const jsonLd = {
 		"@context": "https://schema.org",

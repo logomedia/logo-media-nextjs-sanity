@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
 
 	const pageData = await getPageBySlug(page)
 
-	const ogImage = pageData.ogImage.asset ? pageData.ogImage.asset.url : ""
+	const ogImage = pageData.ogImage ? pageData.ogImage.asset.url : ""
 	return {
 		title: `${pageData.metaTitle} | Logo Media`,
 		description: pageData.description,
