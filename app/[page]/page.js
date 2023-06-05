@@ -55,41 +55,40 @@ export default async function Page({ params }) {
 
 	const pageData = await getPageBySlug(page)
 	const content = pageData?.content
-	const ogImage = pageData.ogImage.asset ? pageData.ogImage.asset.url : ""
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Service",
-		name: "Logo Media",
-		description: pageData.schemaDescription,
-		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
-		url: "https://logo.media",
-		telephone: "+13053172807",
-		email: "info@logo.media",
-		address: {
-			streetAddress: "801 Brickell Ave. 8th floor",
-			addressLocality: "Miami",
-			addressRegion: "Fl",
-			postalCode: "33131",
-			addressCountry: "US",
-		},
-		keywords: pageData.keywords,
-		images: [ogImage],
-		priceRange: "$1000+",
-		openingHours: [
-			{
-				opens: "08:00",
-				closes: "20:00:00",
-				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-			},
-		],
-		rating: {
-			ratingValue: "5.0",
-			ratingCount: "152",
-		},
-	}
+
 	if (content === undefined) {
 		return <NotFound />
 	} else {
+		const jsonLd = {
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			name: "Logo Media",
+			logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
+			url: "https://logo.media",
+			telephone: "+13053172807",
+			email: "info@logo.media",
+			address: {
+				streetAddress: "801 Brickell Ave. 8th floor",
+				addressLocality: "Miami",
+				addressRegion: "Fl",
+				postalCode: "33131",
+				addressCountry: "US",
+			},
+			keywords: pageData.keywords,
+			images: [pageData.ogImage.asset],
+			priceRange: "$1000+",
+			openingHours: [
+				{
+					opens: "08:00",
+					closes: "20:00:00",
+					dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+				},
+			],
+			rating: {
+				ratingValue: "5.0",
+				ratingCount: "152",
+			},
+		}
 		return (
 			<>
 				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

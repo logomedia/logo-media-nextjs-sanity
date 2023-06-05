@@ -181,9 +181,9 @@ export default function Footer({ settings }) {
 						</Stack>
 					</Grid>
 
-					<Grid xs={12} md={6}>
+					<Grid xs={12} md={8}>
 						{isMdUp ? (
-							<Masonry columns={3} spacing={2} defaultColumns={3} defaultSpacing={2}>
+							<Masonry columns={4} spacing={2} defaultColumns={4} defaultSpacing={2}>
 								{renderLists.map((list) => (
 									<ListDesktop key={list.title} list={list.children[0]} />
 								))}
@@ -195,7 +195,7 @@ export default function Footer({ settings }) {
 								))}
 							</Stack>
 						)}
-						<Stack spacing={2} sx={{ mt: 2 }}>
+						<Stack spacing={2} sx={{ mt: 2, maxWidth: 520 }}>
 							<Stack spacing={1}>
 								<Typography variant='h6'>{settings.newsletterTitle}</Typography>
 								<Typography variant='caption' sx={{ color: "text.secondary" }}>
@@ -204,7 +204,6 @@ export default function Footer({ settings }) {
 							</Stack>
 
 							<TextField
-								fullWidth
 								hiddenLabel
 								placeholder='Email address'
 								InputProps={{

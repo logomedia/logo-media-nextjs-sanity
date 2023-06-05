@@ -2,8 +2,8 @@ import { BookIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
-	name: "clients",
-	title: "Our Clients",
+	name: "latestProjects",
+	title: "Latests Projects",
 	icon: BookIcon,
 	type: "object",
 
@@ -12,24 +12,8 @@ export default defineType({
 			name: "heading",
 			type: "string",
 			title: "Heading",
-			validation: (rule) => rule.required(),
-		}),
-
-		defineField({
-			name: "logos",
-			type: "array",
-			title: "Client Logos",
-			validation: (rule) => rule.required(),
-			of: [
-				{
-					name: "client",
-					title: "Client",
-					type: "clientLogos",
-				},
-			],
 		}),
 	],
-
 	preview: {
 		select: {
 			title: "heading",

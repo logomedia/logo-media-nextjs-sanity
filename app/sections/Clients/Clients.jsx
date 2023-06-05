@@ -1,48 +1,86 @@
 // @mui
-import PropTypes from 'prop-types';
-import { Typography, Stack, Container, Box } from '@mui/material';
+import PropTypes from "prop-types"
+import { useTheme } from "@mui/material/styles"
+import { Typography, Stack, Container, Paper, Box } from "@mui/material"
 // components
-import Image from '../../components/image/Image';
+import Image from "../../components/image"
+import Carousel from "../../components/Carousel"
+import urlFor from "../../../utils/imageUrl"
 
 // ----------------------------------------------------------------------
 
-export default function Clients(props) {
-  const { heading, logos } = props;
+export default function OurClientsCareer({ heading, logos }) {
+	const theme = useTheme()
 
-  return (
-    <Container
-      sx={{
-        pb: { xs: 7, md: 11 },
-      }}
-    >
-      <Stack alignItems="center" spacing={5}>
-        <Typography variant="h2">{heading}</Typography>
+	const carouselSettings = {
+		arrows: false,
+		slidesToShow: 6,
+		slidesToScroll: 1,
+		rtl: Boolean(theme.direction === "rtl"),
+		autoplay: true,
+		speed: 5000,
+		autoplaySpeed: 5000,
+		cssEase: "linear",
+		responsive: [
+			{
+				breakpoint: theme.breakpoints.values.md,
+				settings: { slidesToShow: 4 },
+			},
+			{
+				breakpoint: theme.breakpoints.values.sm,
+				settings: { slidesToShow: 2 },
+			},
+		],
+	}
 
-        <Stack
-          direction="row"
-          flexWrap="wrap"
-          justifyContent="center"
-          sx={{ maxWidth: 680, overflow: 'hidden' }}
-        >
-          {logos.slice(0, 8).map((logo) => (
-            <Box key={logo._key}>
-              <Image
-                alt={logo.asset.originalFilename}
-                src={logo.asset.url}
-                sx={{
-                  height: 32,
-                  mx: { xs: 2, md: 4 },
-                  my: { xs: 2.5, md: 4 },
-                }}
-              />
-            </Box>
-          ))}
-        </Stack>
-      </Stack>
-    </Container>
-  );
+	return (
+		<Container
+			sx={{
+				pt: { xs: 10, md: 15 },
+				pb: { xs: 5, md: 10 },
+			}}
+		>
+			<Stack
+				spacing={3}
+				sx={{
+					mx: "auto",
+					maxWidth: 680,
+					textAlign: "center",
+					mb: { xs: 8, md: 10 },
+				}}
+			>
+				<Typography variant='h2'>{heading}</Typography>
+			</Stack>
+
+			<Carousel {...carouselSettings}>
+				{logos.map((brand) => (
+					<Box key={brand._key} sx={{ px: 1.5 }}>
+						<Paper
+							variant='outlined'
+							sx={{
+								py: 3,
+								borderRadius: 2,
+								bgcolor: "background.default",
+							}}
+						>
+							<Image
+								alt={brand.clientName}
+								src={urlFor(brand.logo.asset)}
+								sx={{
+									maxHeight: 32,
+									height: "100%",
+									mx: "auto",
+									px: 2,
+								}}
+							/>
+						</Paper>
+					</Box>
+				))}
+			</Carousel>
+		</Container>
+	)
 }
 
-Clients.propTypes = {
-  logos: PropTypes.array,
-};
+OurClientsCareer.propTypes = {
+	brands: PropTypes.array,
+}

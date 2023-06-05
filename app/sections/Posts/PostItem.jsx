@@ -28,7 +28,7 @@ export default function PostItem({ post }) {
 
 				<Stack spacing={1}>
 					<Link component={NextLink} href={`/news-and-trends/${slug}`} color='inherit' sx={{ cursor: "pointer" }}>
-						<TextMaxLine variant='h6' persistent>
+						<TextMaxLine component='h3' variant='h6' persistent>
 							{title}
 						</TextMaxLine>
 					</Link>

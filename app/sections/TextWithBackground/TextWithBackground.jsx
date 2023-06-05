@@ -10,6 +10,7 @@ import { bgGradient } from "../../../utils/cssStyles"
 import { MotionViewport, varFade } from "../../components/animate"
 import CTA from "../../components/CTA"
 import urlFor from "../../../utils/imageUrl"
+import LazyMotion from "../../components/LazyMotion/LazyMotion"
 
 // ----------------------------------------------------------------------
 
@@ -32,26 +33,28 @@ export default function TextWithBackground(props) {
 	}))
 
 	return (
-		<MotionViewport>
-			<StyledRoot>
-				<m.div variants={varFade({ distance: 40 }).inUp}>
-					<Typography variant='overline' sx={{ opacity: 0.48 }}>
-						{eyebrow}
-					</Typography>
-				</m.div>
+		<LazyMotion>
+			<MotionViewport>
+				<StyledRoot>
+					<m.div variants={varFade({ distance: 40 }).inUp}>
+						<Typography variant='overline' sx={{ opacity: 0.48 }}>
+							{eyebrow}
+						</Typography>
+					</m.div>
 
-				<m.div variants={varFade({ distance: 40 }).inUp}>
-					<Typography variant='h2' sx={{ mt: 2, mb: 5 }}>
-						{heading}
-					</Typography>
-				</m.div>
+					<m.div variants={varFade({ distance: 40 }).inUp}>
+						<Typography variant='h2' sx={{ mt: 2, mb: 5 }}>
+							{heading}
+						</Typography>
+					</m.div>
 
-				<m.div variants={varFade({ distance: 40 }).inUp}>
-					{ctas.map((cta) => (
-						<CTA {...cta} key={cta._key} />
-					))}
-				</m.div>
-			</StyledRoot>
-		</MotionViewport>
+					<m.div variants={varFade({ distance: 40 }).inUp}>
+						{ctas.map((cta) => (
+							<CTA {...cta} key={cta._key} />
+						))}
+					</m.div>
+				</StyledRoot>
+			</MotionViewport>
+		</LazyMotion>
 	)
 }

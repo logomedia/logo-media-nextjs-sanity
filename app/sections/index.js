@@ -37,4 +37,6 @@ export { default as Pricing2 } from "./Pricing2"
 export { default as ErrorsSection } from "./ErrorsSection"
 //
 export { default as Posts } from "./Posts"
+export { default as LatestPosts } from "./LatestPosts"
 export { default as Projects } from "./Projects"
+export { default as LatestProjects } from "./LatestProjects"

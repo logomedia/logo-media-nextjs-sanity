@@ -36,9 +36,11 @@ export default function FeaturedPost({ post }) {
 					>
 						<PostTimeBlock createdAt={fDate(date)} duration={length} />
 
-						<Link component={NextLink} href={`/news-and-trends/${slug}`} color='inherit' variant='h3' sx={{ cursor: "pointer" }}>
-							{title}
-						</Link>
+						<Typography component='h2'>
+							<Link component={NextLink} href={`/news-and-trends/${slug}`} color='inherit' variant='h3' sx={{ cursor: "pointer" }}>
+								{title}
+							</Link>
+						</Typography>
 
 						<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{excerpt}</Typography>
 
