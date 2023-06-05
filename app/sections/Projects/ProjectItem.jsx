@@ -23,8 +23,12 @@ export default function ProjectItem({ project }) {
 		height: "100%",
 		position: "absolute",
 	}))
+	const StyledContainer = styled("div")(({ theme }) => ({
+		boxShadow: `4px 5px 10px ${theme.palette.boxShadow}`,
+		backgroundColor: theme.palette.background.neutral,
+	}))
 	return (
-		<Stack sx={{ background: "#f9fafb", borderRadius: 1, boxShadow: "4px 5px 10px #8b8b8bba;", p: 1 }}>
+		<StyledContainer sx={{ borderRadius: 1, p: 1 }}>
 			<Box sx={{ borderRadius: 1, overflow: "hidden", position: "relative" }}>
 				<Image src={coverImage.asset.url} alt={name} ratio='1/1' />
 				<Box
@@ -80,7 +84,7 @@ export default function ProjectItem({ project }) {
 				<StyledOverlay />
 			</Box>
 			<Box sx={{ display: "flex", flexDirection: "column", p: 2 }}>
-				<Typography component='h3' variant='h4'>
+				<Typography component='h3' variant='h4' sx={{ color: "text.primary" }}>
 					{name}
 				</Typography>
 
@@ -98,7 +102,6 @@ export default function ProjectItem({ project }) {
 				<NextLink href={"/projects/" + slug} style={{ marginLeft: "auto" }}>
 					<Button
 						size='large'
-						endIcon={<Iconify icon={directionStraightRight} />}
 						sx={{
 							mt: 5,
 							color: "var(--purple)",
@@ -106,10 +109,10 @@ export default function ProjectItem({ project }) {
 							fontSize: { xs: "14px" },
 						}}
 					>
-						View Project{" "}
+						View Project <Iconify icon={directionStraightRight} />
 					</Button>
 				</NextLink>
 			</Box>
-		</Stack>
+		</StyledContainer>
 	)
 }

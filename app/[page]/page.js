@@ -1,4 +1,4 @@
-import { getAllPageSlugs, getPageBySlug } from "../../lib/sanity.client"
+import { getRecentPosts, getRecentProjects, getAllPageSlugs, getPageBySlug } from "../../lib/sanity.client"
 import RenderSections from "../components/RenderSections/RenderSections"
 
 import NotFound from "../not-found"
@@ -59,6 +59,8 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
+		const projects = await getRecentProjects()
+		const posts = await getRecentPosts()
 		const jsonLd = {
 			"@context": "https://schema.org",
 			"@type": "Organization",
@@ -92,7 +94,7 @@ export default async function Page({ params }) {
 		return (
 			<>
 				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-				{content && <RenderSections sections={content} />}
+				{content && <RenderSections sections={content} projects={projects} posts={posts} />}
 			</>
 		)
 	}

@@ -14,9 +14,7 @@ import Carousel, { CarouselArrows, CarouselDots } from "../../components/Carouse
 import PostItem from "../Posts/PostItem"
 import { getAllPosts } from "../../../lib/sanity.client"
 
-export default function LatestPosts({ heading }) {
-	const allPosts = use(getAllPosts())
-	const posts = allPosts.slice(0, 8)
+export default function LatestPosts({ heading, posts }) {
 	const theme = useTheme()
 
 	const isMdUp = useResponsive("up", "md")
@@ -76,15 +74,15 @@ export default function LatestPosts({ heading }) {
 				<CarouselArrows onNext={handleNext} onPrev={handlePrev} leftButtonProps={{ sx: { left: { xs: 0, md: -30 } } }} rightButtonProps={{ sx: { right: { xs: 0, md: -30 } } }}>
 					<Carousel ref={carouselRef} {...carouselSettings}>
 						{posts &&
-							posts.map((post) => (
+							posts.map((post, index) => (
 								<Box
-									key={post.id}
+									key={index}
 									sx={{
 										px: 2,
 										py: { xs: 8, md: 10 },
 									}}
 								>
-									<PostItem post={post} />
+									<PostItem key={post._id} post={post} />
 								</Box>
 							))}
 					</Carousel>

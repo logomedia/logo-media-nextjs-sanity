@@ -16,7 +16,7 @@ function resolveSections(section) {
 }
 
 function RenderSections(props) {
-	const { sections } = props
+	const { sections, posts, projects } = props
 
 	if (!sections) {
 		console.error("Missing section")
@@ -32,7 +32,7 @@ function RenderSections(props) {
 					if (!SectionComponent) {
 						return <div key={section._key}>Missing section {section._type}</div>
 					}
-					return <SectionComponent {...section} key={section._key} />
+					return <SectionComponent {...section} key={section._key} posts={posts} projects={projects} />
 				})}
 			</LazyMotion>
 		</Suspense>

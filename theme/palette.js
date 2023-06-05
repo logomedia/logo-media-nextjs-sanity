@@ -16,6 +16,10 @@ const GREY = {
 	800: "#212B36",
 	900: "#161C24",
 }
+const BOX_SHADOW = {
+	light: "#777777",
+	dark: "#0f1216",
+}
 
 const PRIMARY = {
 	lighter: "#673389",
@@ -108,6 +112,7 @@ const COMMON = {
 	orange: ORANGE,
 	pink: PINK,
 	yellow: YELLOW,
+	boxShadow: BOX_SHADOW.light,
 	divider: alpha(GREY[500], 0.24),
 	action: {
 		hover: alpha(GREY[500], 0.08),
@@ -131,6 +136,7 @@ const COMMONDARK = {
 	orange: ORANGE,
 	pink: PINK,
 	yellow: YELLOW,
+	boxShadow: BOX_SHADOW.dark,
 	divider: alpha(GREY[500], 0.24),
 	action: {
 		hover: alpha(GREY[500], 0.08),

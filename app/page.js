@@ -1,4 +1,4 @@
-import { getHomepage } from "../lib/sanity.client"
+import { getRecentPosts, getRecentProjects, getHomepage } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
 
 export async function generateMetadata() {
@@ -39,7 +39,8 @@ export async function generateMetadata() {
 
 export default async function Page() {
 	const home = await getHomepage()
-
+	const projects = await getRecentProjects()
+	const posts = await getRecentPosts()
 	const content = home?.content
 	const jsonLd = {
 		"@context": "https://schema.org",
@@ -76,7 +77,7 @@ export default async function Page() {
 	return (
 		<>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			{content && <RenderSections sections={content} />}
+			{content && <RenderSections sections={content} projects={projects} posts={posts} />}
 		</>
 	)
 }

@@ -11,7 +11,7 @@ import ProjectItem from "./ProjectItem"
 import { getAllProjects } from "../../../lib/sanity.client"
 
 const RootStyle = styled("div")(({ theme }) => ({
-	padding: theme.spacing(10, 0, 2, 0),
+	padding: theme.spacing(10, 0, 2, 2),
 	backgroundColor: theme.palette.background.neutral,
 	[theme.breakpoints.up("md")]: {
 		padding: theme.spacing(20, 0, 10, 0),
@@ -29,7 +29,7 @@ export default async function FeaturedProject(props) {
 						<ProjectItemLarge project={projects[0]} />
 					</Container>
 				</RootStyle>
-				<Container sx={{ py: 2 }}>
+				<Container sx={{ py: 2, mb: { xs: 1, md: 3 } }}>
 					<Typography variant='h2' component='h2' sx={{ mt: 2, mb: 2 }}>
 						Our Recent Projects
 					</Typography>
@@ -124,6 +124,9 @@ function ProjectItemLarge({ project }) {
 				</Box>
 
 				<Box>
+					<Typography component='h3' variant='h4'>
+						{name}
+					</Typography>
 					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
 
 					<NextLink href={"/projects/" + slug}>
