@@ -6,7 +6,7 @@ import { Stack, Avatar, Typography, Paper, Divider, Link } from "@mui/material"
 import { fDate } from "../../../utils/formatTime"
 // components
 import Image from "../../components/image/Image"
-import TextMaxLine from "../../components/text-max-line/TextMaxLine"
+import TextMaxLine from "../../components/text-max-line"
 
 // ----------------------------------------------------------------------
 

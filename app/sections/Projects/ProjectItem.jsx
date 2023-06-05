@@ -6,6 +6,8 @@ import Iconify from "../../components/iconify"
 import Image from "../../components/image"
 import NextImage from "next/image"
 import NextLink from "next/link"
+import TextMaxLine from "../../components/text-max-line"
+
 export default function ProjectItem({ project }) {
 	const { brief, coverImage, logo, name, slug, tags } = project
 	const StyledOverlay = styled("div")(({ theme }) => ({
@@ -82,7 +84,7 @@ export default function ProjectItem({ project }) {
 					{name}
 				</Typography>
 
-				<Typography
+				<TextMaxLine
 					sx={{
 						color: "text.secondary",
 						flexGrow: 1,
@@ -91,7 +93,7 @@ export default function ProjectItem({ project }) {
 					}}
 				>
 					{brief}
-				</Typography>
+				</TextMaxLine>
 
 				<NextLink href={"/projects/" + slug} style={{ marginLeft: "auto" }}>
 					<Button
