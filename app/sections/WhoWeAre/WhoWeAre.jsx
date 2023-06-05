@@ -45,7 +45,7 @@ export default function WhoWeAre(props) {
 						{heading}
 					</Typography>
 
-					<StyledPortableText value={description} variant='' sx={{ color: "text.secondary", pb: 3 }} />
+					<StyledPortableText value={description} variant='' sx={{ color: "text.secondary", pb: 3, textAlign: { xs: "left", md: "right" } }} />
 
 					{ctas.map((cta) => (
 						<Cta {...cta} key={cta._key} />
