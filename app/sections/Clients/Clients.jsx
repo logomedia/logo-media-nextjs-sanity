@@ -9,10 +9,8 @@ import Marquee from "react-fast-marquee"
 // ----------------------------------------------------------------------
 
 export default function OurClientsCareer({ heading, logos }) {
-	const theme = useTheme()
-
 	return (
-		<Container
+		<Box
 			sx={{
 				pt: { xs: 10, md: 15 },
 				pb: { xs: 5, md: 10 },
@@ -25,6 +23,7 @@ export default function OurClientsCareer({ heading, logos }) {
 					maxWidth: 680,
 					textAlign: "center",
 					mb: { xs: 8, md: 10 },
+					px: { xs: 1, md: 0 },
 				}}
 			>
 				<Typography variant='h2'>{heading}</Typography>
@@ -46,7 +45,7 @@ export default function OurClientsCareer({ heading, logos }) {
 					</Box>
 				))}
 			</Marquee>
-		</Container>
+		</Box>
 	)
 }
 
