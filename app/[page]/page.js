@@ -59,6 +59,8 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
+		const ogImage = pageData.ogImage ? pageData.ogImage.asset : ""
+
 		const projects = await getRecentProjects()
 		const posts = await getRecentPosts()
 		const jsonLd = {
@@ -77,7 +79,7 @@ export default async function Page({ params }) {
 				addressCountry: "US",
 			},
 			keywords: pageData.keywords,
-			images: [pageData.ogImage.asset],
+			images: [ogImage],
 			priceRange: "$1000+",
 			openingHours: [
 				{
