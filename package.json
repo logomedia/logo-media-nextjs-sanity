@@ -40,6 +40,7 @@
     "react-slick": "^0.29.0",
     "sanity": "^3.11.5",
     "sanity-plugin-media": "^2.0.5",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
     "simplebar-react": "^3.2.4",
     "slick-carousel": "^1.8.1",
     "yet-another-react-lightbox": "^3.9.0"

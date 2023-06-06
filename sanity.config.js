@@ -8,6 +8,7 @@ import { deskTool } from "sanity/desk"
 import { media } from "sanity-plugin-media"
 import { apiVersion, dataset, projectId } from "./sanity/env"
 import { schema } from "./sanity/schema"
+import { vercelDeployTool } from "sanity-plugin-vercel-deploy"
 
 const title = "Logo Media"
 
@@ -53,5 +54,6 @@ export default defineConfig({
 		// https://www.sanity.io/docs/the-vision-plugin
 		visionTool({ defaultApiVersion: apiVersion }),
 		media(),
+		vercelDeployTool(),
 	],
 })
