@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 		twitter: {
 			card: "summary_large_image",
 			title: `${project.title} | Projects| Logo Media`,
-			description: post.brief,
+			description: project.brief,
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
 			creatorId: "1485472568299737088",
@@ -57,7 +57,7 @@ export default async function Page({ params }) {
 		"@context": "https://schema.org",
 		"@type": "Project",
 		name: `${project.title} | Projects| Logo Media`,
-		description: pageData.schemaDescription,
+		description: project.brief,
 		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
 		url: "https://logo.media",
 		telephone: "+13053172807",
@@ -69,7 +69,7 @@ export default async function Page({ params }) {
 			postalCode: "33131",
 			addressCountry: "US",
 		},
-		keywords: pageData.keywords,
+		keywords: project.tags,
 		images: [ogImage],
 		priceRange: "$1000+",
 		rating: {

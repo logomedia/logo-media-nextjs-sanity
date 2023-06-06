@@ -53,12 +53,13 @@ export default async function Page({ params }) {
 	const { page } = params
 	const post = await getPostBySlug(page)
 	const posts = await getAllPosts()
+
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
 		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
 		name: post.title,
-		description: pageData.schemaDescription,
+		description: post.excerpt,
 		articleBody: post.content,
 		articleSection: post.tags,
 		creator: post.author,
