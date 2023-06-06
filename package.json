@@ -33,6 +33,7 @@
     "react-calendly": "^4.1.1",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
+    "react-fast-marquee": "^1.6.0",
     "react-inlinesvg": "^3.0.2",
     "react-lazy-load-image-component": "^1.5.6",
     "react-player": "^2.12.0",

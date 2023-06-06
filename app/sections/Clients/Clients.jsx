@@ -3,35 +3,13 @@ import PropTypes from "prop-types"
 import { useTheme } from "@mui/material/styles"
 import { Typography, Stack, Container, Paper, Box } from "@mui/material"
 // components
-import Image from "../../components/image"
-import Carousel from "../../components/Carousel"
-import urlFor from "../../../utils/imageUrl"
+import NextImage from "next/image"
+import Marquee from "react-fast-marquee"
 
 // ----------------------------------------------------------------------
 
 export default function OurClientsCareer({ heading, logos }) {
 	const theme = useTheme()
-
-	const carouselSettings = {
-		arrows: false,
-		slidesToShow: 6,
-		slidesToScroll: 1,
-		rtl: Boolean(theme.direction === "rtl"),
-		autoplay: true,
-		speed: 5000,
-		autoplaySpeed: 5000,
-		cssEase: "linear",
-		responsive: [
-			{
-				breakpoint: theme.breakpoints.values.md,
-				settings: { slidesToShow: 4 },
-			},
-			{
-				breakpoint: theme.breakpoints.values.sm,
-				settings: { slidesToShow: 2 },
-			},
-		],
-	}
 
 	return (
 		<Container
@@ -51,32 +29,23 @@ export default function OurClientsCareer({ heading, logos }) {
 			>
 				<Typography variant='h2'>{heading}</Typography>
 			</Stack>
-
-			<Carousel {...carouselSettings}>
+			<Marquee gradientWidth='0' gradient='false' pauseOnHover='true' speed='50'>
 				{logos.map((brand) => (
-					<Box key={brand._key} sx={{ px: 1.5 }}>
+					<Box key={brand._key} sx={{ mx: 2 }}>
 						<Paper
 							variant='outlined'
 							sx={{
-								py: 3,
+								p: 2,
 								borderRadius: 2,
 								bgcolor: "background.default",
+								width: "100%",
 							}}
 						>
-							<Image
-								alt={brand.clientName}
-								src={urlFor(brand.logo.asset)}
-								sx={{
-									maxHeight: 32,
-									height: "100%",
-									mx: "auto",
-									px: 2,
-								}}
-							/>
+							<NextImage style={{ height: "35px", width: "auto" }} alt={brand.clientName} width={brand.logo.asset.metadata.dimensions.width} height={brand.logo.asset.metadata.dimensions.height} src={brand.logo.asset.url} />
 						</Paper>
 					</Box>
 				))}
-			</Carousel>
+			</Marquee>
 		</Container>
 	)
 }
