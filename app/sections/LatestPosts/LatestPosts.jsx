@@ -40,6 +40,7 @@ export default function LatestPosts({ heading, posts }) {
 			</Stack>
 
 			<Box
+				key='1'
 				sx={{
 					display: "grid",
 					gap: { xs: 3, md: 4 },

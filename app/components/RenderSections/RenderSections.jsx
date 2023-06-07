@@ -24,18 +24,16 @@ function RenderSections(props) {
 	}
 
 	return (
-		<Suspense>
-			<LazyMotion>
-				{sections.map((section) => {
-					const SectionComponent = resolveSections(section)
+		<>
+			{sections.map((section) => {
+				const SectionComponent = resolveSections(section)
 
-					if (!SectionComponent) {
-						return <div key={section._key}>Missing section {section._type}</div>
-					}
-					return <SectionComponent {...section} key={section._key} posts={posts} projects={projects} />
-				})}
-			</LazyMotion>
-		</Suspense>
+				if (!SectionComponent) {
+					return <div key={section._key}>Missing section {section._type}</div>
+				}
+				return <SectionComponent {...section} key={section._key} posts={posts} projects={projects} />
+			})}
+		</>
 	)
 }
 
