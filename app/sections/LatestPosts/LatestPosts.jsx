@@ -9,44 +9,13 @@ import { Box, Container, Typography, Stack, Button } from "@mui/material"
 import useResponsive from "../../../hooks/useResponsive"
 // components
 import Iconify from "../../components/iconify"
-import Carousel, { CarouselArrows, CarouselDots } from "../../components/Carousel"
+import Masonry from "@mui/lab/Masonry"
 //
-import PostItem from "../Posts/PostItem"
-import { getAllPosts } from "../../../lib/sanity.client"
+import RecentPostItem from "./RecentPostItem"
+import PostItemMobile from "./PostItemMobile"
 
 export default function LatestPosts({ heading, posts }) {
-	const theme = useTheme()
-
 	const isMdUp = useResponsive("up", "md")
-
-	const carouselRef = useRef(null)
-
-	const carouselSettings = {
-		dots: true,
-		arrows: false,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		rtl: Boolean(theme.direction === "rtl"),
-		...CarouselDots(),
-		responsive: [
-			{
-				breakpoint: theme.breakpoints.values.md,
-				settings: { slidesToShow: 2 },
-			},
-			{
-				breakpoint: theme.breakpoints.values.sm,
-				settings: { slidesToShow: 1 },
-			},
-		],
-	}
-
-	const handlePrev = () => {
-		carouselRef.current?.slickPrev()
-	}
-
-	const handleNext = () => {
-		carouselRef.current?.slickNext()
-	}
 
 	const viewAllBtn = (
 		<Button component={NextLink} href='/news-and-trends' color='inherit' endIcon={<Iconify icon='carbon:chevron-right' />}>
@@ -62,7 +31,7 @@ export default function LatestPosts({ heading, posts }) {
 				px: { xs: 1, md: 4 },
 			}}
 		>
-			<Stack direction='row' alignItems='center' justifyContent={{ xs: "center", md: "space-between" }}>
+			<Stack direction='row' alignItems='center' justifyContent={{ xs: "center", md: "space-between" }} sx={{ mb: { xs: 3, md: 4 } }}>
 				<Typography component='h3' variant='h2'>
 					{heading}
 				</Typography>
@@ -70,23 +39,33 @@ export default function LatestPosts({ heading, posts }) {
 				{isMdUp && viewAllBtn}
 			</Stack>
 
-			<Box sx={{ position: "relative" }}>
-				<CarouselArrows onNext={handleNext} onPrev={handlePrev} leftButtonProps={{ sx: { left: { xs: 0, md: -30 } } }} rightButtonProps={{ sx: { right: { xs: 0, md: -30 } } }}>
-					<Carousel ref={carouselRef} {...carouselSettings}>
-						{posts &&
-							posts.map((post, index) => (
-								<Box
-									key={index}
-									sx={{
-										px: 2,
-										py: { xs: 8, md: 10 },
-									}}
-								>
-									<PostItem key={post._id} post={post} />
-								</Box>
+			<Box
+				sx={{
+					display: "grid",
+					gap: { xs: 3, md: 4 },
+					gridTemplateColumns: {
+						xs: "repeat(1, 1fr)",
+						sm: "repeat(2, 1fr)",
+					},
+				}}
+			>
+				{isMdUp ? (
+					<>
+						<RecentPostItem key={posts[0]._id} post={posts[0]} largePost />
+
+						<Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
+							{posts.slice(1, 7).map((post, index) => (
+								<RecentPostItem key={post._id} post={post} order={index % 2} />
 							))}
-					</Carousel>
-				</CarouselArrows>
+						</Masonry>
+					</>
+				) : (
+					<>
+						{posts.slice(0, 5).map((post) => (
+							<PostItemMobile key={post._id} post={post} />
+						))}
+					</>
+				)}
 			</Box>
 
 			{!isMdUp && (

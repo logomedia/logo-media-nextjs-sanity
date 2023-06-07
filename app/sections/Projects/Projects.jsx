@@ -130,8 +130,8 @@ function ProjectItemLarge({ project }) {
 					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
 
 					<NextLink href={"/projects/" + slug}>
-						<Button size='large' endIcon={<Iconify icon={directionStraightRight} />} sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
-							View Project{" "}
+						<Button size='large' sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
+							View Project →
 						</Button>
 					</NextLink>
 				</Box>

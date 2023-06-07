@@ -1,5 +1,13 @@
-import { getRecentPosts, getRecentProjects, getHomepage } from "../lib/sanity.client"
+import { getRecentPosts, getRecentProjects, getHomepage, getSettings } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
+import { Header } from "./sections/Header"
+import { Footer } from "./sections/Footer"
+import ContextWrapper from "./components/ContextWrapper/ContextWrapper"
+import styles from "../app/globals.css"
+
+// slick-carousel
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 export async function generateMetadata() {
 	const home = await getHomepage()
@@ -39,6 +47,7 @@ export async function generateMetadata() {
 
 export default async function Page() {
 	const home = await getHomepage()
+	const settings = await getSettings()
 	const projects = await getRecentProjects()
 	const posts = await getRecentPosts()
 	const content = home?.content
@@ -76,8 +85,12 @@ export default async function Page() {
 	}
 	return (
 		<>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			{content && <RenderSections sections={content} projects={projects} posts={posts} />}
+			<ContextWrapper>
+				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+				<Header settings={settings} />
+				{content && <RenderSections sections={content} projects={projects} posts={posts} />}
+				<Footer settings={settings} />
+			</ContextWrapper>
 		</>
 	)
 }

@@ -109,7 +109,7 @@ export default function ProjectItem({ project }) {
 							fontSize: { xs: "14px" },
 						}}
 					>
-						View Project <Iconify icon={directionStraightRight} />
+						View Project →
 					</Button>
 				</NextLink>
 			</Box>

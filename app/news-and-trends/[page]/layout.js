@@ -2,7 +2,7 @@ import { getSettings } from "../../../lib/sanity.client"
 import { Header } from "../../sections/Header"
 import { Footer } from "../../sections/Footer"
 import ContextWrapper from "../../components/ContextWrapper"
-import styles from "./globals.css"
+import styles from "../../globals.css"
 
 // slick-carousel
 import "slick-carousel/slick/slick.css"
