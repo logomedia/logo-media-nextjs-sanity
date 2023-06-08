@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
 
 	const ogImage = pageData.ogImage ? pageData.ogImage.asset.url : ""
 	return {
-		title: `${pageData.metaTitle} | Logo Media`,
+		title: pageData.metaTitle,
 		description: pageData.description,
 		alternates: {
 			canonical: `https://logo.media/${pageData.slug}`,

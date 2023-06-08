@@ -30,7 +30,7 @@ export default function ProjectItem({ project }) {
 	return (
 		<StyledContainer sx={{ borderRadius: 1, p: 1 }}>
 			<Box sx={{ borderRadius: 1, overflow: "hidden", position: "relative" }}>
-				<Image src={coverImage.asset.url} alt={name} ratio='1/1' />
+				<Image src={coverImage.asset.url} alt={name} ratio='4/3' />
 				<Box
 					sx={{
 						typography: "body2",

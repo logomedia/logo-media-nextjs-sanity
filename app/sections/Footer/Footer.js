@@ -209,7 +209,7 @@ export default function Footer({ settings }) {
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position='end'>
-											<Button variant='contained' color='inherit' size='large'>
+											<Button variant='contained' color='secondary' size='large'>
 												Subscribe
 											</Button>
 										</InputAdornment>
