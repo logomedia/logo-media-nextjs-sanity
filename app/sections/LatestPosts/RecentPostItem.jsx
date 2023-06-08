@@ -69,7 +69,7 @@ export default function PostItem({ post, order, largePost }) {
 					}}
 				/>
 
-				<Link component={NextLink} href={`/news-and-trends/${post.slug}`} color='inherit'>
+				<Link component={NextLink} href={`/news-and-trends/${post.slug}`} color='inherit' sx={{ cursor: "pointer" }}>
 					<TextMaxLine variant={largePost ? "h3" : "h6"} component={largePost ? "h3" : "h4"}>
 						{title}
 					</TextMaxLine>
