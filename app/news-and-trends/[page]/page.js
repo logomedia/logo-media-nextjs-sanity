@@ -6,8 +6,8 @@ import {
 } from '../../../lib/sanity.client';
 import PostsPage from '../../sections/PostsPage';
 import PreviewPostsPage from '../../sections/PostsPage/PreviewPostsPage';
-import { postBySlugQuery } from '../../../lib/sanity.queries';
 import PreviewSuspense from '../../components/PreviewSuspense';
+import LoadingPreview from '../../components/LoadingPreview';
 
 export async function generateMetadata({ params }) {
   const { page } = params;
@@ -62,9 +62,6 @@ export default async function Page({ params }) {
   const post = await getPostBySlug(page);
   const posts = await getAllPosts();
 
-  const query = postBySlugQuery;
-  const queryParams = { slug: page };
-
   const { isEnabled } = draftMode();
 
   const jsonLd = {
@@ -83,19 +80,13 @@ export default async function Page({ params }) {
     image: post.coverImage,
     url: `https://logo.media/news-and-trends/${post.slug}`,
   };
+
   if (post === undefined) {
     return <NotFound />;
   } else if (isEnabled) {
     return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewPostsPage
-          query={query}
-          queryParams={queryParams}
-          slug={page}
-          morePosts={posts}
-        />
-
-        <div>Preview Suspense</div>
+      <PreviewSuspense fallback={<LoadingPreview />}>
+        <PreviewPostsPage slug={page} morePosts={posts} />
       </PreviewSuspense>
     );
   } else {

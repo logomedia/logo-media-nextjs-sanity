@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import capitalizeString from '../../../utils/capitalizeString';
 import * as SectionComponents from '../../sections';
 import LazyMotion from '../LazyMotion';
-import { usePreview } from '../../../lib/sanity.preview';
 
 function resolveSections(section) {
   const Section = SectionComponents[capitalizeString(section._type)];
@@ -17,10 +16,7 @@ function resolveSections(section) {
 }
 
 function RenderSections(props) {
-  const { sections, posts, projects, preview, previewProjectsQuery } = props;
-
-  // const previewProjects = usePreview(null, previewProjectsQuery);
-  console.log('previewProjects');
+  const { sections, posts, projects, preview } = props;
 
   if (!sections) {
     console.error('Missing section');

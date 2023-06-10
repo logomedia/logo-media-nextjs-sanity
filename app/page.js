@@ -1,3 +1,4 @@
+import { draftMode } from 'next/headers';
 import {
   getRecentPosts,
   getRecentProjects,
@@ -8,15 +9,15 @@ import RenderSections from '../app/components/RenderSections/RenderSections';
 import { Header } from './sections/Header';
 import { Footer } from './sections/Footer';
 import ContextWrapper from './components/ContextWrapper/ContextWrapper';
+import PreviewRenderSections from './components/RenderSections/PreviewRenderSections';
+import PreviewSuspense from './components/PreviewSuspense';
+import LoadingPreview from './components/LoadingPreview';
+
 import styles from '../app/globals.css';
 
 // slick-carousel
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-import { draftMode } from 'next/headers';
-import PreviewRenderSections from './components/RenderSections/PreviewRenderSections';
-import PreviewSuspense from './components/PreviewSuspense';
 
 export async function generateMetadata() {
   const home = await getHomepage();
@@ -97,10 +98,6 @@ export default async function Page() {
   };
   return (
     <>
-      <div style={{ marginTop: 140 }}>
-        {isEnabled ? <p>Preview Mode</p> : <p>Not Preview Mode</p>}
-      </div>
-
       <ContextWrapper>
         <script
           type="application/ld+json"
@@ -115,7 +112,7 @@ export default async function Page() {
             preview={isEnabled}
           />
         ) : (
-          <PreviewSuspense fallback="Loading...">
+          <PreviewSuspense fallback={<LoadingPreview />}>
             <PreviewRenderSections home preview={isEnabled} />
           </PreviewSuspense>
         )}

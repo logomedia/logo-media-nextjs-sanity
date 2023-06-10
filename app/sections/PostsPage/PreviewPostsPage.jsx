@@ -1,18 +1,12 @@
 'use client';
 
 import { usePreview } from '../../../lib/sanity.preview';
+import { postBySlugQuery } from '../../../lib/sanity.queries';
 import PostsPage from './PostsPage';
 
-export default function PreviewPostsPage({ query, queryParams, morePosts }) {
-  const post = usePreview(null, query, queryParams);
+export default function PreviewPostsPage({ slug, morePosts }) {
+  const query = postBySlugQuery;
+  const post = usePreview(null, query, { slug });
 
-  console.log(post);
-  console.log('first');
-
-  return (
-    <>
-      <div style={{ padding: '80px 10px' }}>Preview Post</div>
-      <PostsPage post={post} morePosts={morePosts} />
-    </>
-  );
+  return <PostsPage post={post} morePosts={morePosts} />;
 }

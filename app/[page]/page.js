@@ -11,6 +11,7 @@ import NotFound from '../not-found';
 
 import PreviewSuspense from '../components/PreviewSuspense';
 import PreviewRenderSections from '../components/RenderSections/PreviewRenderSections';
+import LoadingPreview from '../components/LoadingPreview';
 
 export async function generateMetadata({ params }) {
   const { page } = params;
@@ -69,8 +70,6 @@ export default async function Page({ params }) {
 
   const { isEnabled } = draftMode();
 
-  console.log('Preview []' + isEnabled);
-
   if (content === undefined) {
     return <NotFound />;
   } else {
@@ -124,7 +123,7 @@ export default async function Page({ params }) {
             preview={isEnabled}
           />
         ) : (
-          <PreviewSuspense fallback="Loading...">
+          <PreviewSuspense fallback={<LoadingPreview />}>
             <PreviewRenderSections page={page} preview={isEnabled} />
           </PreviewSuspense>
         )}

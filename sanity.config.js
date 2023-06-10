@@ -21,8 +21,6 @@ const defaultDocumentNode = (S, { schemaType }) => {
       ? 'news-and-trends/'
       : '';
 
-  console.log('schemaType: ' + schemaType);
-
   return S.document().views([
     S.view.form(),
 

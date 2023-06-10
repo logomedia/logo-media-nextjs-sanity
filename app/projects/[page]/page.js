@@ -5,8 +5,8 @@ import {
 } from '../../../lib/sanity.client';
 import ProjectsPage from '../../sections/ProjectsPage';
 import PreviewProjectsPage from '../../sections/ProjectsPage/PreviewProjectsPage';
-import { projectBySlugQuery } from '../../../lib/sanity.queries';
 import PreviewSuspense from '../../components/PreviewSuspense';
+import LoadingPreview from '../../components/LoadingPreview';
 
 export async function generateMetadata({ params }) {
   const { page } = params;
@@ -61,9 +61,6 @@ export default async function Page({ params }) {
   const project = await getProjectBySlug(page);
   const ogImage = project.coverImage.asset.url;
 
-  const query = projectBySlugQuery;
-  const queryParams = { slug: page };
-
   const { isEnabled } = draftMode();
 
   const jsonLd = {
@@ -90,12 +87,13 @@ export default async function Page({ params }) {
       ratingCount: '152',
     },
   };
+
   if (project === undefined) {
     return <NotFound />;
   } else if (isEnabled) {
     return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewProjectsPage query={query} queryParams={queryParams} />
+      <PreviewSuspense fallback={<LoadingPreview />}>
+        <PreviewProjectsPage slug={page} />
       </PreviewSuspense>
     );
   } else {
