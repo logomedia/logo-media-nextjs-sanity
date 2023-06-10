@@ -1,28 +1,40 @@
-// @mui
-import { Container, Unstable_Grid2 as Grid } from "@mui/material"
-//
-import PostsList from "./PostsList"
-import FeaturedPost from "./FeaturedPost"
+// import { draftMode } from 'next/headers';
+
+import { usePreview } from '../../../lib/sanity.preview';
+
+import { getAllPosts } from '../../../lib/sanity.client';
+import { postsQuery } from '../../../lib/sanity.queries';
+
+import PreviewSuspense from '../../components/PreviewSuspense';
+import AllPosts from './AllPosts';
+import PreviewAllPosts from './PreviewAllPosts';
 
 // ----------------------------------------------------------------------
 
-export default function Posts({ posts }) {
-	return (
-		<>
-			<FeaturedPost post={posts[0]} />
+export default async function Posts({ preview }) {
+  const posts = await getAllPosts();
+  const query = postsQuery;
 
-			<Container
-				sx={{
-					pt: 10,
-					pb: 10,
-				}}
-			>
-				<Grid container spacing={{ md: 8 }}>
-					<Grid xs={12}>
-						<PostsList posts={posts} />
-					</Grid>
-				</Grid>
-			</Container>
-		</>
-	)
+  // const previewPosts = usePreview(null, query);
+
+  // console.log(previewPosts);
+
+  // const { isEnabled } = draftMode();
+
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewAllPosts query={query} />
+      </PreviewSuspense>
+    );
+  }
+
+  return (
+    <>
+      <AllPosts posts={posts} />
+      {/* <PreviewSuspense fallback={<p>Loading...</p>}>
+        <PreviewAllPosts query={query} />
+      </PreviewSuspense> */}
+    </>
+  );
 }
