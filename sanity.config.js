@@ -13,14 +13,26 @@ import Iframe from 'sanity-plugin-iframe-pane';
 
 const title = 'Logo Media';
 
-const defaultDocumentNode = (S) => {
+const defaultDocumentNode = (S, { schemaType }) => {
+  const subpath =
+    schemaType === 'project'
+      ? 'projects/'
+      : schemaType === 'post'
+      ? 'news-and-trends/'
+      : '';
+
+  console.log('schemaType: ' + schemaType);
+
   return S.document().views([
     S.view.form(),
 
     S.view
       .component(Iframe)
       .options({
-        url: 'http://localhost:3000/api/preview',
+        url: (doc) =>
+          doc?.slug?.current === '/'
+            ? 'http://localhost:3000/api/preview'
+            : `http://localhost:3000/${subpath}${doc?.slug?.current}`,
       })
       .title('Preview'),
   ]);
@@ -62,7 +74,7 @@ export default defineConfig({
                   ])
               ),
             S.listItem()
-              .title('Projects & Clients')
+              .title('Projects & clients')
               .child(
                 S.list()
                   .title('Content')
@@ -74,7 +86,7 @@ export default defineConfig({
             S.documentTypeListItem('partner'),
           ]),
 
-      defaultDocumentNode: defaultDocumentNode,
+      defaultDocumentNode,
     }),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
