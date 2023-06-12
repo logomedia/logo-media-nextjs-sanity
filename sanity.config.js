@@ -46,7 +46,7 @@ export default defineConfig({
 							.child(
 								S.list()
 									.title("Settings")
-									.items([S.documentListItem().id("settings").schemaType("settings"), S.documentTypeListItem("menus"), S.documentTypeListItem("action")])
+									.items([S.documentListItem().id("settings").schemaType("settings")])
 							),
 						S.divider(),
 						S.documentTypeListItem("page"),
