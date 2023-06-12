@@ -12,7 +12,7 @@ import { vercelDeployTool } from "sanity-plugin-vercel-deploy"
 import Iframe from "sanity-plugin-iframe-pane"
 
 const title = "Logo Media"
-const baseURL = window.location.host
+const baseURL = window.location.origin
 
 const defaultDocumentNode = (S, { schemaType }) => {
 	const subpath = schemaType === "project" ? "projects/" : schemaType === "post" ? "news-and-trends/" : ""
@@ -23,7 +23,7 @@ const defaultDocumentNode = (S, { schemaType }) => {
 		S.view
 			.component(Iframe)
 			.options({
-				url: (doc) => (doc?.slug?.current === "/" ? `https://${baseURL}` : `https://${baseURL}/${subpath}${doc?.slug?.current}`),
+				url: (doc) => (doc?.slug?.current === "/" ? `https://${baseURL}/api/preview` : `https://${baseURL}/${subpath}${doc?.slug?.current}`),
 			})
 			.title("Preview"),
 	])

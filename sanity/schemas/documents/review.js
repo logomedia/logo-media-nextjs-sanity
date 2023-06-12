@@ -14,50 +14,47 @@ import { defineField, defineType } from "sanity"
  */
 
 export default defineType({
-	name: "partner",
-	title: "Partners",
+	name: "review",
+	title: "Reviews",
 	icon: EarthGlobeIcon,
 	type: "document",
 	fields: [
 		defineField({
 			name: "name",
-			title: "Partner Name",
+			title: "Client Name",
 			type: "string",
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
-			name: "description",
-			title: "Partner Description",
-			type: "text",
-		}),
-		defineField({
-			name: "website",
-			title: "Website",
-			type: "url",
+			name: "title",
+			title: "Client Title",
+			type: "string",
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
-			name: "partnerImage",
-			title: "Partner Logo",
-			type: "image",
+			name: "company",
+			title: "Client Company",
+			type: "string",
+			validation: (rule) => rule.required(),
 		}),
 		defineField({
-			name: "tags",
-			title: "Partner Type",
-			type: "array",
-			of: [{ type: "string" }],
-			options: {
-				layout: "tags",
-			},
+			name: "rating",
+			title: "Client Rating",
+			type: "integer",
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
+			name: "description",
+			title: "Review Description",
+			type: "text",
 		}),
 	],
 	preview: {
 		select: {
-			title: "title",
-			media: "partnerImage",
+			title: "name",
 		},
-		prepare({ title, media }) {
-			return { title, media }
+		prepare({ title }) {
+			return { title }
 		},
 	},
 })
