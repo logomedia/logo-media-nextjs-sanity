@@ -1,4 +1,4 @@
-import { EarthGlobeIcon } from "@sanity/icons"
+import { StarIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 /**
@@ -16,7 +16,7 @@ import { defineField, defineType } from "sanity"
 export default defineType({
 	name: "review",
 	title: "Reviews",
-	icon: EarthGlobeIcon,
+	icon: StarIcon,
 	type: "document",
 	fields: [
 		defineField({
@@ -40,7 +40,7 @@ export default defineType({
 		defineField({
 			name: "rating",
 			title: "Client Rating",
-			type: "integer",
+			type: "number",
 			validation: (rule) => rule.required(),
 		}),
 		defineField({

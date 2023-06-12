@@ -1,4 +1,4 @@
-import { EarthGlobeIcon } from "@sanity/icons"
+import { UsersIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 /**
@@ -16,7 +16,7 @@ import { defineField, defineType } from "sanity"
 export default defineType({
 	name: "partner",
 	title: "Partners",
-	icon: EarthGlobeIcon,
+	icon: UsersIcon,
 	type: "document",
 	fields: [
 		defineField({

@@ -1,6 +1,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.jsx` route
  */
+import { CogIcon, BlockContentIcon, CodeBlockIcon } from "@sanity/icons"
 
 import { visionTool } from "@sanity/vision"
 import { defineConfig } from "sanity"
@@ -28,13 +29,24 @@ const defaultDocumentNode = (S, { schemaType }) => {
 			.title("Preview"),
 	])
 }
-
+function MyLogo(props) {
+	console.log(props.renderDefault)
+	// LogoProps includes the title from project config by default
+	const { renderDefault, title } = props
+	// Overwrite the value of `title` after spreading the props object
+	return renderDefault({ ...props, title: <img src='https://cdn.sanity.io/images/kgp6clwy/production/da21f1973a1e01a714423f2ac5328ae497ad4475-78x19.svg' style={{ height: "24px" }} /> })
+}
 export default defineConfig({
 	basePath: "/admin",
 	projectId,
 	dataset,
 	title,
 	schema,
+	studio: {
+		components: {
+			logo: MyLogo,
+		},
+	},
 	plugins: [
 		deskTool({
 			structure: (S) =>
@@ -42,6 +54,7 @@ export default defineConfig({
 					.title("Content")
 					.items([
 						S.listItem()
+							.icon(CogIcon)
 							.title("Site Settings & Navigation")
 							.child(
 								S.list()
@@ -51,6 +64,7 @@ export default defineConfig({
 						S.divider(),
 						S.documentTypeListItem("page"),
 						S.listItem()
+							.icon(BlockContentIcon)
 							.title("Blog Content")
 							.child(
 								S.list()
@@ -58,6 +72,7 @@ export default defineConfig({
 									.items([S.documentTypeListItem("author"), S.documentTypeListItem("post")])
 							),
 						S.listItem()
+							.icon(CodeBlockIcon)
 							.title("Projects & clients")
 							.child(
 								S.list()
@@ -65,6 +80,7 @@ export default defineConfig({
 									.items([S.documentTypeListItem("project"), S.documentTypeListItem("client")])
 							),
 						S.documentTypeListItem("partner"),
+						S.documentTypeListItem("review"),
 					]),
 
 			defaultDocumentNode,
