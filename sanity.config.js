@@ -23,7 +23,7 @@ const defaultDocumentNode = (S, { schemaType }) => {
 		S.view
 			.component(Iframe)
 			.options({
-				url: (doc) => (doc?.slug?.current === "/" ? `${baseURL}` : `${baseURL}/${subpath}${doc?.slug?.current}`),
+				url: (doc) => (doc?.slug?.current === "/" ? `https://${baseURL}` : `https://${baseURL}/${subpath}${doc?.slug?.current}`),
 			})
 			.title("Preview"),
 	])
