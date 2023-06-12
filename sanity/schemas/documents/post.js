@@ -18,7 +18,7 @@ import authorType from "./author"
 
 export default defineType({
 	name: "post",
-	title: "Post",
+	title: "Posts",
 	icon: DocumentIcon,
 	type: "document",
 	fieldsets: [
@@ -105,12 +105,6 @@ export default defineType({
 				layout: "tags",
 			},
 			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: "schemaDescription",
-			title: "Schema Description",
-			type: "text",
-			fieldset: "metadata",
 		}),
 		defineField({
 			name: "description",
