@@ -1,5 +1,14 @@
+import { draftMode } from "next/headers"
 import { getRecentPosts, getRecentProjects, getHomepage } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
+
+import PreviewRenderSections from "./components/RenderSections/PreviewRenderSections"
+import PreviewSuspense from "./components/PreviewSuspense"
+import LoadingPreview from "./components/LoadingPreview"
+
+// slick-carousel
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 export async function generateMetadata() {
 	const home = await getHomepage()
@@ -42,6 +51,9 @@ export default async function Page() {
 	const projects = await getRecentProjects()
 	const posts = await getRecentPosts()
 	const content = home?.content
+
+	const { isEnabled } = draftMode()
+
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Service",
@@ -77,7 +89,14 @@ export default async function Page() {
 	return (
 		<>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			{content && <RenderSections sections={content} projects={projects} posts={posts} />}
+
+			{content && !isEnabled ? (
+				<RenderSections sections={content} projects={projects} posts={posts} preview={isEnabled} />
+			) : (
+				<PreviewSuspense fallback={<LoadingPreview />}>
+					<PreviewRenderSections home preview={isEnabled} />
+				</PreviewSuspense>
+			)}
 		</>
 	)
 }

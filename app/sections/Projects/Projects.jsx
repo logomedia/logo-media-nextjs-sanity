@@ -1,14 +1,9 @@
-import directionStraightRight from "@iconify/icons-carbon/direction-straight-right"
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material"
 import { styled } from "@mui/material/styles"
-import { bgGradient } from "../../../utils/cssStyles"
-import Iconify from "../../components/iconify"
 import Image from "../../components/image"
 import NextImage from "next/image"
 import NextLink from "next/link"
 import ProjectItem from "./ProjectItem"
-
-import { getAllProjects } from "../../../lib/sanity.client"
 
 const RootStyle = styled("div")(({ theme }) => ({
 	padding: theme.spacing(10, 0, 2, 2),
@@ -18,9 +13,7 @@ const RootStyle = styled("div")(({ theme }) => ({
 	},
 }))
 
-export default async function FeaturedProject(props) {
-	const projects = await getAllProjects()
-
+export default function FeaturedProject({ projects }) {
 	if (projects) {
 		return (
 			<>
@@ -130,8 +123,8 @@ function ProjectItemLarge({ project }) {
 					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
 
 					<NextLink href={"/projects/" + slug}>
-						<Button size='large' endIcon={<Iconify icon={directionStraightRight} />} sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
-							View Project{" "}
+						<Button size='large' sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
+							View Project →
 						</Button>
 					</NextLink>
 				</Box>
