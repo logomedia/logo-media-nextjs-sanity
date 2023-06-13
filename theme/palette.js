@@ -125,7 +125,7 @@ const COMMON = {
 	},
 }
 const COMMONDARK = {
-	common: { black: "#FFFFFF", white: "#000000" },
+	common: { black: "#000000", white: "#FFFFFF" },
 	primary: SECONDARY,
 	secondary: YELLOW,
 	info: INFO,
