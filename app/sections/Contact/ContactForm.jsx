@@ -128,7 +128,7 @@ export default function ContactMarketingForm() {
 				<RHFTextField name='message' label='Message' multiline rows={4} />
 			</Stack>
 
-			<LoadingButton size='large' color='primary' type='submit' variant='contained' loading={isSubmitting} sx={{ mt: 3 }}>
+			<LoadingButton size='large' color='inherit' type='submit' variant='contained' loading={isSubmitting} sx={{ mt: 3 }}>
 				Send Request
 			</LoadingButton>
 		</FormProvider>

@@ -74,3 +74,53 @@
 	fill: #fff;
 	stroke-width: 1px;
 }
+.halfBlock,
+.fullBlock {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.halfBlock {
+	width: calc(50% -20px);
+}
+.fullBlock {
+	width: 100%;
+}
+.formFields {
+	display: flex;
+	flex-wrap: wrap;
+}
+.formHeading {
+	font-size: 2rem;
+	font-weight: 700;
+	text-align: center;
+	@media (--media-max-mobile) {
+		font-size: 1.5rem;
+	}
+}
+.projectForm p {
+	font-size: 1rem;
+	margin-top: 0;
+	text-align: center;
+}
+.projectForm label {
+	margin-bottom: 10px;
+}
+.projectForm input,
+.projectForm textarea {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1.5px solid var(--black);
+	border-radius: 0;
+	font-family: var(--BodyFonts);
+	padding: 5px;
+	font-size: 1rem;
+}
+.projectForm textarea {
+	min-height: 100px;
+}
+.projectForm button {
+	display: block;
+	margin: auto;
+}

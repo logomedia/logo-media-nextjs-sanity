@@ -154,6 +154,22 @@ export default defineType({
 			type: "text",
 			fieldset: "metadata",
 		}),
+		defineField({
+			name: "ogImage",
+			title: "OG Image",
+			type: "image",
+			fieldset: "metadata",
+		}),
+		defineField({
+			name: "keywords",
+			title: "Keywords",
+			type: "array",
+			fieldset: "metadata",
+			of: [{ type: "string" }],
+			options: {
+				layout: "tags",
+			},
+		}),
 	],
 	preview: {
 		select: {
