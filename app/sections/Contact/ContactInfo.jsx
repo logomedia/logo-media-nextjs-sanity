@@ -1,8 +1,9 @@
 // @mui
-import { Typography, Stack, Link } from '@mui/material';
+import { Typography, Stack, Link } from "@mui/material"
 // hooks
-import useResponsive from '../../../hooks/useResponsive';
+import useResponsive from "../../../hooks/useResponsive"
 // components
+
 import Iconify from '../../components/iconify/Iconify';
 import Image from '../../components/image/Image';
 import SvgColor from '../../components/svg-color/SvgColor';
@@ -57,4 +58,5 @@ export default function ContactMarketingInfo(props) {
       ))}
     </Stack>
   );
+
 }
