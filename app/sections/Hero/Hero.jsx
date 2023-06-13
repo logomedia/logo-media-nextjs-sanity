@@ -2,16 +2,18 @@
 import { useRef } from "react"
 // @mui
 import { styled, alpha } from "@mui/material/styles"
-import { Box, Stack, Typography, Unstable_Grid2 as Grid } from "@mui/material"
+import { Box, Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from "@mui/material"
 // utils
 import { bgGradient } from "../../../utils/cssStyles"
 // hooks
 import useResponsive from "../../../hooks/useResponsive"
 import useBoundingClientRect from "../../../hooks/useBoundingClientRect"
-import { useNextSanityImage } from "next-sanity-image"
+import { HEADER } from "../../../config-global"
 // components
-import Image from "next/image"
-import { client } from "../../../lib/sanity.client"
+import Image from "../../components/image"
+import Iconify from "../../components/iconify"
+import SvgColor from "../../components/svg-color"
+import { PortableText } from "@portabletext/react"
 import CTA from "../../components/CTA"
 import StyledPortableText from "../../components/StyledPortableText/StyledPortableText"
 import urlFor from "../../../utils/imageUrl"
@@ -41,7 +43,6 @@ const Hero = (props) => {
 	const container = useBoundingClientRect(containerRef)
 
 	const offsetLeft = container?.left
-	const heroImage = useNextSanityImage(client, image)
 
 	return (
 		<StyledRoot>
@@ -72,7 +73,7 @@ const Hero = (props) => {
 						<Stack spacing={3}>
 							<Stack direction='row' spacing={3}>
 								{icons.map((icon) => (
-									<Image priority key={icon._key} alt={icon.title} src={urlFor(icon.icon).url()} width={32} height={32} sx={{ width: 32, height: 32 }} />
+									<Image key={icon._key} alt={icon.title} src={urlFor(icon.icon)} sx={{ width: 32, height: 32 }} />
 								))}
 							</Stack>
 						</Stack>
@@ -91,7 +92,7 @@ const Hero = (props) => {
 						width: { md: `calc(100% - ${offsetLeft}px)` },
 					}}
 				>
-					<Image priority alt={heroImageAltText} {...heroImage} style={{ width: "100%", height: "auto" }} sizes='(max-width: 800px) 100vw, 800px' />
+					<Image visibleByDefault disabledEffect alt={heroImageAltText} src={urlFor(image.asset)} />
 				</Box>
 			)}
 		</StyledRoot>
