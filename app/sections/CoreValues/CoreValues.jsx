@@ -35,7 +35,7 @@ export default function CoreValues(props) {
 			>
 				{cards.map((value) => (
 					<Box key={value.title}>
-						<SvgColor src={urlFor(value.image.asset).url()} sx={{ width: 64, height: 64, mx: "auto", color: value.color }} />
+						<SvgColor src={urlFor(value.image.asset)} sx={{ width: 64, height: 64, mx: "auto", color: value.color }} />
 
 						<Typography variant='h5' sx={{ mt: 5, mb: 2 }}>
 							{value.title}
