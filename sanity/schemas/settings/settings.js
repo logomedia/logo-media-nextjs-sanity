@@ -1,11 +1,11 @@
-import { ControlsIcon } from "@sanity/icons"
+import { CogIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
 	name: "settings",
 	title: "Settings",
 	type: "document",
-	icon: ControlsIcon,
+	icon: CogIcon,
 	preview: { select: { title: "title", subtitle: "description" } },
 	// Uncomment below to have edits publish automatically as you type
 	// liveEdit: true,
