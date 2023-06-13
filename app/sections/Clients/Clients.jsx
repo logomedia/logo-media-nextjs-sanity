@@ -1,7 +1,6 @@
 // @mui
 import PropTypes from "prop-types"
-import { useTheme } from "@mui/material/styles"
-import { Typography, Stack, Container, Paper, Box } from "@mui/material"
+import { Typography, Stack, Paper, Box } from "@mui/material"
 // components
 import NextImage from "next/image"
 import Marquee from "react-fast-marquee"
@@ -40,7 +39,7 @@ export default function OurClientsCareer({ heading, logos }) {
 								width: "100%",
 							}}
 						>
-							<NextImage style={{ height: "35px", width: "auto" }} alt={brand.clientName} width={brand.logo.asset.metadata.dimensions.width} height={brand.logo.asset.metadata.dimensions.height} src={brand.logo.asset.url} />
+							<NextImage priority style={{ height: "35px", width: "auto" }} alt={brand.clientName} width={brand.logo.asset.metadata.dimensions.width} height={brand.logo.asset.metadata.dimensions.height} src={brand.logo.asset.url} />
 						</Paper>
 					</Box>
 				))}
