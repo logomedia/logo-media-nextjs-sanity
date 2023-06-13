@@ -1,42 +1,40 @@
+import { BookIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
-	name: "iconWithLink",
-	title: "Icon With Link",
+	name: "pageTitle",
+	title: "Page Title Section",
+	icon: BookIcon,
 	type: "object",
 
 	fields: [
 		defineField({
-			name: "title",
+			name: "heading",
 			type: "string",
-			title: "Title",
+			title: "Heading",
 			validation: (rule) => rule.required(),
 		}),
 
 		defineField({
-			name: "subtitle",
-			type: "string",
-			title: "Subtitle",
+			name: "description",
+			type: "array",
+			title: "Description",
+			of: [{ type: "block" }],
+			validation: (rule) => rule.required(),
 		}),
 
 		defineField({
-			name: "url",
-			type: "string",
-			title: "URL",
-		}),
-
-		defineField({
-			name: "icon",
+			name: "image",
 			type: "image",
-			title: "Icon",
+			title: "Background  Image",
 			validation: (rule) => rule.required(),
 		}),
 	],
 
 	preview: {
 		select: {
-			title: "title",
-			media: "icon",
+			title: "heading",
+			media: "image",
 		},
 		prepare({ title, media }) {
 			return {
