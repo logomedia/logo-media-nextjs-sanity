@@ -4,7 +4,9 @@ import { Typography, Stack, Link } from "@mui/material"
 import useResponsive from "../../../hooks/useResponsive"
 // components
 import Iconify from "../../components/iconify/Iconify"
-import Image from "../../components/image/Image"
+import Image from "next/image"
+import { client } from "../../../lib/sanity.client"
+import { useNextSanityImage } from "next-sanity-image"
 import SvgColor from "../../components/svg-color/SvgColor"
 import urlFor from "../../../utils/imageUrl"
 // ----------------------------------------------------------------------
@@ -13,10 +15,18 @@ export default function ContactMarketingInfo(props) {
 	const { image, imageAltText, info } = props
 
 	const isMdUp = useResponsive("up", "md")
-
+	const imageProps = useNextSanityImage(client, image)
 	return (
 		<Stack spacing={3}>
-			{isMdUp && <Image alt={imageAltText} src={urlFor(image.asset).url()} sx={{ maxWidth: 380 }} />}
+			{isMdUp && (
+				<Image
+					priority
+					alt={imageAltText}
+					{...imageProps}
+					style={{ width: "100%", maxWidth: 350, height: "auto", margin: "auto" }} // layout="responsive" prior to Next 13.0.0
+					sizes='(max-width: 800px) 100vw, 800px'
+				/>
+			)}
 
 			{/* Info List Items */}
 			{info.map((item) => (
