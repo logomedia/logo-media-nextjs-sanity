@@ -8,13 +8,13 @@ import { Stack, Typography, ToggleButton, FormHelperText } from "@mui/material"
 import { fCurrency } from "../../../utils/formatNumber"
 // components
 import FormProvider, { RHFTextField, RHFSlider } from "../../components/hook-form"
-
+import emailjs from "@emailjs/browser"
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
 
 export default function ContactMarketingForm() {
-	const SERVICES = ["Design", " Front End Development", "Back End Development"]
+	const SERVICES = ["Design", "Development", "Ecommerce"]
 	const MarketingContactSchema = Yup.object().shape({
 		services: Yup.array().required().min(1, "Services field must have at least 1 items"),
 		email: Yup.string().required("Email is required").email("That is not an email"),
@@ -51,6 +51,28 @@ export default function ContactMarketingForm() {
 			await new Promise((resolve) => setTimeout(resolve, 500))
 			reset()
 			console.log("DATA", data)
+			const serviceList = data.services.toString()
+			const message = `Name:${data.firstName} ${data.lastName}
+			 Company: ${data.company}
+			 Email: ${data.email}
+			 Phone: ${data.phoneNumber}
+			 Website: ${data.website}
+			 Budget: $${data.budget[0]}-$${data.budget[1]}
+			 Services: ${serviceList}`
+			const toSend = {
+				from_name: data.firstName + " " + data.lastName,
+				to_name: "Logo Media",
+				message: message,
+				reply_to: data.email,
+			}
+			emailjs
+				.send("service_1tbbiwc", "template_nta5lyb", toSend, "XtmHxL5zdet_8tKjY")
+				.then((response) => {
+					console.log("SUCCESS!", response.status, response.text)
+				})
+				.catch((err) => {
+					console.log("FAILED...", err)
+				})
 		} catch (error) {
 			console.error(error)
 		}
