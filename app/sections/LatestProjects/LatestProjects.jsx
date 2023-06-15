@@ -14,7 +14,7 @@ import Carousel, { CarouselArrows, CarouselDots } from "../../components/Carouse
 import ProjectItem from "../Projects/ProjectItem"
 import { getAllProjects } from "../../../lib/sanity.client"
 
-export default function LatestPosts({ heading, projects }) {
+export default function LatestProjects({ heading, projects }) {
 	//projects = projects.slice(0, 8)
 
 	const theme = useTheme()
@@ -77,7 +77,7 @@ export default function LatestPosts({ heading, projects }) {
 						{projects &&
 							projects.map((project) => (
 								<Box
-									key={project._key}
+									key={project._id}
 									sx={{
 										px: 2,
 										py: { xs: 8, md: 10 },
