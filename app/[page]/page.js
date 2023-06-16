@@ -12,6 +12,7 @@ import NotFound from '../not-found';
 import PreviewSuspense from '../components/PreviewSuspense';
 import PreviewRenderSections from '../components/RenderSections/PreviewRenderSections';
 import LoadingPreview from '../components/LoadingPreview';
+import ExitPreviewButton from '../components/ExitPreviewButton';
 
 export async function generateMetadata({ params }) {
   const { page } = params;
@@ -127,6 +128,8 @@ export default async function Page({ params }) {
             <PreviewRenderSections page={page} preview={isEnabled} />
           </PreviewSuspense>
         )}
+
+        {isEnabled && <ExitPreviewButton />}
       </>
     );
   }

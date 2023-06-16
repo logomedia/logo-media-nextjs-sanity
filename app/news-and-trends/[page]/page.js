@@ -8,6 +8,7 @@ import PostsPage from '../../sections/PostsPage';
 import PreviewPostsPage from '../../sections/PostsPage/PreviewPostsPage';
 import PreviewSuspense from '../../components/PreviewSuspense';
 import LoadingPreview from '../../components/LoadingPreview';
+import ExitPreviewButton from '../../components/ExitPreviewButton';
 
 export async function generateMetadata({ params }) {
   const { page } = params;
@@ -85,9 +86,13 @@ export default async function Page({ params }) {
     return <NotFound />;
   } else if (isEnabled) {
     return (
-      <PreviewSuspense fallback={<LoadingPreview />}>
-        <PreviewPostsPage slug={page} morePosts={posts} />
-      </PreviewSuspense>
+      <>
+        <PreviewSuspense fallback={<LoadingPreview />}>
+          <PreviewPostsPage slug={page} morePosts={posts} />
+        </PreviewSuspense>
+
+        {isEnabled && <ExitPreviewButton />}
+      </>
     );
   } else {
     return (
