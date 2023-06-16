@@ -12,6 +12,7 @@ import SvgColor from "../../components/svg-color/SvgColor"
 import TextMaxLine from "../../components/text-max-line/TextMaxLine"
 import StyledPortableText from "../../components/StyledPortableText"
 import urlFor from "../../../utils/imageUrl"
+import Cta from "../../components/CTA/CTA"
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +32,7 @@ export const StyledOverlay = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function TravelLandingFavoriteDestinations(props) {
-	const { heading, description, favoritesList, cards } = props
+	const { heading, description, favoritesList, cards, cta } = props
 
 	return (
 		<Container
@@ -61,6 +62,7 @@ export default function TravelLandingFavoriteDestinations(props) {
 							</Stack>
 						))}
 					</Stack>
+					<Stack sx={{ mt: 2 }}>{cta ? <Cta {...cta} /> : ""}</Stack>
 				</Grid>
 
 				<Grid container xs={12} md={6} spacing={{ xs: 4, md: 3 }}>

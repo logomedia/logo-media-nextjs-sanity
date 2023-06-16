@@ -104,7 +104,7 @@ export default function ProjectItem({ project }) {
 						size='large'
 						sx={{
 							mt: 5,
-							color: "var(--purple)",
+							color: "primary.main",
 							mt: 1,
 							fontSize: { xs: "14px" },
 						}}
