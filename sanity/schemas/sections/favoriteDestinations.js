@@ -48,6 +48,11 @@ export default defineType({
 				},
 			],
 		}),
+		defineField({
+			name: "cta",
+			type: "cta",
+			title: "Call to Action",
+		}),
 	],
 
 	preview: {

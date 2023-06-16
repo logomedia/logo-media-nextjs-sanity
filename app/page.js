@@ -99,27 +99,25 @@ export default async function Page() {
   };
   return (
     <>
-      <ContextWrapper>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {content && !isEnabled ? (
+        <RenderSections
+          sections={content}
+          projects={projects}
+          posts={posts}
+          preview={isEnabled}
         />
+      ) : (
+        <PreviewSuspense fallback={<LoadingPreview />}>
+          <PreviewRenderSections home preview={isEnabled} />
+        </PreviewSuspense>
+      )}
 
-        {content && !isEnabled ? (
-          <RenderSections
-            sections={content}
-            projects={projects}
-            posts={posts}
-            preview={isEnabled}
-          />
-        ) : (
-          <PreviewSuspense fallback={<LoadingPreview />}>
-            <PreviewRenderSections home preview={isEnabled} />
-          </PreviewSuspense>
-        )}
-
-        {isEnabled && <ExitPreviewButton />}
-      </ContextWrapper>
+      {isEnabled && <ExitPreviewButton />}
     </>
   );
 }
