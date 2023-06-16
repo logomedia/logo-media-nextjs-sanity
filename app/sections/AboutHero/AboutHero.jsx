@@ -96,7 +96,7 @@ export default function MarketingAbout(props) {
 				{cards.map((value, index) => (
 					<div key={value._key}>
 						<StyledIcon color={value.color}>
-							<Image alt={value.heading} src={value.image.asset.url} sx={{ width: 48, height: 48, zIndex: 10 }} />
+							<Image alt={value.heading} src={urlFor(value.image.asset).url()} sx={{ width: 48, height: 48, zIndex: 10 }} />
 						</StyledIcon>
 
 						<Typography variant='h2' sx={{ mt: 2, mb: 1 }}>
