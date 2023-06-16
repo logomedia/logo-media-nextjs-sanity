@@ -111,12 +111,13 @@ export default function Footer({ settings }) {
 
 	const renderLists = isMdUp ? desktopList : mobileList
 	const [email, setEmail] = useState("")
+	const [name, setName] = useState("")
 	function submitEmail(e) {
 		e.preventDefault()
 		const toSend = {
-			from_name: "Email Footer Signup",
+			from_name: name,
 			to_name: "Logo Media",
-			message: email,
+			message: name + " " + email,
 			reply_to: email,
 		}
 		emailjs
@@ -204,24 +205,24 @@ export default function Footer({ settings }) {
 								</Typography>
 							</Stack>
 							<form style={{ width: "100%" }} onSubmit={submitEmail}>
-								<TextField
-									hiddenLabel
-									placeholder='Email address'
-									name='email'
-									type='email'
-									onChange={(e) => setEmail(e.target.value)}
-									required
-									InputProps={{
-										endAdornment: (
-											<InputAdornment position='end'>
-												<Button type='submit' variant='contained' color='secondary' size='large'>
-													Subscribe
-												</Button>
-											</InputAdornment>
-										),
-										sx: { pr: 0.5 },
-									}}
-								/>
+								<Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
+									<TextField sx={{ width: { xs: "100%", md: "40%" }, mr: { xs: 0, md: 1 }, mb: { xs: 1, md: 0 } }} hiddenLabel placeholder='Name' name='name' type='name' onChange={(e) => setNamel(e.target.value)} required />
+									<TextField
+										sx={{ width: { md: "60%", xs: "100%" } }}
+										hiddenLabel
+										placeholder='Email address'
+										InputProps={{
+											endAdornment: (
+												<InputAdornment position='end'>
+													<Button type='submit' variant='contained' color='secondary' size='large'>
+														Subscribe
+													</Button>
+												</InputAdornment>
+											),
+											sx: { pr: 0.5 },
+										}}
+									/>
+								</Box>
 							</form>
 						</Stack>
 					</Grid>

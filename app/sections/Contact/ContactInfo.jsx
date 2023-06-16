@@ -31,7 +31,7 @@ export default function ContactMarketingInfo(props) {
 			{/* Info List Items */}
 			{info.map((item) => (
 				<Stack key={item._key} spacing={2} direction='row' alignItems='flex-start'>
-					<SvgColor src={item.icon.asset.url} sx={{ width: 28, height: 28 }} />
+					<SvgColor src={urlFor(item.icon.asset).url()} sx={{ width: 28, height: 28 }} />
 
 					<Stack spacing={0.5}>
 						<Stack spacing={1} direction='row' alignItems='center'>

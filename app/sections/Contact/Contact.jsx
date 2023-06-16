@@ -13,7 +13,7 @@ export default function Contact(props) {
 		<Container
 			sx={{
 				overflow: "hidden",
-				pt: { xs: 5, md: 10 },
+				pt: { xs: 10, md: 12 },
 				pb: { xs: 10, md: 15 },
 			}}
 		>

@@ -1,3 +1,4 @@
+"use client"
 import * as Yup from "yup"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -150,7 +151,7 @@ export default function ContactMarketingForm() {
 				<RHFTextField name='message' label='Message' multiline rows={4} />
 			</Stack>
 
-			<LoadingButton size='large' color='primary' type='submit' variant='contained' loading={isSubmitting} sx={{ mt: 3 }}>
+			<LoadingButton fullWidth size='large' color='primary' type='submit' variant='contained' loading={isSubmitting} sx={{ mt: 3 }}>
 				Send Request
 			</LoadingButton>
 		</FormProvider>
