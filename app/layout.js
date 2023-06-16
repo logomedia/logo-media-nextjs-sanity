@@ -32,7 +32,7 @@ export const metadata = {
 	},
 }
 
-export default async function RootLayout({ children, params }) {
+export default async function RootLayout({ children }) {
 	const settings = await getSettings()
 
 	return (
