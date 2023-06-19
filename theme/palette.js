@@ -102,6 +102,8 @@ const ERROR = {
 
 const COMMON = {
 	common: { black: "#000000", white: "#FFFFFF" },
+	white: "#ffffff",
+	black: "#000000",
 	primary: PRIMARY,
 	secondary: SECONDARY,
 	info: INFO,
@@ -125,7 +127,9 @@ const COMMON = {
 	},
 }
 const COMMONDARK = {
-	common: { black: "#000000", white: "#FFFFFF" },
+	common: { black: "#FFFFFF", white: "#000000" },
+	white: "#ffffff",
+	black: "#000000",
 	primary: SECONDARY,
 	secondary: YELLOW,
 	info: INFO,

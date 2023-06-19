@@ -1,31 +1,22 @@
-// @mui
-import { Container, Unstable_Grid2 as Grid } from "@mui/material"
-//
-import PostsList from "./PostsList"
-import FeaturedPost from "./FeaturedPost"
-import { getAllPosts } from "../../../lib/sanity.client"
+import { getAllPosts } from '../../../lib/sanity.client';
+
+import AllPosts from './AllPosts';
+import PreviewAllPosts from './PreviewAllPosts';
+import PreviewSuspense from '../../components/PreviewSuspense';
+import LoadingPreview from '../../components/LoadingPreview';
 
 // ----------------------------------------------------------------------
 
-export default async function Posts() {
-	const posts = await getAllPosts()
+export default async function Posts({ preview }) {
+  const posts = await getAllPosts();
 
-	return (
-		<>
-			<FeaturedPost post={posts[0]} />
+  if (preview) {
+    return (
+      <PreviewSuspense fallback={<LoadingPreview />}>
+        <PreviewAllPosts />
+      </PreviewSuspense>
+    );
+  }
 
-			<Container
-				sx={{
-					pt: 10,
-					pb: 10,
-				}}
-			>
-				<Grid container spacing={{ md: 8 }}>
-					<Grid xs={12}>
-						<PostsList posts={posts} />
-					</Grid>
-				</Grid>
-			</Container>
-		</>
-	)
+  return <AllPosts posts={posts} />;
 }

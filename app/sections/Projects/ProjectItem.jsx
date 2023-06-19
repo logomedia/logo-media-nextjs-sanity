@@ -30,7 +30,7 @@ export default function ProjectItem({ project }) {
 	return (
 		<StyledContainer sx={{ borderRadius: 1, p: 1 }}>
 			<Box sx={{ borderRadius: 1, overflow: "hidden", position: "relative" }}>
-				<Image src={coverImage.asset.url} alt={name} ratio='1/1' />
+				<Image src={coverImage.asset.url} alt={name} ratio='4/3' />
 				<Box
 					sx={{
 						typography: "body2",
@@ -104,12 +104,12 @@ export default function ProjectItem({ project }) {
 						size='large'
 						sx={{
 							mt: 5,
-							color: "var(--purple)",
+							color: "primary.main",
 							mt: 1,
 							fontSize: { xs: "14px" },
 						}}
 					>
-						View Project <Iconify icon={directionStraightRight} />
+						View Project →
 					</Button>
 				</NextLink>
 			</Box>

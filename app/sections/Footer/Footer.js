@@ -1,8 +1,6 @@
 "use client"
 // next
-import { usePathname, useRouter } from "next/navigation"
-// @mui
-import { alpha, styled } from "@mui/material/styles"
+import { useState } from "react"
 import Masonry from "@mui/lab/Masonry"
 import { Link, Stack, Box, Button, Divider, Container, TextField, Typography, IconButton, InputAdornment, Unstable_Grid2 as Grid } from "@mui/material"
 // hooks
@@ -15,7 +13,7 @@ import Iconify from "../../components/iconify"
 
 import ListDesktop from "./ListDesktop"
 import ListMobile from "./ListMobile"
-
+import emailjs from "@emailjs/browser"
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
@@ -107,28 +105,32 @@ export default function Footer({ settings }) {
 
 	const isMdUp = useResponsive("up", "md")
 
-	const pathname = usePathname()
-
 	const mobileList = navConfig
 
 	const desktopList = navConfig
 
 	const renderLists = isMdUp ? desktopList : mobileList
-
-	const isHome = pathname === "/"
-
-	const simpleFooter = (
-		<Container sx={{ py: 8, textAlign: "center" }}>
-			<Logo settings={settings} />
-
-			<Typography variant='caption' component='div' sx={{ color: "text.secondary" }}>
-				© 2023. All rights reserved
-			</Typography>
-		</Container>
-	)
-
-	const mainFooter = (
-		<>
+	const [email, setEmail] = useState("")
+	const [name, setName] = useState("")
+	function submitEmail(e) {
+		e.preventDefault()
+		const toSend = {
+			from_name: name,
+			to_name: "Logo Media",
+			message: name + " " + email,
+			reply_to: email,
+		}
+		emailjs
+			.send("service_1tbbiwc", "template_ihms0lc", toSend, "XtmHxL5zdet_8tKjY")
+			.then((response) => {
+				console.log("SUCCESS!", response.status, response.text)
+			})
+			.catch((err) => {
+				console.log("FAILED...", err)
+			})
+	}
+	return (
+		<footer>
 			<Divider />
 
 			<Container
@@ -202,21 +204,26 @@ export default function Footer({ settings }) {
 									{settings.newsletterDescription}
 								</Typography>
 							</Stack>
-
-							<TextField
-								hiddenLabel
-								placeholder='Email address'
-								InputProps={{
-									endAdornment: (
-										<InputAdornment position='end'>
-											<Button variant='contained' color='inherit' size='large'>
-												Subscribe
-											</Button>
-										</InputAdornment>
-									),
-									sx: { pr: 0.5 },
-								}}
-							/>
+							<form style={{ width: "100%" }} onSubmit={submitEmail}>
+								<Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
+									<TextField sx={{ width: { xs: "100%", md: "40%" }, mr: { xs: 0, md: 1 }, mb: { xs: 1, md: 0 } }} hiddenLabel placeholder='Name' name='name' type='name' onChange={(e) => setNamel(e.target.value)} required />
+									<TextField
+										sx={{ width: { md: "60%", xs: "100%" } }}
+										hiddenLabel
+										placeholder='Email address'
+										InputProps={{
+											endAdornment: (
+												<InputAdornment position='end'>
+													<Button type='submit' variant='contained' color='secondary' size='large'>
+														Subscribe
+													</Button>
+												</InputAdornment>
+											),
+											sx: { pr: 0.5 },
+										}}
+									/>
+								</Box>
+							</form>
 						</Stack>
 					</Grid>
 				</Grid>
@@ -238,10 +245,8 @@ export default function Footer({ settings }) {
 					</Stack>
 				</Stack>
 			</Container>
-		</>
+		</footer>
 	)
-
-	return <footer>{mainFooter}</footer>
 }
 
 // ----------------------------------------------------------------------

@@ -2,7 +2,7 @@ import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
-import { ModalContext } from "../context/projectModal"
+
 import styles from "./globals.css"
 
 // slick-carousel
