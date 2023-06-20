@@ -8,7 +8,7 @@ import useResponsive from "../../../hooks/useResponsive"
 export default function LatestReviews({ reviews, heading }) {
 	const isMdUp = useResponsive("up", "md")
 	const viewAllBtn = (
-		<Button component={NextLink} href='/news-and-trends' color='inherit' endIcon={<Iconify icon='carbon:chevron-right' />}>
+		<Button component={NextLink} href='/reviews' color='inherit' endIcon={<Iconify icon='carbon:chevron-right' />}>
 			View All
 		</Button>
 	)
