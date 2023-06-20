@@ -62,19 +62,21 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
 	const { page } = params
 
-	const pageData = await getPageBySlug(page)
+	const pageRequest = getPageBySlug(page)
+	const reviewsData = getReviews()
+	const projectsData = getRecentProjects()
+	const postsData = getRecentPosts()
+	const partnersData = getPartners()
+	const [pageData, reviews, projects, posts, partners] = await Promise.all([pageRequest, reviewsData, projectsData, postsData, partnersData])
 	const content = pageData?.content
-
+	console.log(posts)
 	const { isEnabled } = draftMode()
 
 	if (content === undefined) {
 		return <NotFound />
 	} else {
 		const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
-		const reviews = await getReviews()
-		const projects = await getRecentProjects()
-		const posts = await getRecentPosts()
-		const partners = await getPartners()
+
 		let reviewSum = 0
 		reviews.forEach((review) => {
 			reviewSum += review.rating
