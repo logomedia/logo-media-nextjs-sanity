@@ -1,15 +1,17 @@
+"use client"
 import { useState } from "react"
 //icon
 import shareIcon from "@iconify/icons-carbon/share"
 import logoLinkedin from "@iconify/icons-carbon/logo-linkedin"
 import logoFacebook from "@iconify/icons-carbon/logo-facebook"
 import logoTwitter from "@iconify/icons-carbon/logo-twitter"
-import logoInstagram from "@iconify/icons-carbon/logo-instagram"
+import Link from "next/link"
 // @mui
 import { MenuItem, Popover } from "@mui/material"
 // components
 import Iconify from "../iconify"
 import { IconButtonAnimate } from "../animate"
+import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
@@ -23,27 +25,26 @@ export default function ShareButton({ sx }) {
 	const handleClose = () => {
 		setOpen(null)
 	}
-
+	const pathname = usePathname()
+	const title = document ? document.title : ""
 	const SOCIALS = [
 		{
 			name: "FaceBook",
 			icon: logoFacebook,
 			socialColor: "#1877F2",
-		},
-		{
-			name: "Instagram",
-			icon: logoInstagram,
-			socialColor: "#E02D69",
+			path: `https://www.facebook.com/sharer.php?u=${"https://logo.media" + pathname}`,
 		},
 		{
 			name: "Linkedin",
 			icon: logoLinkedin,
 			socialColor: "#007EBB",
+			path: `https://www.linkedin.com/shareArticle?url=${"https://logo.media" + pathname + "&title=" + title}`,
 		},
 		{
 			name: "Twitter",
 			icon: logoTwitter,
 			socialColor: "#00AAEC",
+			path: `https://twitter.com/intent/tweet?url=${"https://logo.media" + pathname + "&title=" + title}`,
 		},
 	]
 
@@ -72,7 +73,7 @@ export default function ShareButton({ sx }) {
 				}}
 			>
 				{SOCIALS.map((option) => (
-					<MenuItem key={option.name} onClick={handleClose} sx={{ typography: "body3" }}>
+					<MenuItem target='_blank' onClick={handleClose} component={Link} href={option.path} key={option.name} sx={{ typography: "body3" }}>
 						<Iconify icon={option.icon} sx={{ width: 24, height: 24, mr: 2, color: option.socialColor }} />
 						Share via {option.name}
 					</MenuItem>

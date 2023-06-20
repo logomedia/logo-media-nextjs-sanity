@@ -25,6 +25,7 @@ export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...oth
 		})
 	}
 	const pathname = usePathname()
+
 	const pathWithoutSlash = pathname.slice(1)
 
 	const renderContent = (

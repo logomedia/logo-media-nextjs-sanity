@@ -5,6 +5,7 @@ import Image from "../../components/image"
 import CustomBreadcrumbs from "../../components/custom-breadcrumbs"
 import PortableBody from "../../components/portable-body"
 import { CaseStudySummary } from "./details"
+import urlFor from "../../../utils/imageUrl"
 
 import { HEADER_DESKTOP_HEIGHT, HEADER_MOBILE_HEIGHT } from "../../../config"
 
@@ -17,12 +18,6 @@ const RootStyle = styled("div")(({ theme }) => ({
 
 export default function ProjectsPage(props) {
 	const { project } = props
-	let images = []
-	const projectImages = project.images
-	for (let i = 0; i < projectImages.length; i++) {
-		let image = project.images[i].asset.url
-		images.push(image)
-	}
 
 	return (
 		<RootStyle>
@@ -32,7 +27,7 @@ export default function ProjectsPage(props) {
 						pt: { xs: 5, md: 10 },
 					}}
 				>
-					<Image alt='hero' src={project.coverImage.asset.url} ratio='16/9' sx={{ borderRadius: 2 }} />
+					<Image alt='hero' src={urlFor(project.coverImage.asset).width(800).url()} ratio='16/9' sx={{ borderRadius: 2 }} />
 				</Box>
 				<CustomBreadcrumbs sx={{ my: { xs: 5, md: 10 } }} links={[{ name: "Home", href: "/" }, { name: "Projects", href: "/projects" }, { name: project.name }]} />
 				<Grid
@@ -63,13 +58,6 @@ export default function ProjectsPage(props) {
 							Results
 						</Typography>
 						<PortableBody content={project.results} />
-						<Grid container spacing={2} columns={16}>
-							{images.map((image, index) => (
-								<Grid item xs={8} key={index}>
-									<Image ratio='1/1' src={image} alt={project.name + " image " + index} />
-								</Grid>
-							))}
-						</Grid>
 					</Grid>
 				</Grid>
 			</Container>

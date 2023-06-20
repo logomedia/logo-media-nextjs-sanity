@@ -51,7 +51,7 @@ export default function Footer({ settings }) {
 					for (let i = 0; i < items.length; i++) {
 						let object = {
 							title: items[i].name,
-							path: items[i].link.slug.current,
+							path: `/${items[i].link.slug.current}`,
 						}
 						kids.push(object)
 					}
@@ -75,7 +75,7 @@ export default function Footer({ settings }) {
 						for (let j = 0; j < grandKidLinks.length; j++) {
 							let grandKid = {
 								title: grandKidLinks[j].name,
-								path: grandKidLinks[j].link.slug.current,
+								path: `/${grandKidLinks[j].link.slug.current}`,
 							}
 							array.push(grandKid)
 						}
@@ -90,7 +90,7 @@ export default function Footer({ settings }) {
 
 			let obj1 = {
 				title: footerMenu[i].name,
-				path: path,
+				path: `/${path}`,
 			}
 
 			let child = getChildren()

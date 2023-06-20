@@ -6,6 +6,7 @@ import NextLink from "next/link"
 
 // components
 import Image from "../../../components/image"
+import urlFor from "../../../../utils/imageUrl"
 import TextMaxLine from "../../../components/text-max-line"
 // utils
 import { fDate } from "../../../../utils/formatTime"
@@ -31,7 +32,7 @@ export default function BlogPostItemMobile({ post, path, onSiderbar }) {
 		<Stack spacing={2} direction='row' alignItems={{ xs: "flex-start", md: "unset" }} sx={{ width: 1 }}>
 			<Image
 				alt={title}
-				src={coverImage.asset.url}
+				src={urlFor(coverImage.asset).width(150).url()}
 				sx={{
 					width: 80,
 					height: 80,

@@ -1,3 +1,4 @@
+"use client"
 // icons
 import logoLinkedin from "@iconify/icons-carbon/logo-linkedin"
 import logoFacebook from "@iconify/icons-carbon/logo-facebook"
@@ -10,34 +11,31 @@ import { Stack, IconButton, Button, Link } from "@mui/material"
 
 //
 import Iconify from "../iconify"
+import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
 export default function SocialsButton({ initialColor = false, simple = true, links = {}, sx, ...other }) {
+	const pathname = usePathname()
+	const title = document ? document.title : ""
 	const SOCIALS = [
 		{
 			name: "FaceBook",
 			icon: logoFacebook,
 			socialColor: "#1877F2",
-			path: links.facebook || "#facebook-link",
-		},
-		{
-			name: "Instagram",
-			icon: logoInstagram,
-			socialColor: "#E02D69",
-			path: links.instagram || "#instagram-link",
+			path: `https://www.facebook.com/sharer.php?u=${"https://logo.media" + pathname}`,
 		},
 		{
 			name: "Linkedin",
 			icon: logoLinkedin,
 			socialColor: "#007EBB",
-			path: links.linkedin || "#linkedin-link",
+			path: `https://www.linkedin.com/shareArticle?url=${"https://logo.media" + pathname + "&title=" + title}`,
 		},
 		{
 			name: "Twitter",
 			icon: logoTwitter,
 			socialColor: "#00AAEC",
-			path: links.twitter || "#twitter-link",
+			path: `https://twitter.com/intent/tweet?url=${"https://logo.media" + pathname + "&text=" + title}`,
 		},
 	]
 

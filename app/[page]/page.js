@@ -8,13 +8,14 @@ import PreviewSuspense from "../components/PreviewSuspense"
 import PreviewRenderSections from "../components/RenderSections/PreviewRenderSections"
 import LoadingPreview from "../components/LoadingPreview"
 import ExitPreviewButton from "../components/ExitPreviewButton"
+import urlFor from "../../utils/imageUrl"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
 
 	const pageData = await getPageBySlug(page)
 
-	const ogImage = pageData.ogImage ? pageData.ogImage.asset.url : ""
+	const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
 
 	return {
 		title: pageData.metaTitle,
@@ -69,7 +70,7 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
-		const ogImage = pageData.ogImage ? pageData.ogImage.asset : ""
+		const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
 		const reviews = await getReviews()
 		const projects = await getRecentProjects()
 		const posts = await getRecentPosts()

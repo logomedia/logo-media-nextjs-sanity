@@ -6,13 +6,14 @@ import PreviewSuspense from "../../components/PreviewSuspense"
 import LoadingPreview from "../../components/LoadingPreview"
 import ExitPreviewButton from "../../components/ExitPreviewButton"
 import { Suspense } from "react"
+import urlFor from "../../../utils/imageUrl"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
 
 	const post = await getPostBySlug(page)
 
-	const ogImage = post.coverImage.asset.url
+	const ogImage = urlFor(post.coverImage.asset).width(800).url()
 	return {
 		title: post.title,
 		description: post.description,
@@ -75,7 +76,7 @@ export default async function Page({ params }) {
 		datePublished: post.date,
 		keywords: post.tags,
 		publisher: "Logo Media",
-		image: post.coverImage,
+		image: urlFor(post.coverImage.asset).width(800).url(),
 		url: `https://logo.media/news-and-trends/${post.slug}`,
 	}
 

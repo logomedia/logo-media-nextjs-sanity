@@ -20,7 +20,7 @@ export default function Posts({ posts }) {
 					},
 				}}
 			>
-				{posts.slice(1, 10).map((post) => (
+				{posts.slice(1, 8).map((post) => (
 					<PostItem key={post._id} post={post} />
 				))}
 			</Box>

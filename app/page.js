@@ -8,7 +8,7 @@ import PreviewRenderSections from "./components/RenderSections/PreviewRenderSect
 import PreviewSuspense from "./components/PreviewSuspense"
 import LoadingPreview from "./components/LoadingPreview"
 import ExitPreviewButton from "./components/ExitPreviewButton"
-
+import urlFor from "../utils/imageUrl"
 import styles from "../app/globals.css"
 
 // slick-carousel
@@ -24,7 +24,7 @@ export async function generateMetadata() {
 			canonical: "/",
 		},
 		openGraph: {
-			images: home.ogImage.asset.url,
+			images: urlFor(home.ogImage.asset).width(800).url(),
 		},
 		robots: {
 			index: true,
@@ -46,7 +46,7 @@ export async function generateMetadata() {
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
 			creatorId: "1485472568299737088",
-			images: [home.ogImage.asset.url],
+			images: [urlFor(home.ogImage.asset).width(800).url()],
 		},
 	}
 }
@@ -82,7 +82,7 @@ export default async function Page() {
 			addressCountry: "US",
 		},
 		keywords: home.keywords,
-		images: [home.ogImage.asset.url],
+		images: [urlFor(home.ogImage.asset).width(800).url()],
 		priceRange: "$1000+",
 		openingHours: [
 			{
