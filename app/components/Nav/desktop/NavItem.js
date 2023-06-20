@@ -27,8 +27,6 @@ export const NavItem = forwardRef(({ item, open, subItem, isExternalLink, ...oth
 	const pathname = usePathname()
 	const pathWithoutSlash = pathname.slice(1)
 
-	const active = navLinks.includes(pathWithoutSlash)
-
 	const renderContent = (
 		<StyledNavItem ref={ref} disableRipple subItem={subItem} active={item.path === pathWithoutSlash} open={open} {...other}>
 			{title}

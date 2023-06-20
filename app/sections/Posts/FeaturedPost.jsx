@@ -6,6 +6,7 @@ import { Typography, Container, Stack, Avatar, Link, Box } from "@mui/material"
 import { fDate } from "../../../utils/formatTime"
 // components
 import Image from "../../components/image/Image"
+import urlFor from "../../../utils/imageUrl"
 //
 import PostTimeBlock from "./PostTimeBlock"
 
@@ -23,7 +24,7 @@ export default function FeaturedPost({ post }) {
 		>
 			<Container>
 				<Stack direction={{ xs: "column", md: "row" }}>
-					<Image src={coverImage.asset.url} alt={title} sx={{ flexGrow: 1, height: 560, borderRadius: 2 }} />
+					<Image src={urlFor(coverImage.asset).width(800).url()} alt={title} sx={{ flexGrow: 1, height: 560, borderRadius: 2 }} />
 
 					<Stack
 						spacing={1}
@@ -45,7 +46,7 @@ export default function FeaturedPost({ post }) {
 						<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{excerpt}</Typography>
 
 						<Stack direction='row' alignItems='center' sx={{ pt: 1.5, typography: "body2" }}>
-							<Avatar src={author.picture.asset.url} sx={{ mr: 1 }} />
+							<Avatar src={urlFor(author.picture.asset).width(80).url()} sx={{ mr: 1 }} />
 							{author.name}
 						</Stack>
 					</Stack>

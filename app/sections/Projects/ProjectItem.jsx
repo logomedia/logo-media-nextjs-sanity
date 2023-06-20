@@ -4,6 +4,7 @@ import { bgGradient } from "../../../utils/cssStyles"
 import Image from "../../components/image"
 import NextImage from "next/image"
 import NextLink from "next/link"
+import urlFor from "../../../utils/imageUrl"
 import TextMaxLine from "../../components/text-max-line"
 
 export default function ProjectItem({ project }) {
@@ -28,7 +29,7 @@ export default function ProjectItem({ project }) {
 	return (
 		<StyledContainer sx={{ borderRadius: 1, p: 1 }}>
 			<Box sx={{ borderRadius: 1, overflow: "hidden", position: "relative" }}>
-				<Image src={coverImage.asset.url} alt={name} ratio='4/3' />
+				<Image src={urlFor(coverImage.asset).width(400).url()} alt={name} ratio='4/3' />
 				<Box
 					sx={{
 						typography: "body2",
@@ -75,7 +76,7 @@ export default function ProjectItem({ project }) {
 					}}
 				>
 					<Box>
-						<NextImage style={{ height: "45px", width: "auto" }} src={logo.asset.url} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+						<NextImage style={{ height: "45px", width: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 					</Box>
 				</Stack>
 

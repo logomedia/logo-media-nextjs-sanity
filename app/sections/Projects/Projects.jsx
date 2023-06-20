@@ -4,6 +4,7 @@ import Image from "../../components/image"
 import NextImage from "next/image"
 import NextLink from "next/link"
 import ProjectItem from "./ProjectItem"
+import urlFor from "../../../utils/imageUrl"
 
 const RootStyle = styled("div")(({ theme }) => ({
 	padding: theme.spacing(10, 0, 2, 2),
@@ -62,7 +63,7 @@ function ProjectItemLarge({ project }) {
 					width: "100%",
 				}}
 			>
-				<Image ratio='16/9' src={coverImage.asset.url} alt={name} sx={{ borderRadius: 2 }} />
+				<Image ratio='16/9' src={urlFor(coverImage.asset).width(800).url()} alt={name} sx={{ borderRadius: 2 }} />
 				<Box
 					sx={{
 						position: "absolute",
@@ -113,7 +114,7 @@ function ProjectItemLarge({ project }) {
 					Featured Project
 				</Typography>
 				<Box>
-					<NextImage style={{ height: "45px", width: "auto" }} src={logo.asset.url} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+					<NextImage style={{ height: "45px", width: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 				</Box>
 
 				<Box>
@@ -123,7 +124,7 @@ function ProjectItemLarge({ project }) {
 					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
 
 					<NextLink href={"/projects/" + slug}>
-						<Button size='large' sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
+						<Button size='large' sx={{ mt: 5, color: "primary.main", mt: 1 }}>
 							View Project →
 						</Button>
 					</NextLink>
