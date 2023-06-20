@@ -52,10 +52,13 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-	const home = await getHomepage()
-	const reviews = await getReviews()
-	const projects = await getRecentProjects()
-	const posts = await getRecentPosts()
+	const homeData = getHomepage()
+	console.log("Test")
+	const reviewsData = getReviews()
+	const projectsData = getRecentProjects()
+	const postsData = getRecentPosts()
+
+	const [home, reviews, projects, posts] = await Promise.all([homeData, reviewsData, projectsData, postsData])
 	const content = home?.content
 	let reviewSum = 0
 	reviews.forEach((review) => {

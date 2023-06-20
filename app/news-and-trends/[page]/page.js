@@ -58,9 +58,9 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
 	const { page } = params
-	const post = await getPostBySlug(page)
-	const posts = await getRecentPosts()
-
+	const postData = getPostBySlug(page)
+	const postsData = getRecentPosts()
+	const [post, posts] = await Promise.all([postData, postsData])
 	const { isEnabled } = draftMode()
 
 	const jsonLd = {

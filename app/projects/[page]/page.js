@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
 	const ogImage = urlFor(project.coverImage.asset).width(800).url()
 	return {
-		title: `${project.title} | Projects| Logo Media`,
+		title: `${project.name} | Projects| Logo Media`,
 		description: project.brief,
 		alternates: {
 			canonical: `https://logo.media/projects/${project.slug}`,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: `${project.title} | Projects| Logo Media`,
+			title: `${project.name} | Projects| Logo Media`,
 			description: project.brief,
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",

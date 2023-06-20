@@ -124,7 +124,6 @@ export default defineType({
 			title: "Project Images",
 			type: "array",
 			of: [{ type: "image" }],
-			validation: (rule) => rule.required().min(4).error("At least 4 images are needed"),
 		}),
 		defineField({
 			name: "tags",
@@ -135,40 +134,6 @@ export default defineType({
 				layout: "tags",
 			},
 			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: "metaTitle",
-			title: "Page Meta Title",
-			type: "string",
-			fieldset: "metadata",
-		}),
-		defineField({
-			name: "schemaDescription",
-			title: "Schema Description",
-			type: "text",
-			fieldset: "metadata",
-		}),
-		defineField({
-			name: "metaDescription",
-			title: "Page Meta Description",
-			type: "text",
-			fieldset: "metadata",
-		}),
-		defineField({
-			name: "ogImage",
-			title: "OG Image",
-			type: "image",
-			fieldset: "metadata",
-		}),
-		defineField({
-			name: "keywords",
-			title: "Keywords",
-			type: "array",
-			fieldset: "metadata",
-			of: [{ type: "string" }],
-			options: {
-				layout: "tags",
-			},
 		}),
 	],
 	preview: {

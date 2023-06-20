@@ -69,7 +69,7 @@ export default async function Page({ params }) {
 	const partnersData = getPartners()
 	const [pageData, reviews, projects, posts, partners] = await Promise.all([pageRequest, reviewsData, projectsData, postsData, partnersData])
 	const content = pageData?.content
-	console.log(posts)
+
 	const { isEnabled } = draftMode()
 
 	if (content === undefined) {
