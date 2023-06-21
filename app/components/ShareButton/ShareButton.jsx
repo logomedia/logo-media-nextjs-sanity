@@ -26,7 +26,12 @@ export default function ShareButton({ sx }) {
 		setOpen(null)
 	}
 	const pathname = usePathname()
-	const title = document ? document.title : ""
+	let title
+	if (document) {
+		title = document.title
+	} else {
+		title = ""
+	}
 	const SOCIALS = [
 		{
 			name: "FaceBook",

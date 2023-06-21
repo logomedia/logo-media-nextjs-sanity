@@ -17,7 +17,13 @@ import { usePathname } from "next/navigation"
 
 export default function SocialsButton({ initialColor = false, simple = true, links = {}, sx, ...other }) {
 	const pathname = usePathname()
-	const title = document ? document.title : ""
+	let title
+	if (document) {
+		title = document.title
+	} else {
+		title = ""
+	}
+
 	const SOCIALS = [
 		{
 			name: "FaceBook",
