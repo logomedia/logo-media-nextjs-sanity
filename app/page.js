@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers"
-import { getRecentPosts, getRecentProjects, getHomepage, getSettings, getReviews } from "../lib/sanity.client"
+import { getRecentPosts, getRecentProjects, getHomepage, getSettings, getReviews, getAllPosts } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
@@ -53,10 +53,9 @@ export async function generateMetadata() {
 
 export default async function Page() {
 	const homeData = getHomepage()
-	console.log("Test")
+	const postsData = getAllPosts()
 	const reviewsData = getReviews()
 	const projectsData = getRecentProjects()
-	const postsData = getRecentPosts()
 
 	const [home, reviews, projects, posts] = await Promise.all([homeData, reviewsData, projectsData, postsData])
 	const content = home?.content
@@ -104,7 +103,7 @@ export default async function Page() {
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{content && !isEnabled ? (
-				<RenderSections sections={content} projects={projects} posts={posts} preview={isEnabled} reviews={reviews} />
+				<RenderSections sections={content} posts={posts} projects={projects} preview={isEnabled} reviews={reviews} />
 			) : (
 				<PreviewSuspense fallback={<LoadingPreview />}>
 					<PreviewRenderSections home preview={isEnabled} />

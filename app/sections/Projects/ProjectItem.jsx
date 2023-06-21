@@ -73,10 +73,11 @@ export default function ProjectItem({ project }) {
 						zIndex: 9,
 						position: "absolute",
 						color: "common.white",
+						width: "100%",
 					}}
 				>
 					<Box>
-						<NextImage style={{ height: "45px", width: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+						<NextImage style={{ height: "45px", width: "auto", margin: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 					</Box>
 				</Stack>
 

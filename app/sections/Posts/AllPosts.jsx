@@ -1,28 +1,28 @@
 // @mui
-import { Container, Unstable_Grid2 as Grid } from '@mui/material';
+import { Container, Unstable_Grid2 as Grid } from "@mui/material"
 //
-import PostsList from './PostsList';
-import FeaturedPost from './FeaturedPost';
+import PostsList from "./PostsList"
+import FeaturedPost from "./FeaturedPost"
 
 // ----------------------------------------------------------------------
 
-export default async function AllPosts({ posts }) {
-  return (
-    <>
-      <FeaturedPost post={posts[0]} />
+export default function AllPosts({ posts }) {
+	return (
+		<>
+			<FeaturedPost post={posts[0]} />
 
-      <Container
-        sx={{
-          pt: 10,
-          pb: 10,
-        }}
-      >
-        <Grid container spacing={{ md: 8 }}>
-          <Grid xs={12}>
-            <PostsList posts={posts} />
-          </Grid>
-        </Grid>
-      </Container>
-    </>
-  );
+			<Container
+				sx={{
+					pt: 10,
+					pb: 10,
+				}}
+			>
+				<Grid container spacing={{ md: 8 }}>
+					<Grid xs={12}>
+						<PostsList posts={posts} />
+					</Grid>
+				</Grid>
+			</Container>
+		</>
+	)
 }

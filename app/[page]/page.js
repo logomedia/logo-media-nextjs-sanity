@@ -66,8 +66,9 @@ export default async function Page({ params }) {
 	const reviewsData = getReviews()
 	const projectsData = getRecentProjects()
 	const postsData = getRecentPosts()
+
 	const partnersData = getPartners()
-	const [pageData, reviews, projects, posts, partners] = await Promise.all([pageRequest, reviewsData, projectsData, postsData, partnersData])
+	const [pageData, reviews, projects, partners, posts] = await Promise.all([pageRequest, reviewsData, projectsData, partnersData, postsData])
 	const content = pageData?.content
 
 	const { isEnabled } = draftMode()
@@ -117,7 +118,7 @@ export default async function Page({ params }) {
 			<>
 				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 				{content && !isEnabled ? (
-					<RenderSections sections={content} projects={projects} posts={posts} preview={isEnabled} reviews={reviews} partners={partners} />
+					<RenderSections sections={content} projects={projects} preview={isEnabled} reviews={reviews} partners={partners} posts={posts} />
 				) : (
 					<PreviewSuspense fallback={<LoadingPreview />}>
 						<PreviewRenderSections page={page} preview={isEnabled} />

@@ -33,7 +33,7 @@ export default function FeaturedProject({ projects }) {
 							gap: 3,
 							mt: 3,
 							gridTemplateColumns: {
-								xs: "repeat(2, 1fr)",
+								xs: "repeat(1, 1fr)",
 								md: "repeat(3, 1fr)",
 							},
 						}}
@@ -67,7 +67,7 @@ function ProjectItemLarge({ project }) {
 				<Box
 					sx={{
 						position: "absolute",
-						bottom: "10px",
+						bottom: "25px",
 						left: "10px",
 						display: "flex",
 						flexWrap: "wrap",
@@ -113,8 +113,8 @@ function ProjectItemLarge({ project }) {
 				>
 					Featured Project
 				</Typography>
-				<Box>
-					<NextImage style={{ height: "45px", width: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+				<Box sx={{ width: "100%" }}>
+					<NextImage style={{ height: "45px", width: "auto", mx: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 				</Box>
 
 				<Box>

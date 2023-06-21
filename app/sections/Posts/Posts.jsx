@@ -1,22 +1,20 @@
-import { getAllPosts } from '../../../lib/sanity.client';
+import { getAllPosts } from "../../../lib/sanity.client"
 
-import AllPosts from './AllPosts';
-import PreviewAllPosts from './PreviewAllPosts';
-import PreviewSuspense from '../../components/PreviewSuspense';
-import LoadingPreview from '../../components/LoadingPreview';
+import AllPosts from "./AllPosts"
+import PreviewAllPosts from "./PreviewAllPosts"
+import PreviewSuspense from "../../components/PreviewSuspense"
+import LoadingPreview from "../../components/LoadingPreview"
 
 // ----------------------------------------------------------------------
 
-export default async function Posts({ preview }) {
-  const posts = await getAllPosts();
+export default function Posts({ preview, posts }) {
+	if (preview) {
+		return (
+			<PreviewSuspense fallback={<LoadingPreview />}>
+				<PreviewAllPosts />
+			</PreviewSuspense>
+		)
+	}
 
-  if (preview) {
-    return (
-      <PreviewSuspense fallback={<LoadingPreview />}>
-        <PreviewAllPosts />
-      </PreviewSuspense>
-    );
-  }
-
-  return <AllPosts posts={posts} />;
+	return <AllPosts posts={posts} />
 }
