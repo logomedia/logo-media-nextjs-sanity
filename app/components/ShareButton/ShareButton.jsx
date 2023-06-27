@@ -27,10 +27,10 @@ export default function ShareButton({ sx }) {
 	}
 	const pathname = usePathname()
 	let title
-	if (document) {
-		title = document.title
-	} else {
+	if (document === undefined) {
 		title = ""
+	} else {
+		title = document.title
 	}
 	const SOCIALS = [
 		{
