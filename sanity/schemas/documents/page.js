@@ -90,6 +90,7 @@ export default defineType({
 				{ type: "reviews" },
 				{ type: "latestReviews" },
 				{ type: "partners" },
+				{ type: "termsPages" },
 			],
 		}),
 

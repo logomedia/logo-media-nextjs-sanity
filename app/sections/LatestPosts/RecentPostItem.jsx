@@ -47,7 +47,7 @@ export default function PostItem({ post, order, largePost }) {
 				}),
 			}}
 		>
-			<Image src={urlFor(coverImage.asset).url()} alt={title} ratio={(largePost && "3/4") || (order && "16/9")} sx={{ borderRadius: 2 }} />
+			<Image src={urlFor(coverImage.asset).url()} alt={title} ratio={(largePost && "1/1") || (order && "16/9")} sx={{ borderRadius: 2 }} />
 
 			<Stack
 				spacing={largePost ? 2 : 1}
@@ -75,7 +75,11 @@ export default function PostItem({ post, order, largePost }) {
 					</TextMaxLine>
 				</Link>
 
-				{largePost && <Typography sx={{ opacity: 0.48 }}>{excerpt}</Typography>}
+				{largePost && (
+					<TextMaxLine line={3} sx={{ opacity: 0.48 }}>
+						{excerpt}
+					</TextMaxLine>
+				)}
 			</Stack>
 
 			{largePost && <StyledOverlay />}
