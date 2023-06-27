@@ -51,7 +51,7 @@ export default function LatestProjects({ heading, projects }) {
 	}
 
 	const viewAllBtn = (
-		<Button component={NextLink} href='/news-and-trends' color='inherit' endIcon={<Iconify icon='carbon:chevron-right' />}>
+		<Button component={NextLink} href='/projects' color='inherit' endIcon={<Iconify icon='carbon:chevron-right' />}>
 			View All
 		</Button>
 	)

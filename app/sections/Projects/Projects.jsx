@@ -5,6 +5,7 @@ import NextImage from "next/image"
 import NextLink from "next/link"
 import ProjectItem from "./ProjectItem"
 import urlFor from "../../../utils/imageUrl"
+import TextMaxLine from "../../components/text-max-line/TextMaxLine"
 
 const RootStyle = styled("div")(({ theme }) => ({
 	padding: theme.spacing(10, 0, 2, 2),
@@ -121,7 +122,9 @@ function ProjectItemLarge({ project }) {
 					<Typography component='h3' variant='h4'>
 						{name}
 					</Typography>
-					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
+					<TextMaxLine line={5} sx={{ color: "text.secondary", flexGrow: 1 }}>
+						{brief}
+					</TextMaxLine>
 
 					<NextLink href={"/projects/" + slug}>
 						<Button size='large' sx={{ mt: 5, color: "primary.main", mt: 1 }}>
