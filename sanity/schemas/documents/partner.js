@@ -49,6 +49,7 @@ export default defineType({
 			options: {
 				layout: "tags",
 			},
+			validation: (rule) => rule.required(),
 		}),
 	],
 	preview: {

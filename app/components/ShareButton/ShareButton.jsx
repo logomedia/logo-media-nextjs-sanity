@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation"
 
 // ----------------------------------------------------------------------
 
-export default function ShareButton({ sx }) {
+export default function ShareButton({ sx, title }) {
 	const [open, setOpen] = useState(null)
 
 	const handleOpen = (event) => {
@@ -26,12 +26,7 @@ export default function ShareButton({ sx }) {
 		setOpen(null)
 	}
 	const pathname = usePathname()
-	let title
-	if (document === undefined) {
-		title = ""
-	} else {
-		title = document.title
-	}
+
 	const SOCIALS = [
 		{
 			name: "FaceBook",

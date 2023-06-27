@@ -59,7 +59,7 @@ export default function PostsPage({ morePosts, post }) {
 								</Typography>
 							</Stack>
 							<Stack direction='row' alignItems='center'>
-								<ShareButton />
+								<ShareButton title={post.title} />
 							</Stack>
 						</Stack>
 						<Divider sx={{ mb: 6 }} />
@@ -77,7 +77,7 @@ export default function PostsPage({ morePosts, post }) {
 							<Typography variant='subtitle2' sx={{ mr: 1 }}>
 								Share:
 							</Typography>
-							<SocialsButton initialColor simple={false} />
+							<SocialsButton title={post.title} initialColor simple={false} />
 						</Stack>
 
 						<Divider sx={{ mt: 8 }} />
