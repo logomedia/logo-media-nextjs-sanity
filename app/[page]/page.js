@@ -8,13 +8,14 @@ import PreviewSuspense from "../components/PreviewSuspense"
 import PreviewRenderSections from "../components/RenderSections/PreviewRenderSections"
 import LoadingPreview from "../components/LoadingPreview"
 import ExitPreviewButton from "../components/ExitPreviewButton"
+import urlFor from "../../utils/imageUrl"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
 
 	const pageData = await getPageBySlug(page)
 
-	const ogImage = pageData.ogImage ? pageData.ogImage.asset.url : ""
+	const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
 
 	return {
 		title: pageData.metaTitle,
@@ -61,7 +62,13 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
 	const { page } = params
 
-	const pageData = await getPageBySlug(page)
+	const pageRequest = getPageBySlug(page)
+	const reviewsData = getReviews()
+	const projectsData = getRecentProjects()
+	const postsData = getRecentPosts()
+
+	const partnersData = getPartners()
+	const [pageData, reviews, projects, partners, posts] = await Promise.all([pageRequest, reviewsData, projectsData, partnersData, postsData])
 	const content = pageData?.content
 
 	const { isEnabled } = draftMode()
@@ -69,11 +76,8 @@ export default async function Page({ params }) {
 	if (content === undefined) {
 		return <NotFound />
 	} else {
-		const ogImage = pageData.ogImage ? pageData.ogImage.asset : ""
-		const reviews = await getReviews()
-		const projects = await getRecentProjects()
-		const posts = await getRecentPosts()
-		const partners = await getPartners()
+		const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
+
 		let reviewSum = 0
 		reviews.forEach((review) => {
 			reviewSum += review.rating
@@ -114,7 +118,7 @@ export default async function Page({ params }) {
 			<>
 				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 				{content && !isEnabled ? (
-					<RenderSections sections={content} projects={projects} posts={posts} preview={isEnabled} reviews={reviews} partners={partners} />
+					<RenderSections sections={content} projects={projects} preview={isEnabled} reviews={reviews} partners={partners} posts={posts} />
 				) : (
 					<PreviewSuspense fallback={<LoadingPreview />}>
 						<PreviewRenderSections page={page} preview={isEnabled} />

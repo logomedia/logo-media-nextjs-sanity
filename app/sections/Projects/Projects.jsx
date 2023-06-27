@@ -4,6 +4,8 @@ import Image from "../../components/image"
 import NextImage from "next/image"
 import NextLink from "next/link"
 import ProjectItem from "./ProjectItem"
+import urlFor from "../../../utils/imageUrl"
+import TextMaxLine from "../../components/text-max-line/TextMaxLine"
 
 const RootStyle = styled("div")(({ theme }) => ({
 	padding: theme.spacing(10, 0, 2, 2),
@@ -32,7 +34,7 @@ export default function FeaturedProject({ projects }) {
 							gap: 3,
 							mt: 3,
 							gridTemplateColumns: {
-								xs: "repeat(2, 1fr)",
+								xs: "repeat(1, 1fr)",
 								md: "repeat(3, 1fr)",
 							},
 						}}
@@ -62,11 +64,11 @@ function ProjectItemLarge({ project }) {
 					width: "100%",
 				}}
 			>
-				<Image ratio='16/9' src={coverImage.asset.url} alt={name} sx={{ borderRadius: 2 }} />
+				<Image ratio='16/9' src={urlFor(coverImage.asset).width(800).url()} alt={name} sx={{ borderRadius: 2 }} />
 				<Box
 					sx={{
 						position: "absolute",
-						bottom: "10px",
+						bottom: "25px",
 						left: "10px",
 						display: "flex",
 						flexWrap: "wrap",
@@ -112,18 +114,20 @@ function ProjectItemLarge({ project }) {
 				>
 					Featured Project
 				</Typography>
-				<Box>
-					<NextImage style={{ height: "45px", width: "auto" }} src={logo.asset.url} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+				<Box sx={{ width: "100%" }}>
+					<NextImage style={{ height: "45px", width: "auto", mx: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 				</Box>
 
 				<Box>
 					<Typography component='h3' variant='h4'>
 						{name}
 					</Typography>
-					<Typography sx={{ color: "text.secondary", flexGrow: 1 }}>{brief}</Typography>
+					<TextMaxLine line={5} sx={{ color: "text.secondary", flexGrow: 1 }}>
+						{brief}
+					</TextMaxLine>
 
 					<NextLink href={"/projects/" + slug}>
-						<Button size='large' sx={{ mt: 5, color: "var(--purple)", mt: 1 }}>
+						<Button size='large' sx={{ mt: 5, color: "primary.main", mt: 1 }}>
 							View Project →
 						</Button>
 					</NextLink>

@@ -7,7 +7,7 @@ import Iconify from "../../components/iconify/Iconify"
 
 export default function Partners(props) {
 	const { partners } = props
-	console.log(partners)
+
 	return (
 		<Container sx={{ py: 2, mb: { xs: 1, md: 3 } }}>
 			<Box

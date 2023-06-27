@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers"
-import { getRecentPosts, getRecentProjects, getHomepage, getSettings, getReviews } from "../lib/sanity.client"
+import { getRecentPosts, getRecentProjects, getHomepage, getSettings, getReviews, getAllPosts } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
@@ -8,7 +8,7 @@ import PreviewRenderSections from "./components/RenderSections/PreviewRenderSect
 import PreviewSuspense from "./components/PreviewSuspense"
 import LoadingPreview from "./components/LoadingPreview"
 import ExitPreviewButton from "./components/ExitPreviewButton"
-
+import urlFor from "../utils/imageUrl"
 import styles from "../app/globals.css"
 
 // slick-carousel
@@ -24,7 +24,7 @@ export async function generateMetadata() {
 			canonical: "/",
 		},
 		openGraph: {
-			images: home.ogImage.asset.url,
+			images: urlFor(home.ogImage.asset).width(800).url(),
 		},
 		robots: {
 			index: true,
@@ -46,16 +46,18 @@ export async function generateMetadata() {
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
 			creatorId: "1485472568299737088",
-			images: [home.ogImage.asset.url],
+			images: [urlFor(home.ogImage.asset).width(800).url()],
 		},
 	}
 }
 
 export default async function Page() {
-	const home = await getHomepage()
-	const reviews = await getReviews()
-	const projects = await getRecentProjects()
-	const posts = await getRecentPosts()
+	const homeData = getHomepage()
+	const postsData = getAllPosts()
+	const reviewsData = getReviews()
+	const projectsData = getRecentProjects()
+
+	const [home, reviews, projects, posts] = await Promise.all([homeData, reviewsData, projectsData, postsData])
 	const content = home?.content
 	let reviewSum = 0
 	reviews.forEach((review) => {
@@ -82,7 +84,7 @@ export default async function Page() {
 			addressCountry: "US",
 		},
 		keywords: home.keywords,
-		images: [home.ogImage.asset.url],
+		images: [urlFor(home.ogImage.asset).width(800).url()],
 		priceRange: "$1000+",
 		openingHours: [
 			{
@@ -101,7 +103,7 @@ export default async function Page() {
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
 			{content && !isEnabled ? (
-				<RenderSections sections={content} projects={projects} posts={posts} preview={isEnabled} reviews={reviews} />
+				<RenderSections sections={content} posts={posts} projects={projects} preview={isEnabled} reviews={reviews} />
 			) : (
 				<PreviewSuspense fallback={<LoadingPreview />}>
 					<PreviewRenderSections home preview={isEnabled} />

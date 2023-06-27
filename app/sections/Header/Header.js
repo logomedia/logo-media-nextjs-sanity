@@ -58,7 +58,7 @@ export default function Header({ headerOnDark, settings }) {
 					for (let i = 0; i < items.length; i++) {
 						let object = {
 							title: items[i].name,
-							path: items[i].link.slug.current,
+							path: `/${items[i].link.slug.current}`,
 						}
 						kids.push(object)
 					}
@@ -83,7 +83,7 @@ export default function Header({ headerOnDark, settings }) {
 							//console.log(grandKidLinks[i])
 							let grandKid = {
 								title: grandKidLinks[j].name,
-								path: grandKidLinks[j].link.slug.current,
+								path: `/${grandKidLinks[j].link.slug.current}`,
 							}
 							array.push(grandKid)
 						}
@@ -98,7 +98,7 @@ export default function Header({ headerOnDark, settings }) {
 
 			let obj1 = {
 				title: mainMenu[i].name,
-				path: path,
+				path: `/${path}`,
 			}
 
 			let child = getChildren()

@@ -15,7 +15,7 @@ function resolveSections(section) {
 }
 
 function RenderSections(props) {
-	const { sections, posts, projects, reviews, partners, preview } = props
+	const { sections, projects, reviews, partners, posts, preview } = props
 
 	if (!sections) {
 		console.error("Missing section")

@@ -7,6 +7,7 @@ import { fDate } from "../../../utils/formatTime"
 // components
 import Image from "../../components/image/Image"
 import TextMaxLine from "../../components/text-max-line"
+import urlFor from "../../../utils/imageUrl"
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +16,7 @@ export default function PostItem({ post }) {
 
 	return (
 		<Paper variant='outlined' sx={{ borderRadius: 2, overflow: "hidden" }}>
-			<Image src={coverImage.asset.url} alt={title} ratio='16/9' />
+			<Image src={urlFor(coverImage.asset).width(400).url()} alt={title} ratio='16/9' />
 
 			<Stack direction='row' spacing={3} sx={{ p: 3 }}>
 				<Stack sx={{ textAlign: "center" }}>
@@ -38,7 +39,7 @@ export default function PostItem({ post }) {
 					</TextMaxLine>
 
 					<Stack spacing={1.5} direction='row' alignItems='center' sx={{ pt: 1.5 }}>
-						<Avatar src={author.picture.asset.url} sx={{ width: 40, height: 40 }} />
+						<Avatar src={urlFor(author.picture.asset).width(80).url()} sx={{ width: 40, height: 40 }} />
 						<Stack>
 							<Typography variant='body2'>{author.name}</Typography>
 							<Typography variant='caption' sx={{ color: "text.disabled" }}>

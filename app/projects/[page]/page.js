@@ -5,15 +5,16 @@ import PreviewProjectsPage from "../../sections/ProjectsPage/PreviewProjectsPage
 import PreviewSuspense from "../../components/PreviewSuspense"
 import LoadingPreview from "../../components/LoadingPreview"
 import ExitPreviewButton from "../../components/ExitPreviewButton"
+import urlFor from "../../../utils/imageUrl"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
 
 	const project = await getProjectBySlug(page)
 
-	const ogImage = project.coverImage.asset.url
+	const ogImage = urlFor(project.coverImage.asset).width(800).url()
 	return {
-		title: `${project.title} | Projects| Logo Media`,
+		title: `${project.name} | Projects| Logo Media`,
 		description: project.brief,
 		alternates: {
 			canonical: `https://logo.media/projects/${project.slug}`,
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }) {
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: `${project.title} | Projects| Logo Media`,
+			title: `${project.name} | Projects| Logo Media`,
 			description: project.brief,
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
@@ -57,7 +58,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
 	const { page } = params
 	const project = await getProjectBySlug(page)
-	const ogImage = project.coverImage.asset.url
+	const ogImage = urlFor(project.coverImage.asset).width(800).url()
 
 	const { isEnabled } = draftMode()
 
