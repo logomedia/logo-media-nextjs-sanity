@@ -44,7 +44,7 @@ export default function SocialsButton({ title, initialColor = false, simple = tr
 			{SOCIALS.map((social) => {
 				const { name, icon, path, socialColor } = social
 				return simple ? (
-					<Link key={name} href={path}>
+					<Link key={name} href={path} target='_blank'>
 						<IconButton
 							color='inherit'
 							sx={{
@@ -63,6 +63,7 @@ export default function SocialsButton({ title, initialColor = false, simple = tr
 					</Link>
 				) : (
 					<Button
+						target='_blank'
 						key={name}
 						href={path}
 						color='inherit'

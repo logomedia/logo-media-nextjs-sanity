@@ -42,7 +42,7 @@ export default function BlogPostItemMobile({ post, path, onSiderbar }) {
 			/>
 
 			<Stack spacing={onSiderbar ? 0.5 : 1}>
-				<NextLink href={href}>
+				<NextLink href={href} style={{ cursor: "pointer" }}>
 					<TextMaxLine variant={onSiderbar ? "subtitle2" : "h6"}>{title}</TextMaxLine>
 				</NextLink>
 

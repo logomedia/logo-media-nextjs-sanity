@@ -2,12 +2,14 @@ import { getSettings } from "../lib/sanity.client"
 import { Header } from "./sections/Header"
 import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
-
+import LoadingSkeleton from "../app/components/LoadingSkeleton"
 import styles from "./globals.css"
 
 // slick-carousel
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { Suspense } from "react"
+import LoadingPreview from "./components/LoadingPreview/LoadingPreview"
 
 export const metadata = {
 	icons: {
@@ -39,11 +41,13 @@ export default async function RootLayout({ children }) {
 		<html>
 			<body>
 				<div id='app'>
-					<ContextWrapper>
-						<Header settings={settings} />
-						{children}
-						<Footer settings={settings} />
-					</ContextWrapper>
+					<LoadingSkeleton>
+						<ContextWrapper>
+							<Header settings={settings} />
+							{children}
+							<Footer settings={settings} />
+						</ContextWrapper>
+					</LoadingSkeleton>
 				</div>
 			</body>
 		</html>
