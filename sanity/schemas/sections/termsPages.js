@@ -12,14 +12,12 @@ export default defineType({
 			name: "heading",
 			type: "string",
 			title: "Heading",
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: "description",
 			type: "array",
 			title: "Description",
 			of: [{ type: "block" }],
-			validation: (rule) => rule.required(),
 		}),
 	],
 

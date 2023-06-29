@@ -24,7 +24,7 @@ export default function FeaturedPost({ post }) {
 		>
 			<Container>
 				<Stack direction={{ xs: "column", md: "row" }}>
-					<Image src={urlFor(coverImage.asset).width(800).url()} alt={title} sx={{ flexGrow: 1, height: 560, borderRadius: 2 }} />
+					<Image src={urlFor(coverImage.asset).width(800).url()} alt={title} sx={{ flexGrow: 1, height: { xs: 250, md: 560 }, borderRadius: 2 }} />
 
 					<Stack
 						spacing={1}

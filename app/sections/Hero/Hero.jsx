@@ -40,13 +40,10 @@ const Hero = (props) => {
 
 	const isMdUp = useResponsive("up", "md")
 
-	const container = useBoundingClientRect(containerRef)
-
 	const imageProps = useNextSanityImage(client, image.asset)
 	function loadingComplete(eventName) {
 		const event = new CustomEvent(eventName)
-		document.dispatchEvent(event)
-		console.log(event)
+		window.dispatchEvent(event)
 	}
 
 	return (

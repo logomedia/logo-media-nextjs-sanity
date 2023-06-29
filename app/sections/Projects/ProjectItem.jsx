@@ -77,7 +77,7 @@ export default function ProjectItem({ project }) {
 					}}
 				>
 					<Box>
-						<NextImage style={{ height: "45px", width: "auto", margin: "auto" }} src={urlFor(logo.asset).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
+						<NextImage style={{ height: "35px", width: "auto", margin: "auto" }} src={urlFor(logo.asset).width(400).url()} alt={name + " logo"} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 					</Box>
 				</Stack>
 
