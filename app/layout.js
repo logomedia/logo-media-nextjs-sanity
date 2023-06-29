@@ -4,6 +4,7 @@ import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
 import LoadingSkeleton from "../app/components/LoadingSkeleton"
 import styles from "./globals.css"
+import Analytics from "../app/components/Analytics"
 
 // slick-carousel
 import "slick-carousel/slick/slick.css"
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }) {
 
 	return (
 		<html>
+			<Analytics />
 			<body>
 				<div id='app'>
 					<LoadingSkeleton>
