@@ -9,6 +9,7 @@ import PreviewRenderSections from "../components/RenderSections/PreviewRenderSec
 import LoadingPreview from "../components/LoadingPreview"
 import ExitPreviewButton from "../components/ExitPreviewButton"
 import urlFor from "../../utils/imageUrl"
+import { Suspense } from "react"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
@@ -118,7 +119,9 @@ export default async function Page({ params }) {
 			<>
 				<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 				{content && !isEnabled ? (
-					<RenderSections sections={content} projects={projects} preview={isEnabled} reviews={reviews} partners={partners} posts={posts} />
+					<Suspense>
+						<RenderSections sections={content} projects={projects} preview={isEnabled} reviews={reviews} partners={partners} posts={posts} />
+					</Suspense>
 				) : (
 					<PreviewSuspense fallback={<LoadingPreview />}>
 						<PreviewRenderSections page={page} preview={isEnabled} />

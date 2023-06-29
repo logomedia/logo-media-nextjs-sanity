@@ -1,5 +1,5 @@
 "use client"
-import { Suspense } from "react"
+import { motion } from "framer-motion"
 
 import capitalizeString from "../../../utils/capitalizeString"
 import * as SectionComponents from "../../sections"
@@ -23,7 +23,7 @@ function RenderSections(props) {
 	}
 
 	return (
-		<>
+		<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 20 }} exit={{ opacity: 0, y: 20 }}>
 			{sections.map((section) => {
 				const SectionComponent = resolveSections(section)
 
@@ -32,7 +32,7 @@ function RenderSections(props) {
 				}
 				return <SectionComponent {...section} key={section._key} posts={posts} projects={projects} reviews={reviews} preview={preview} partners={partners} />
 			})}
-		</>
+		</motion.div>
 	)
 }
 

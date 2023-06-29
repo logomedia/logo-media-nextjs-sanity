@@ -1,9 +1,7 @@
 import { draftMode } from "next/headers"
 import { getRecentPosts, getRecentProjects, getHomepage, getSettings, getReviews, getAllPosts } from "../lib/sanity.client"
 import RenderSections from "../app/components/RenderSections/RenderSections"
-import { Header } from "./sections/Header"
-import { Footer } from "./sections/Footer"
-import ContextWrapper from "./components/ContextWrapper/ContextWrapper"
+
 import PreviewRenderSections from "./components/RenderSections/PreviewRenderSections"
 import PreviewSuspense from "./components/PreviewSuspense"
 import LoadingPreview from "./components/LoadingPreview"
