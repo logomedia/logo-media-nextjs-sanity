@@ -5,12 +5,11 @@ import ContextWrapper from "../app/components/ContextWrapper"
 import LoadingSkeleton from "../app/components/LoadingSkeleton"
 import styles from "./globals.css"
 import Analytics from "../app/components/Analytics"
+import { Suspense } from "react"
 
 // slick-carousel
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { Suspense } from "react"
-import LoadingPreview from "./components/LoadingPreview/LoadingPreview"
 
 export const metadata = {
 	icons: {
@@ -40,8 +39,10 @@ export default async function RootLayout({ children }) {
 
 	return (
 		<html>
-			<Analytics />
 			<body>
+				<Suspense>
+					<Analytics />
+				</Suspense>
 				<div id='app'>
 					<LoadingSkeleton>
 						<ContextWrapper>
