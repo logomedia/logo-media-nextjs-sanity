@@ -10,11 +10,13 @@ import { fCurrency } from "../../../utils/formatNumber"
 // components
 import FormProvider, { RHFTextField, RHFSlider } from "../../components/hook-form"
 import emailjs from "@emailjs/browser"
+import { usePathname } from "next/navigation"
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
 
 export default function ContactMarketingForm() {
+	const url = usePathname()
 	const SERVICES = ["Design", "Development", "Ecommerce"]
 	const MarketingContactSchema = Yup.object().shape({
 		services: Yup.array().required().min(1, "Services field must have at least 1 items"),
@@ -49,6 +51,11 @@ export default function ContactMarketingForm() {
 
 	const onSubmit = async (data) => {
 		try {
+			window.dataLayer.push({
+				event: "generate_lead",
+				page: url,
+			})
+			console.log("lead submitted")
 			await new Promise((resolve) => setTimeout(resolve, 500))
 			reset()
 			console.log("DATA", data)
