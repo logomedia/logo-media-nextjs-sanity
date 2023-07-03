@@ -39,7 +39,7 @@ export default function PostItem({ post }) {
 					</TextMaxLine>
 
 					<Stack spacing={1.5} direction='row' alignItems='center' sx={{ pt: 1.5 }}>
-						<Avatar src={urlFor(author.picture.asset).width(80).url()} sx={{ width: 40, height: 40 }} />
+						<Avatar src={urlFor(author.picture.asset).width(80).url()} sx={{ width: 40, height: 40 }} alt={author.name} />
 						<Stack>
 							<Typography variant='body2'>{author.name}</Typography>
 							<Typography variant='caption' sx={{ color: "text.disabled" }}>

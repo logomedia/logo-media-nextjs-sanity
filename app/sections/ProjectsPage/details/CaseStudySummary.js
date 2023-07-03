@@ -27,7 +27,9 @@ export default function CaseStudySummary({ caseStudy }) {
 				>
 					<Image style={{ height: "35px", width: "auto" }} src={logo.asset.url} alt={name} width={logo.asset.metadata.dimensions.width} height={logo.asset.metadata.dimensions.height} />
 				</Box>
-				<Typography variant='h6'>{name}</Typography>
+				<Typography component='h1' variant='h6'>
+					{name}
+				</Typography>
 
 				<Typography variant='body2'>{description}</Typography>
 			</Stack>

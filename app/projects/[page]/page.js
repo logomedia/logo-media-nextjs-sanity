@@ -65,7 +65,7 @@ export default async function Page({ params }) {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Project",
-		name: `${project.title} | Projects| Logo Media`,
+		name: `${project.title} | Ecommerce Projects | Logo Media`,
 		description: project.brief,
 		logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
 		url: "https://logo.media",

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
 	const ogImage = urlFor(post.coverImage.asset).width(800).url()
 	return {
 		title: post.title,
-		description: post.description,
+		description: post.excerpt,
 		alternates: {
 			canonical: `https://logo.media/news-and-trends/${post.slug}`,
 		},
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
 		twitter: {
 			card: "summary_large_image",
 			title: post.title,
-			description: post.description,
+			description: post.excerpt,
 			siteId: "1485472568299737088",
 			creator: "@Logo__Media ",
 			creatorId: "1485472568299737088",
