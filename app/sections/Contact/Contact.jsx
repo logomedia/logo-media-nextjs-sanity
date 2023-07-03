@@ -23,7 +23,7 @@ export default function Contact(props) {
 				</Grid>
 
 				<Grid xs={12} md={6} lg={6}>
-					<Typography variant='h3' sx={{ mb: 5 }}>
+					<Typography component='h1' variant='h3' sx={{ mb: 5 }}>
 						{heading}
 					</Typography>
 

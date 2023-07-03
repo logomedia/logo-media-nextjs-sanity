@@ -54,7 +54,7 @@ export default function PostsPage({ morePosts, post }) {
 							</Stack>
 							<Divider />
 							<Stack direction='row' justifyContent='space-between' spacing={1.5} sx={{ py: 3 }}>
-								<Avatar src={urlFor(post.author.picture.asset).width(80).url()} sx={{ width: 48, height: 48 }} />
+								<Avatar src={urlFor(post.author.picture.asset).width(80).url()} sx={{ width: 48, height: 48 }} alt={post.author.name} />
 								<Stack spacing={0.5} flexGrow={1}>
 									<Typography variant='subtitle2'>{post.author.name}</Typography>
 									<Typography variant='caption' sx={{ color: "text.secondary" }}>
