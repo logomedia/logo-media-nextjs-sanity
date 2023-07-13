@@ -3,7 +3,7 @@ import Script from "next/script"
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 
-export default function Analytics() {
+export default function GTM() {
 	const url = usePathname()
 	useEffect(() => {
 		console.log("data push")
