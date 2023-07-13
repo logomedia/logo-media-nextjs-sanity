@@ -66,7 +66,9 @@ export default function ContactMarketingForm() {
 			 Phone: ${data.phoneNumber}
 			 Website: ${data.website}
 			 Budget: $${data.budget[0]}-$${data.budget[1]}
-			 Services: ${serviceList}`
+			 Services: ${serviceList}
+			 Message:${data.message}`
+
 			const toSend = {
 				from_name: data.firstName + " " + data.lastName,
 				to_name: "Logo Media",

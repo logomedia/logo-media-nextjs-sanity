@@ -1,7 +1,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.jsx` route
  */
-import { CogIcon, BlockContentIcon, CodeBlockIcon } from "@sanity/icons"
+import { CogIcon, BlockContentIcon, CodeBlockIcon, DocumentsIcon } from "@sanity/icons"
 
 import { visionTool } from "@sanity/vision"
 import { defineConfig } from "sanity"
@@ -62,7 +62,14 @@ export default defineConfig({
 									.items([S.documentListItem().id("settings").schemaType("settings"), S.documentTypeListItem("menus")])
 							),
 						S.divider(),
-						S.documentTypeListItem("page"),
+						S.listItem()
+							.icon(DocumentsIcon)
+							.title("Pages")
+							.child(
+								S.list()
+									.title("Pages")
+									.items([S.documentTypeListItem("page"), S.documentTypeListItem("service"), S.documentTypeListItem("project")])
+							),
 						S.listItem()
 							.icon(BlockContentIcon)
 							.title("Blog Content")
@@ -71,14 +78,7 @@ export default defineConfig({
 									.title("Blogs")
 									.items([S.documentTypeListItem("author"), S.documentTypeListItem("post")])
 							),
-						S.listItem()
-							.icon(CodeBlockIcon)
-							.title("Projects & clients")
-							.child(
-								S.list()
-									.title("Content")
-									.items([S.documentTypeListItem("project"), S.documentTypeListItem("client")])
-							),
+						S.documentTypeListItem("client"),
 						S.documentTypeListItem("partner"),
 						S.documentTypeListItem("review"),
 					]),
