@@ -1,11 +1,23 @@
-import { getAllPageSlugs, getAllProjectSlugs, getAllPostSlugs } from "../lib/sanity.client"
+import { getAllPageSlugs, getAllProjectSlugs, getAllPostSlugs, getAllServiceSlugs } from "../lib/sanity.client"
 export default async function sitemap() {
 	const sitemap = []
 	const pages = await getAllPageSlugs()
+	const services = await getAllServiceSlugs()
 	const projects = await getAllProjectSlugs()
 	const posts = await getAllPostSlugs()
 
 	pages.forEach((page) => {
+		let object = {}
+		object.lastModified = new Date()
+		if (page.slug === "/") {
+			object.url = `https://logo.media/`
+		} else {
+			object.url = `https://logo.media/${page.slug}`
+		}
+
+		sitemap.push(object)
+	})
+	services.forEach((page) => {
 		let object = {}
 		object.lastModified = new Date()
 		if (page.slug === "/") {

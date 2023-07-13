@@ -15,8 +15,8 @@ import pageSections from "../blocks/pageSections"
  */
 
 export default defineType({
-	name: "page",
-	title: "Pages",
+	name: "service",
+	title: "Services",
 	icon: DocumentsIcon,
 	type: "document",
 	fieldsets: [

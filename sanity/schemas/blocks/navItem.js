@@ -15,7 +15,7 @@ export default defineType({
 			title: "Link",
 			name: "link",
 			type: "reference",
-			to: [{ type: "page" }, { type: "menus" }],
+			to: [{ type: "page" }, { type: "service" }, { type: "menus" }],
 		}),
 	],
 	preview: {

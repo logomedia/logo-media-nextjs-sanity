@@ -50,59 +50,87 @@ function ElearningHeroIllustration({ imagesArray, image, imageAltText, sx, ...ot
 				<Image visibleByDefault disabledEffect alt={imageAltText} src={urlFor(image.asset).url()} sx={{ width: 546, height: 650 }} />
 			</Box>
 
-			<Box {...varDown} component={m.div} sx={{ position: "absolute", left: 115, bottom: 115, zIndex: 8 }}>
-				<Image visibleByDefault disabledEffect alt={imagesArray[4].asset.originalFilename} src={urlFor(imagesArray[4].asset).url()} sx={{ width: 52, height: 62 }} />
-			</Box>
+			{imagesArray[4] ? (
+				<Box {...varDown} component={m.div} sx={{ position: "absolute", left: 115, bottom: 115, zIndex: 8 }}>
+					<Image visibleByDefault disabledEffect alt={"icon"} src={urlFor(imagesArray[4].asset).url()} sx={{ width: 52, height: 62 }} />
+				</Box>
+			) : (
+				<></>
+			)}
 
-			<Box {...varRight} component={m.div} sx={{ position: "absolute", left: 18, top: 220, zIndex: 8 }}>
-				<Image visibleByDefault disabledEffect alt={imagesArray[2].asset.originalFilename} src={urlFor(imagesArray[2].asset).url()} sx={{ width: 60, height: 77 }} />
-			</Box>
+			{imagesArray[2] ? (
+				<Box {...varRight} component={m.div} sx={{ position: "absolute", left: 18, top: 220, zIndex: 8 }}>
+					<Image visibleByDefault disabledEffect alt={"icon"} src={urlFor(imagesArray[2].asset).url()} sx={{ width: 60, height: 77 }} />
+				</Box>
+			) : (
+				<></>
+			)}
 
-			<Box {...varUp} component={m.div} sx={{ zIndex: 9, left: 120, bottom: 168, position: "absolute" }}>
-				<Image visibleByDefault disabledEffect alt={imagesArray[3].asset.originalFilename} src={urlFor(imagesArray[3].asset).url()} sx={{ width: 56, height: 56 }} />
-			</Box>
+			{imagesArray[3] ? (
+				<Box {...varUp} component={m.div} sx={{ zIndex: 9, left: 120, bottom: 168, position: "absolute" }}>
+					<Image visibleByDefault disabledEffect alt={"icon"} src={urlFor(imagesArray[3].asset).url()} sx={{ width: 56, height: 56 }} />
+				</Box>
+			) : (
+				<></>
+			)}
 
 			{/* Icon */}
 
-			<Box {...varLeft} component={m.div} sx={{ top: 88, right: 72, zIndex: 8, position: "absolute" }}>
-				<Image alt={imagesArray[0].asset.originalFilename} src={urlFor(imagesArray[0].asset).url()} sx={{ width: 90, height: 90 }} />
-			</Box>
+			{imagesArray[0] ? (
+				<Box {...varLeft} component={m.div} sx={{ top: 88, right: 72, zIndex: 8, position: "absolute" }}>
+					<Image alt={"icon"} src={urlFor(imagesArray[0].asset).url()} sx={{ width: 90, height: 90 }} />
+				</Box>
+			) : (
+				<></>
+			)}
 
-			<Box {...varRight} component={m.div} sx={{ zIndex: 8, bottom: 160, position: "absolute" }}>
-				<Image
-					alt={imagesArray[1].asset.originalFilename}
-					src={urlFor(imagesArray[1].asset).url()}
-					sx={{
-						width: 80,
-						height: 80,
-						transform: "translateX(40px) scale(1.2) rotate(-15deg)",
-					}}
-				/>
-			</Box>
+			{imagesArray[1] ? (
+				<Box {...varRight} component={m.div} sx={{ zIndex: 8, bottom: 160, position: "absolute" }}>
+					<Image
+						alt={"icon"}
+						src={urlFor(imagesArray[1].asset).url()}
+						sx={{
+							width: 80,
+							height: 80,
+							transform: "translateX(40px) scale(1.2) rotate(-15deg)",
+						}}
+					/>
+				</Box>
+			) : (
+				<></>
+			)}
 
-			<Box {...varUp} component={m.div} sx={{ zIndex: 8, right: 90, position: "absolute" }}>
-				<Image
-					alt={imagesArray[5].asset.originalFilename}
-					src={urlFor(imagesArray[5].asset).url()}
-					sx={{
-						width: 80,
-						height: 80,
-						transform: "translateX(40px) scale(1.2) rotate(-15deg)",
-					}}
-				/>
-			</Box>
+			{imagesArray[5] ? (
+				<Box {...varUp} component={m.div} sx={{ zIndex: 8, right: 90, position: "absolute" }}>
+					<Image
+						alt={"icon"}
+						src={urlFor(imagesArray[5].asset).url()}
+						sx={{
+							width: 80,
+							height: 80,
+							transform: "translateX(40px) scale(1.2) rotate(-15deg)",
+						}}
+					/>
+				</Box>
+			) : (
+				<></>
+			)}
 
-			<Box {...varDown} component={m.div} sx={{ zIndex: 8, position: "absolute" }}>
-				<Image
-					alt={imagesArray[6].asset.originalFilename}
-					src={urlFor(imagesArray[6].asset).url()}
-					sx={{
-						width: 80,
-						height: 80,
-						transform: "scale(1.2) translate(-135px, -75px) rotate(15deg)",
-					}}
-				/>
-			</Box>
+			{imagesArray[6] ? (
+				<Box {...varDown} component={m.div} sx={{ zIndex: 8, position: "absolute" }}>
+					<Image
+						alt={"icon"}
+						src={urlFor(imagesArray[6].asset).url()}
+						sx={{
+							width: 80,
+							height: 80,
+							transform: "scale(1.2) translate(-135px, -75px) rotate(15deg)",
+						}}
+					/>
+				</Box>
+			) : (
+				<></>
+			)}
 
 			<Pattern01 sx={{ left: 0, top: 0 }} />
 			<Pattern02 sx={{ top: 0, left: 0, opacity: 0.24, transform: "scale(1.2)" }} />

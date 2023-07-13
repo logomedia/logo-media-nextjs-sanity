@@ -50,21 +50,9 @@ export default function PlanHeader({ plan }) {
 					}),
 				}}
 			>
-				{!startLicense && (
-					<Typography variant='h4' component='span'>
-						$
-					</Typography>
-				)}
-
 				<Typography variant='h3' component='span'>
 					{price}
 				</Typography>
-
-				{!startLicense && (
-					<Typography variant='subtitle2' component='span'>
-						/mo
-					</Typography>
-				)}
 			</Stack>
 
 			<Image alt={image.asset.originalFilename} src={urlFor(image.asset).url()} sx={{ width: 80, height: 80 }} />

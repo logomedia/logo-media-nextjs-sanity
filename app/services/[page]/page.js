@@ -1,20 +1,20 @@
 import { draftMode } from "next/headers"
-import { getRecentPosts, getRecentProjects, getAllPageSlugs, getPageBySlug, getReviews, getPartners } from "../../lib/sanity.client"
-import RenderSections from "../components/RenderSections/RenderSections"
+import { getRecentPosts, getRecentProjects, getAllServiceSlugs, getServiceBySlug, getPartners, getReviews } from "../../../lib/sanity.client"
+import RenderSections from "../../components/RenderSections/RenderSections"
 
-import NotFound from "../not-found"
+import NotFound from "../../not-found"
 
-import PreviewSuspense from "../components/PreviewSuspense"
-import PreviewRenderSections from "../components/RenderSections/PreviewRenderSections"
-import LoadingPreview from "../components/LoadingPreview"
-import ExitPreviewButton from "../components/ExitPreviewButton"
-import urlFor from "../../utils/imageUrl"
+import PreviewSuspense from "../../components/PreviewSuspense"
+import PreviewRenderSections from "../../components/RenderSections/PreviewRenderSections"
+import LoadingPreview from "../../components/LoadingPreview"
+import ExitPreviewButton from "../../components/ExitPreviewButton"
+import urlFor from "../../../utils/imageUrl"
 import { Suspense } from "react"
 
 export async function generateMetadata({ params }) {
 	const { page } = params
 
-	const pageData = await getPageBySlug(page)
+	const pageData = await getServiceBySlug(page)
 
 	const ogImage = pageData.ogImage ? urlFor(pageData.ogImage.asset).width(800).url() : ""
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
 		title: pageData.metaTitle,
 		description: pageData.description,
 		alternates: {
-			canonical: `https://logo.media/${pageData.slug}`,
+			canonical: `https://logo.media/services/${pageData.slug}`,
 		},
 		openGraph: {
 			images: ogImage,
@@ -53,8 +53,8 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-	const pageSlugs = await getAllPageSlugs()
-	console.log(pageSlugs)
+	const pageSlugs = await getAllServiceSlugs()
+
 	return pageSlugs.map((page) => ({
 		slug: page.slug,
 	}))
@@ -63,7 +63,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
 	const { page } = params
 
-	const pageRequest = getPageBySlug(page)
+	const pageRequest = getServiceBySlug(page)
 	const reviewsData = getReviews()
 	const projectsData = getRecentProjects()
 	const postsData = getRecentPosts()
@@ -86,7 +86,7 @@ export default async function Page({ params }) {
 		const reviewRating = reviewSum / reviews.length
 		const jsonLd = {
 			"@context": "https://schema.org",
-			"@type": "Organization",
+			"@type": "ProfessionalService",
 			name: "Logo Media",
 			logo: "https://cdn.sanity.io/images/kgp6clwy/production/c288a1bcd93f7314e462b12f5ac1dfc1dfb10b91-78x19.svg",
 			url: "https://logo.media",
