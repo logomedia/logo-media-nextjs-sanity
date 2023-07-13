@@ -4,7 +4,8 @@ import { Footer } from "./sections/Footer"
 import ContextWrapper from "../app/components/ContextWrapper"
 import LoadingSkeleton from "../app/components/LoadingSkeleton"
 import styles from "./globals.css"
-import Analytics from "../app/components/Analytics"
+import { Analytics } from "@vercel/analytics/react"
+import GTM from "../app/components/GTM"
 import { Suspense } from "react"
 
 // slick-carousel
@@ -41,7 +42,7 @@ export default async function RootLayout({ children }) {
 		<html>
 			<body>
 				<Suspense>
-					<Analytics />
+					<GTM />
 				</Suspense>
 				<div id='app'>
 					<LoadingSkeleton>
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }) {
 						</ContextWrapper>
 					</LoadingSkeleton>
 				</div>
+				<Analytics />
 			</body>
 		</html>
 	)
