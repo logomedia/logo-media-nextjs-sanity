@@ -54,7 +54,7 @@ export async function generateMetadata({ params }) {
 
 export async function generateStaticParams() {
 	const pageSlugs = await getAllPageSlugs()
-	console.log(pageSlugs)
+
 	return pageSlugs.map((page) => ({
 		slug: page.slug,
 	}))

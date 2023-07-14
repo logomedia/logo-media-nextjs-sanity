@@ -19,11 +19,11 @@ export default function Pricing2(props) {
 		<Container
 			sx={{
 				minHeight: 1,
-				pt: { xs: 13, md: 16 },
+				pt: { xs: 4, md: 2 },
 				pb: { xs: 10, md: 15 },
 			}}
 		>
-			<Typography variant='h3' align='center' paragraph>
+			<Typography component='h2' variant='h2' align='center' paragraph>
 				{heading}
 			</Typography>
 
