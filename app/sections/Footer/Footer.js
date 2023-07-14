@@ -112,6 +112,7 @@ export default function Footer({ settings }) {
 	const renderLists = isMdUp ? desktopList : mobileList
 	const [email, setEmail] = useState("")
 	const [name, setName] = useState("")
+	const [success, setSuccess] = useState("")
 	function submitEmail(e) {
 		e.preventDefault()
 		const toSend = {
@@ -123,10 +124,14 @@ export default function Footer({ settings }) {
 		emailjs
 			.send("service_1tbbiwc", "template_ihms0lc", toSend, "XtmHxL5zdet_8tKjY")
 			.then((response) => {
-				console.log("SUCCESS!", response.status, response.text)
+				setSuccess("Your email has been submitted")
+				window.dataLayer.push({
+					event: "subscriber",
+					page: url,
+				})
 			})
 			.catch((err) => {
-				console.log("FAILED...", err)
+				setSuccess(err)
 			})
 	}
 	return (
@@ -223,6 +228,7 @@ export default function Footer({ settings }) {
 										}}
 									/>
 								</Box>
+								<Typography>{success}</Typography>
 							</form>
 						</Stack>
 					</Grid>

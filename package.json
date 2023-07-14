@@ -25,6 +25,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/orderable-document-list": "^1.0.4",
     "@sanity/vision": "^3.11.1",
+    "@vercel/analytics": "^1.0.1",
     "framer-motion": "^10.12.12",
     "lodash.merge": "^4.6.2",
     "next": "^13.4.7",
@@ -46,6 +47,7 @@
     "sanity-plugin-vercel-deploy": "^3.3.4",
     "simplebar-react": "^3.2.4",
     "slick-carousel": "^1.8.1",
+    "vercel": "^31.0.2",
     "yet-another-react-lightbox": "^3.9.0"
   },
   "devDependencies": {

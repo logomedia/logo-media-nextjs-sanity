@@ -11,6 +11,7 @@ import { fCurrency } from "../../../utils/formatNumber"
 import FormProvider, { RHFTextField, RHFSlider } from "../../components/hook-form"
 import emailjs from "@emailjs/browser"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
@@ -48,17 +49,17 @@ export default function ContactMarketingForm() {
 		handleSubmit,
 		formState: { isSubmitting },
 	} = methods
-
+	const [success, setSuccess] = useState("")
 	const onSubmit = async (data) => {
 		try {
 			window.dataLayer.push({
 				event: "generate_lead",
 				page: url,
 			})
-			console.log("lead submitted")
+
 			await new Promise((resolve) => setTimeout(resolve, 500))
 			reset()
-			console.log("DATA", data)
+
 			const serviceList = data.services.toString()
 			const message = `Name:${data.firstName} ${data.lastName}
 			 Company: ${data.company}
@@ -78,10 +79,10 @@ export default function ContactMarketingForm() {
 			emailjs
 				.send("service_1tbbiwc", "template_nta5lyb", toSend, "XtmHxL5zdet_8tKjY")
 				.then((response) => {
-					console.log("SUCCESS!", response.status, response.text)
+					setSuccess("Your message has been sent succesfully")
 				})
 				.catch((err) => {
-					console.log("FAILED...", err)
+					setSuccess(err)
 				})
 		} catch (error) {
 			console.error(error)
@@ -159,7 +160,9 @@ export default function ContactMarketingForm() {
 
 				<RHFTextField name='message' label='Message' multiline rows={4} />
 			</Stack>
-
+			<Stack>
+				<Typography>{success}</Typography>
+			</Stack>
 			<LoadingButton fullWidth size='large' color='primary' type='submit' variant='contained' loading={isSubmitting} sx={{ mt: 3 }}>
 				Send Request
 			</LoadingButton>

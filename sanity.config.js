@@ -30,7 +30,6 @@ const defaultDocumentNode = (S, { schemaType }) => {
 	])
 }
 function MyLogo(props) {
-	console.log(props.renderDefault)
 	// LogoProps includes the title from project config by default
 	const { renderDefault, title } = props
 	// Overwrite the value of `title` after spreading the props object

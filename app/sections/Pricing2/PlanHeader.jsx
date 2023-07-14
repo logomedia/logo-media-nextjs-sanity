@@ -12,7 +12,6 @@ import urlFor from "../../../utils/imageUrl"
 export default function PlanHeader({ plan }) {
 	const { title, description, price, popular, image } = plan
 
-	const startLicense = title === "START"
 	const proLicense = title === "PRO"
 
 	return (
