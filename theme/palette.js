@@ -50,7 +50,7 @@ const ORANGE = {
 const PINK = {
 	lighter: "#B262B0",
 	light: "#AA5CA8",
-	main: "#A758A2",
+	main: "",
 	dark: "#A05A9E",
 	darker: "#995897",
 	contrastText: "#FFFFFF",
