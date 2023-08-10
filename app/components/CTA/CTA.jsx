@@ -21,42 +21,42 @@ function Cta(props) {
 	let btnStyles = ""
 	const btnClass = className ? className : ""
 	if (route._type === "action") {
-		if (title === "Book a Call") {
+		if (route.title === "Book a Call") {
 			return (
 				<Button component='div' color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
 					<Calendly text={title} />
 				</Button>
 			)
 		}
-		if (title === "Start a Project") {
+		if (route.title === "Start a Project") {
 			return (
 				<Button className={btnClass} color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size} onClick={toggleProjectModal}>
 					{title}
 				</Button>
 			)
 		}
-		if (title === "Call") {
+		if (route.title === "Call") {
 			return (
 				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
 					<a href='tel:3053172807'>{title}</a>
 				</Button>
 			)
 		}
-		if (title === "Text") {
+		if (route.title === "Text") {
 			return (
 				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
 					<a href='sms:3053172807'>{title}</a>
 				</Button>
 			)
 		}
-		if (title === "Email") {
+		if (route.title === "Email") {
 			return (
 				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
 					<a href='mailto:info@logo.media'>{title}</a>
 				</Button>
 			)
 		}
-		if (title === "Contact Us") {
+		if (route.title === "Contact Us") {
 			return (
 				<Button color={cta_types.button_type} variant={cta_variant.button_variant} size={cta_size.button_size}>
 					<Link href='/contact-us'>{title} </Link>
