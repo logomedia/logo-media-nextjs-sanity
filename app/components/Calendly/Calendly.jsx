@@ -8,7 +8,7 @@ const Calendly = ({ url, prefill, pageSettings, utm, text, styles }) => {
 
 	return (
 		<PopupButton
-			url='https://calendly.com/logo_media'
+			url='https://calendly.com/logo_media/meet'
 			rootElement={root}
 			text={text}
 			pageSettings={{
