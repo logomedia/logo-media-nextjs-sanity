@@ -1,5 +1,19 @@
 .Logo {
-	height: 40px;
-	cursor: pointer;
-	transition: cubic-bezier(0, 0, 0, 1);
+  height: 40px;
+  cursor: pointer;
+  transition: cubic-bezier(0, 0, 0, 1);
+}
+.logoTitle {
+  font-family: Barlow;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.8;
+  font-size: 20px;
+  max-width: 100px;
+}
+.LogoContainer {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
 }
