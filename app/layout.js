@@ -34,7 +34,6 @@ export const metadata = {
     category: "technology",
   },
 };
-const PreviewProvider = dynamic(() => import("components/PreviewProvider"));
 
 export default async function RootLayout({ children }) {
   const settings = await getSettings();
