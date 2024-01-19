@@ -1,5 +1,5 @@
-'use client';
-import styles from './admin.css';
+"use client";
+import styles from "./admin.css";
 
 /**
  * This route is responsible for the built-in authoring environment using Sanity Studio.
@@ -10,9 +10,10 @@ import styles from './admin.css';
  * https://github.com/sanity-io/next-sanity
  */
 
-import { NextStudio } from 'next-sanity/studio';
-import config from '../../../sanity.config';
+import { NextStudio } from "next-sanity/studio";
+import config from "../../../sanity.config";
 
 export default function StudioPage() {
+  console.log(process.env.NEXT_PUBLIC_SANITY_DATASET);
   return <NextStudio config={config} />;
 }
