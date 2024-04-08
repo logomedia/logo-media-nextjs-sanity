@@ -77,13 +77,18 @@ export default function ContactMarketingForm() {
 				reply_to: data.email,
 			}
 			emailjs
-				.send("service_1tbbiwc", "template_nta5lyb", toSend, "XtmHxL5zdet_8tKjY")
-				.then((response) => {
-					setSuccess("Your message has been sent succesfully")
+				.send("service_1tbbiwc", "template_nta5lyb", toSend, {
+					publicKey: "RXrvJpiTUMiFvSclf",
 				})
-				.catch((err) => {
-					setSuccess(err)
-				})
+				.then(
+					(response) => {
+						console.log("SUCCESS!", response.status, response.text)
+						setSuccess("Your message has been sent successfully!")
+					},
+					(err) => {
+						console.log("FAILED...", err)
+					}
+				)
 		} catch (error) {
 			console.error(error)
 		}
