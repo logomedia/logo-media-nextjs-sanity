@@ -17,7 +17,7 @@ import { schema } from "./sanity/schema";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 import Iframe from "sanity-plugin-iframe-pane";
 
-const title = "Logo Media";
+const title = "Commerce Storm";
 const baseURL = window.location.origin;
 
 const defaultDocumentNode = (S, { schemaType }) => {
@@ -34,7 +34,7 @@ const defaultDocumentNode = (S, { schemaType }) => {
     S.view.form(),
 
     S.view
-      .component(Iframe)
+      .component(() => Iframe)
       .options({
         url: (doc) =>
           doc?.slug?.current === "/"
