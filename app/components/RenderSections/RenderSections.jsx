@@ -6,7 +6,9 @@ import * as SectionComponents from "../../sections"
 
 function resolveSections(section) {
 	const Section = SectionComponents[capitalizeString(section._type)]
+	
 	if (Section) {
+		console.log(Section)
 		return Section
 	}
 
@@ -16,7 +18,7 @@ function resolveSections(section) {
 
 function RenderSections(props) {
 	const { sections, projects, reviews, partners, posts, preview } = props
-
+	
 	if (!sections) {
 		console.error("Missing section")
 		return <div>Missing sections</div>
@@ -26,7 +28,7 @@ function RenderSections(props) {
 		<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 20 }} exit={{ opacity: 0, y: 20 }}>
 			{sections.map((section) => {
 				const SectionComponent = resolveSections(section)
-
+				
 				if (!SectionComponent) {
 					return <div key={section._key}>Missing section {section._type}</div>
 				}

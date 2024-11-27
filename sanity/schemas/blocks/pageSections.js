@@ -8,6 +8,7 @@ export default [
 	{ type: "backgroundMovement" },
 	{ type: "pricingTable1" },
 	{ type: "heroLanding" },
+	{ type: "imageBlock" },
 	{ type: "whoWeAre" },
 	{ type: "ourServices" },
 	{ type: "workflow" },

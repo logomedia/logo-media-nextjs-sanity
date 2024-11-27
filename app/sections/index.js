@@ -4,6 +4,7 @@ export { default as TextWithBackground } from "./TextWithBackground"
 export { default as PricingTable1 } from "./PricingTable1"
 export { default as BoxedImageWithText } from "./BoxedImageWithText"
 export { default as BackgroundMovement } from "./BackgroundMovement"
+export { default as ImageBlock } from "./ImageBlock"
 // Landing page
 export { default as HeroLanding } from "./HeroLanding"
 export { default as Clients } from "./Clients"
@@ -45,3 +46,4 @@ export { default as Reviews } from "./Reviews"
 export { default as LatestReviews } from "./LatestReviews"
 export { default as Partners } from "./Partners"
 export { default as TermsPages } from "./TermsPages"
+
