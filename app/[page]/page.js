@@ -73,7 +73,7 @@ export default async function Page({ params }) {
 	const content = pageData?.content
 
 	const { isEnabled } = draftMode()
-
+	console.log(content)
 	if (content === undefined) {
 		return <NotFound />
 	} else {

@@ -8,7 +8,7 @@ function resolveSections(section) {
 	const Section = SectionComponents[capitalizeString(section._type)]
 	
 	if (Section) {
-		console.log(Section)
+
 		return Section
 	}
 

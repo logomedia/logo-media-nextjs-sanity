@@ -18,7 +18,7 @@ import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 import Iframe from "sanity-plugin-iframe-pane";
 
 const title = "Logo Media";
-const baseURL = window.location.origin;
+const baseURL = window?.location.origin;
 
 const defaultDocumentNode = (S, { schemaType }) => {
   const subpath =
