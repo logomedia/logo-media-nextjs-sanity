@@ -39,7 +39,6 @@ export default function Image({
           component={LazyLoadImage}
           wrapperClassName="wrapper"
           effect={disabledEffect ? undefined : effect}
-          placeholderSrc="https://zone-assets-api.vercel.app/assets/img_placeholder.svg"
           sx={{ width: 1, height: 1, objectFit: 'cover' }}
           {...other}
         />
@@ -66,7 +65,6 @@ export default function Image({
         component={LazyLoadImage}
         wrapperClassName="wrapper"
         effect={disabledEffect ? undefined : effect}
-        placeholderSrc="https://zone-assets-api.vercel.app/assets/img_placeholder.svg"
         sx={{ width: 1, height: 1, objectFit: 'cover' }}
         {...other}
       />

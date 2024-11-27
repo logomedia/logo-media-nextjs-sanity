@@ -15,13 +15,13 @@ function Cta(props) {
     document.body.style.height = "100vh";
     document.body.style.overflow = "hidden";
   };
-
+  
   const { title, route, cta_types, cta_variant, cta_size, className } = props;
 
   let btnStyles = "";
   const btnClass = className ? className : "";
-  if (route._type === "action") {
-    if (route.title === "Book a Call") {
+  if (route?._type === "action") {
+    if (route?.title === "Book a Call") {
       return (
         <Button
           component="div"
@@ -32,7 +32,7 @@ function Cta(props) {
         </Button>
       );
     }
-    if (route.title === "Start a Project") {
+    if (route?.title === "Start a Project") {
       return (
         <Button
           className={btnClass}
@@ -44,7 +44,7 @@ function Cta(props) {
         </Button>
       );
     }
-    if (route.title === "Call") {
+    if (route?.title === "Call") {
       return (
         <Button
           color={cta_types.button_type}
@@ -54,7 +54,7 @@ function Cta(props) {
         </Button>
       );
     }
-    if (route.title === "Text") {
+    if (route?.title === "Text") {
       return (
         <Button
           color={cta_types.button_type}
@@ -64,7 +64,7 @@ function Cta(props) {
         </Button>
       );
     }
-    if (route.title === "Email") {
+    if (route?.title === "Email") {
       return (
         <Button
           color={cta_types.button_type}
@@ -74,7 +74,7 @@ function Cta(props) {
         </Button>
       );
     }
-    if (route.title === "Contact Us") {
+    if (route?.title === "Contact Us") {
       return (
         <Button
           color={cta_types.button_type}
@@ -93,7 +93,7 @@ function Cta(props) {
       </Button>
     );
   }
-  if (route._type === "page" && route.slug.current) {
+  if (route?._type === "page" && route.slug.current) {
     return (
       <Button
         color={cta_types.button_type}
@@ -103,7 +103,7 @@ function Cta(props) {
       </Button>
     );
   }
-  if (route._type === "post" && route.slug.current) {
+  if (route?._type === "post" && route.slug.current) {
     return (
       <Button
         color={cta_types.button_type}
@@ -117,13 +117,13 @@ function Cta(props) {
       </Button>
     );
   }
-  if (route._type === "project" && route.slug.current) {
+  if (route?._type === "project" && route?.slug.current) {
     return (
       <Button
         color={cta_types.button_type}
         variant={cta_variant.button_variant}
         size={cta_size.button_size}>
-        <Link className={btnStyles} href={`/projects/${route.slug.current}`}>
+        <Link className={btnStyles} href={`/projects/${route?.slug?.current}`}>
           {title}
         </Link>
       </Button>
@@ -138,6 +138,7 @@ function Cta(props) {
       {title}
     </Button>
   );
+  
 }
 
 export default Cta;
